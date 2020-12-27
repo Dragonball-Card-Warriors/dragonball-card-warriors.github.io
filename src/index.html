@@ -25,7 +25,7 @@
         <div class="input-group col-6">
           <div class="btn btn-primary disabled">Sort</div>
           <select class="form-select" id="sortByOption" oninput="sortCards()"></select>
-          <button class="btn btn-primary" type="button" onclick="sortAsc = !sortAsc; this.innerText = sortAsc ? '↑' : '↓'; sortCards();">↓</button>
+          <button class="btn btn-primary" type="button" onclick="sortAsc = !sortAsc; this.innerText = sortAsc ? '↑' : '↓'; sortCards();">↑</button>
         </div>
       </div>
 
@@ -40,7 +40,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body row">
-              <div class="col-md-12">
+              <div class="col-12">
                 <label class="form-label">Energy Cost</label>
                 <div class="d-flex justify-content-around">
                   <input type="checkbox" class="btn-check filter-energy" id="energyCost0" value="0" autocomplete="off" onfocus="this.blur()" onchange="filterCards()">
