@@ -34,7 +34,7 @@ const loadCards = (container) => {
               </tr>
             </thead>
             <tbody>
-              ${card.type == 'Unit' ?
+              ${card.type == 'Character' ?
               `<tr>
                 <th width="25%" class="text-end">Groups:</th>
                 <td width="75%" class="text-start" colspan="3">${card.groups.map(g => `<span class="badge bg-info">${g}</span>`).join(' ')}</td>
@@ -45,7 +45,7 @@ const loadCards = (container) => {
                 <th width="25%" class="text-end">Cost:</th>
                 <td width="25%" class="text-start">${card.energy_cost}</td>
               </tr>
-              ${card.type == 'Unit' ?
+              ${card.type == 'Character' ?
               `<tr>
                 <th width="25%" class="text-end">Attack:</th>
                 <td width="25%" class="text-start">${card.attack || '-'}</td>
