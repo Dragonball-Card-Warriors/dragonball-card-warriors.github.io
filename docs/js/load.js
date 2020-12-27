@@ -23,10 +23,10 @@ const loadCards = (container) => {
     // Add elements
     el.innerHTML = `<div class="card mb-3">
       <div class="row g-0 ">
-        <div class="col-4 p-0 bg-secondary">
+        <div class="card-image col-4 p-0 bg-secondary">
           <img src="images/cards/${card.id}.png" alt="${card.name} card image" width="100%" onError="this.src = 'images/cards/none.png'">
         </div>
-        <div class="col-8 pl-0">
+        <div class="card-info col-8 pl-0">
           <table class="table" width="100%">
             <thead>
               <tr>
