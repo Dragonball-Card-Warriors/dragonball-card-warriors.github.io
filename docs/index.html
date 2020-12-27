@@ -112,6 +112,17 @@
                 </div>
               </div>
               <div class="col-12">
+                <label class="form-label">Ability</label><br/>
+                <div class="d-flex justify-content-around">
+                  <input type="checkbox" class="btn-check filter-abilities" id="abilityGuard" value="Guard" autocomplete="off" onfocus="this.blur()" onchange="filterCards()">
+                  <label class="btn btn-block btn-outline-primary" for="abilityGuard">Guard</label>
+                  <input type="checkbox" class="btn-check filter-abilities" id="abilitySwiftAttack" value="Swift" autocomplete="off" onfocus="this.blur()" onchange="filterCards()">
+                  <label class="btn btn-block btn-outline-primary" for="abilitySwiftAttack">Swift Attack</label>
+                  <input type="checkbox" class="btn-check filter-abilities" id="abilityNone" value="" autocomplete="off" onfocus="this.blur()" onchange="filterCards()">
+                  <label class="btn btn-block btn-outline-primary" for="abilityNone">None</label>
+                </div>
+              </div>
+              <div class="col-12">
                 <label class="form-label">Attack</label><br/>
                 <div class="d-flex justify-content-around">
                   <input type="checkbox" class="btn-check filter-attack" id="attack1000" value="1000" autocomplete="off" onfocus="this.blur()" onchange="filterCards()">

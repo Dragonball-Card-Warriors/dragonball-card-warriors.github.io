@@ -18,6 +18,10 @@ const filterCards = () => {
     values: [...document.getElementsByClassName('filter-rarity')].filter(el => el.checked).map(el => el.value),
     function: defaultFilterFunction,
   };
+  filters.abilities = {
+    values: [...document.getElementsByClassName('filter-abilities')].filter(el => el.checked).map(el => el.value),
+    function: defaultFilterFunction,
+  };
 
   const attHPFilterFunction = (values, value) => !values.length || values.includes(value) || (values.includes('10000') && +value >= 10000);
   filters.attack = {
