@@ -639,7 +639,7 @@ const cardList = [
     "attack": "",
     "hit_points": "",
     "abilities": "",
-    "effect": "Return 2 Friendly Units to your hand. Summon 1 SP card equal to or less than the combined cost of the 2 Returned",
+    "effect": "Return 2 regular characters on your side of the field to your hand. Summon 1 SP card equal to or less than the combined cost of the 2 Returned",
     "requirements": "",
     "trigger": ""
   },

@@ -7,7 +7,7 @@ function shuffleArray(array) {
 }
 
 const cardContainer = document.getElementById('card-list');
-cardList.slice(0, 100).forEach((card, i) => {
+cardList.forEach((card, i) => {
   const el = document.createElement("div");
   el.className = 'col-md-6 py-2';
   el.innerHTML = `<div class="card mb-3">
