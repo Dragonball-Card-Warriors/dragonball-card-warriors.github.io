@@ -13,7 +13,7 @@ cardList.slice(0, 100).forEach((card, i) => {
   el.innerHTML = `<div class="card mb-3">
     <div class="row g-0 ">
       <div class="col-md-4 p-0 bg-secondary">
-        <img src="images/cards/${encodeURI(card.name)}.png" alt="${card.name} card image" width="100%" onError="this.src = 'images/cards/Blank.png'">
+        <img src="images/cards/${i}.png" alt="${card.name} card image" width="100%" onError="this.src = 'images/cards/blank.png'">
       </div>
       <div class="col-md-8 pl-0">
         <table class="table" width="100%">
