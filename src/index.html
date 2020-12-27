@@ -37,8 +37,146 @@
         </div>
       </section>
 
-      <section id="card-list" class="text-center container row">
-      </section>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cardFilter">
+        Filter Cards
+      </button>
+
+      <section id="card-list" class="text-center container row"></section>
+
+      <!-- Modal -->
+      <div class="modal fade" id="cardFilter" tabindex="-1" aria-labelledby="cardFilterLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Filter Cards</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body row">
+              <div class="col-md-12">
+                <label for="energyMin" class="form-label">Energy Cost</label>
+                <div class="d-flex justify-content-around">
+                  <input type="checkbox" class="btn-check" id="energyCost0" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="energyCost0">0</label>
+                  <input type="checkbox" class="btn-check" id="energyCost1" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="energyCost1">1</label>
+                  <input type="checkbox" class="btn-check" id="energyCost2" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="energyCost2">2</label>
+                  <input type="checkbox" class="btn-check" id="energyCost3" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="energyCost3">3</label>
+                  <input type="checkbox" class="btn-check" id="energyCost4" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="energyCost4">4</label>
+                  <input type="checkbox" class="btn-check" id="energyCost5" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="energyCost5">5</label>
+                  <input type="checkbox" class="btn-check" id="energyCost6" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="energyCost6">6</label>
+                  <input type="checkbox" class="btn-check" id="energyCost7" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="energyCost7">7</label>
+                  <input type="checkbox" class="btn-check" id="energyCost8" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="energyCost8">8</label>
+                  <input type="checkbox" class="btn-check" id="energyCost9" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="energyCost9">9</label>
+                  <input type="checkbox" class="btn-check" id="energyCost10" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="energyCost10">10</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Type</label><br/>
+                <div class="d-flex justify-content-around">
+                  <input type="checkbox" class="btn-check" id="typeCharacter" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="typeCharacter">Character</label>
+                  <input type="checkbox" class="btn-check" id="typeEvent" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="typeEvent">Event</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Symbol</label><br/>
+                <div class="d-flex justify-content-around">
+                  <input type="checkbox" class="btn-check" id="symbolPurple" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="symbolPurple">Purple</label>
+                  <input type="checkbox" class="btn-check" id="symbolBlue" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="symbolBlue">Blue</label>
+                  <input type="checkbox" class="btn-check" id="symbolGreen" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="symbolGreen">Green</label>
+                  <input type="checkbox" class="btn-check" id="symbolYellow" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="symbolYellow">Yellow</label>
+                  <input type="checkbox" class="btn-check" id="symbolNone" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="symbolNone">None</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Rarity</label><br/>
+                <div class="d-flex justify-content-around">
+                  <input type="checkbox" class="btn-check" id="rarity1" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="rarity1">Normal</label>
+                  <input type="checkbox" class="btn-check" id="rarity2" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="rarity2">Rare</label>
+                  <input type="checkbox" class="btn-check" id="rarity3" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="rarity3">Super Rare</label>
+                  <input type="checkbox" class="btn-check" id="rarity4" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="rarity4">Legendary</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Attack</label><br/>
+                <div class="d-flex justify-content-around">
+                  <input type="checkbox" class="btn-check" id="attack1000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="attack1000">1000</label>
+                  <input type="checkbox" class="btn-check" id="attack2000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="attack2000">2000</label>
+                  <input type="checkbox" class="btn-check" id="attack3000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="attack3000">3000</label>
+                  <input type="checkbox" class="btn-check" id="attack4000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="attack4000">4000</label>
+                  <input type="checkbox" class="btn-check" id="attack5000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="attack5000">5000</label>
+                </div>
+                <div class="d-flex justify-content-around">
+                  <input type="checkbox" class="btn-check" id="attack6000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="attack6000">6000</label>
+                  <input type="checkbox" class="btn-check" id="attack7000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="attack7000">7000</label>
+                  <input type="checkbox" class="btn-check" id="attack8000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="attack8000">8000</label>
+                  <input type="checkbox" class="btn-check" id="attack9000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="attack9000">9000</label>
+                  <input type="checkbox" class="btn-check" id="attack10000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="attack10000">10000+</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Hit Points</label><br/>
+                <div class="d-flex justify-content-around">
+                  <input type="checkbox" class="btn-check" id="hp1000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="hp1000">1000</label>
+                  <input type="checkbox" class="btn-check" id="hp2000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="hp2000">2000</label>
+                  <input type="checkbox" class="btn-check" id="hp3000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="hp3000">3000</label>
+                  <input type="checkbox" class="btn-check" id="hp4000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="hp4000">4000</label>
+                  <input type="checkbox" class="btn-check" id="hp5000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="hp5000">5000</label>
+                </div>
+                <div class="d-flex justify-content-around">
+                  <input type="checkbox" class="btn-check" id="hp6000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="hp6000">6000</label>
+                  <input type="checkbox" class="btn-check" id="hp7000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="hp7000">7000</label>
+                  <input type="checkbox" class="btn-check" id="hp8000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="hp8000">8000</label>
+                  <input type="checkbox" class="btn-check" id="hp9000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="hp9000">9000</label>
+                  <input type="checkbox" class="btn-check" id="hp10000" autocomplete="off" onfocus="this.blur()">
+                  <label class="btn btn-block btn-outline-primary" for="hp10000">10000+</label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-block btn-primary" data-bs-dismiss="modal">Done</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>

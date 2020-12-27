@@ -1,7 +1,26 @@
 const loadCards = (container) => {
   cardList.forEach((card, i) => {
-    const el = document.createElement("div");
+    const el = document.createElement('div');
     el.className = 'col-md-6 py-2';
+
+    // Apply data attributes
+    el.dataset.set = card.set
+    el.dataset.name = card.name
+    el.dataset.sub_name = card.sub_name
+    el.dataset.groups = card.groups
+    el.dataset.rarity = card.rarity
+    el.dataset.energy_cost = card.energy_cost
+    el.dataset.type = card.type
+    el.dataset.icon = card.icon
+    el.dataset.attack = card.attack
+    el.dataset.hit_points = card.hit_points
+    el.dataset.abilities = card.abilities
+    el.dataset.effect = card.effect
+    el.dataset.requirements = card.requirements
+    el.dataset.trigger = card.trigger
+    el.dataset.id = card.id
+
+    // Add elements
     el.innerHTML = `<div class="card mb-3">
       <div class="row g-0 ">
         <div class="col-md-4 p-0 bg-secondary">
