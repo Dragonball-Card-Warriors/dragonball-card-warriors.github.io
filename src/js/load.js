@@ -1,7 +1,7 @@
 const loadCards = (container) => {
   cardList.forEach((card, i) => {
     const el = document.createElement('div');
-    el.className = 'col-md-6 py-2';
+    el.className = 'col-md-6 py-2 card-item';
 
     // Apply data attributes
     el.dataset.set = card.set
