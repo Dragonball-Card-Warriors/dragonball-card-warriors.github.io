@@ -22,8 +22,8 @@ const loadCards = (container) => {
 
     // Add elements
     el.innerHTML = `<div class="card mb-3">
-        <div class="card-image col-4 p-0 bg-secondary">
       <div class="row g-0">
+        <div class="card-image col-4 p-0 bg-secondary clickable" data-bs-toggle="modal" data-bs-target="#cardInfoModal" onclick="updateCardInfoModal(${card.id});">
           <img src="images/cards/${card.id}.png" alt="${card.name} card image" width="100%" onError="this.src = 'images/cards/none.png'">
         </div>
         <div class="card-info col-8 pl-0">

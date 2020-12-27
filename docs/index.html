@@ -22,7 +22,7 @@
       </section>
 
       <div class="col-12 row">
-        <button type="button" class="col-4 btn btn-primary" data-bs-toggle="modal" data-bs-target="#cardFilter">
+        <button type="button" class="col-4 btn btn-primary" data-bs-toggle="modal" data-bs-target="#cardFilterModal">
           Filter Cards
         </button>
         <div class="input-group col-4">
@@ -37,8 +37,23 @@
 
       <section id="card-list" class="text-center row"></section>
 
-      <!-- Modal -->
-      <div class="modal fade" id="cardFilter" tabindex="-1" aria-labelledby="cardFilterLabel" aria-hidden="true">
+      <!-- Card Info Modal -->
+      <div class="modal fade" id="cardInfoModal" tabindex="-1" aria-labelledby="cardInfoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body row py-0">
+              <table class="table text-center" width="100%">
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-block btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Filter Modal -->
+      <div class="modal fade" id="cardFilterModal" tabindex="-1" aria-labelledby="cardFilterLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">

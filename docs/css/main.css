@@ -1,3 +1,7 @@
 .card-image {
   border-radius: 10px;
 }
+
+.clickable {
+  cursor: pointer;
+}
