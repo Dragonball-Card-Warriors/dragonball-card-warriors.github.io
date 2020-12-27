@@ -39,12 +39,12 @@
         </div>
       </section>
 
-      <div class="col-12">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cardFilter">
+      <div class="col-12 row">
+        <button type="button" class="col-6 btn btn-primary" data-bs-toggle="modal" data-bs-target="#cardFilter">
           Filter Cards
         </button>
-        <div class="input-group mb-3">
-          <label class="input-group-text bg-primary" for="inputGroupSelect01">Sort</label>
+        <div class="input-group col-6">
+          <div class="btn btn-primary disabled">Sort</div>
           <select class="form-select" id="sortByOption" oninput="sortCards()"></select>
           <button class="btn btn-primary" type="button" onclick="sortAsc = !sortAsc; this.innerText = sortAsc ? '↑' : '↓'; sortCards();">↓</button>
         </div>
