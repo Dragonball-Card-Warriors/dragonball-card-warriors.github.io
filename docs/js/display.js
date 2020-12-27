@@ -20,6 +20,8 @@ const toggleDisplay = () => {
 
 updateCardInfoModal  = (id) => {
   const tableElement = document.getElementById('cardInfoModal').getElementsByTagName('table')[0];
+  const directLink = document.getElementById('directLink');
+  directLink.href = `${location.origin + location.pathname}?cardID=${id}`;
   const card = cardList.find(c => c.id == id);
   tableElement.innerHTML = `
     <thead>
