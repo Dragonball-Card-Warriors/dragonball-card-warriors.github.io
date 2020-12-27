@@ -4,26 +4,26 @@ const loadCards = (container) => {
     el.className = 'col-md-6 py-2 card-item';
 
     // Apply data attributes
-    el.dataset.set = card.set
-    el.dataset.name = card.name
-    el.dataset.sub_name = card.sub_name
+    el.dataset.set = card.set;
+    el.dataset.name = card.name;
+    el.dataset.sub_name = card.sub_name;
     el.dataset.groups = card.groups.join(', ');
-    el.dataset.rarity = card.rarity
-    el.dataset.energy_cost = card.energy_cost
-    el.dataset.type = card.type
-    el.dataset.icon = card.icon
-    el.dataset.attack = card.attack
-    el.dataset.hit_points = card.hit_points
-    el.dataset.abilities = card.abilities
-    el.dataset.effect = card.effect
-    el.dataset.requirements = card.requirements
-    el.dataset.trigger = card.trigger
-    el.dataset.id = card.id
+    el.dataset.rarity = card.rarity;
+    el.dataset.energy_cost = card.energy_cost;
+    el.dataset.type = card.type;
+    el.dataset.icon = card.icon;
+    el.dataset.attack = card.attack;
+    el.dataset.hit_points = card.hit_points;
+    el.dataset.abilities = card.abilities;
+    el.dataset.effect = card.effect;
+    el.dataset.requirements = card.requirements;
+    el.dataset.trigger = card.trigger;
+    el.dataset.id = card.id;
 
     // Add elements
     el.innerHTML = `<div class="card mb-3">
-      <div class="row g-0 ">
         <div class="card-image col-4 p-0 bg-secondary">
+      <div class="row g-0">
           <img src="images/cards/${card.id}.png" alt="${card.name} card image" width="100%" onError="this.src = 'images/cards/none.png'">
         </div>
         <div class="card-info col-8 pl-0">
