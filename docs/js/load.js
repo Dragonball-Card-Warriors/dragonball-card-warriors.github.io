@@ -55,7 +55,7 @@ const loadCards = (container) => {
               ${card.abilities ?
               `<tr>
                 <th width="25%" class="text-end">Ability:</th>
-                <td width="25%" class="text-start">${card.abilities}</td>
+                <td width="75%" class="text-start" colspan="3">${card.abilities}</td>
               </tr>` : ''}
               ${card.effect ?
               `<tr>
