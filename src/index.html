@@ -39,11 +39,18 @@
         </div>
       </section>
 
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cardFilter">
-        Filter Cards
-      </button>
+      <div class="col-12">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cardFilter">
+          Filter Cards
+        </button>
+        <div class="input-group mb-3">
+          <label class="input-group-text bg-primary" for="inputGroupSelect01">Sort</label>
+          <select class="form-select" id="sortByOption" oninput="sortCards()"></select>
+          <button class="btn btn-primary" type="button" onclick="sortAsc = !sortAsc; this.innerText = sortAsc ? '↑' : '↓'; sortCards();">↓</button>
+        </div>
+      </div>
 
-      <section id="card-list" class="text-center container row"></section>
+      <section id="card-list" class="text-center row"></section>
 
       <!-- Modal -->
       <div class="modal fade" id="cardFilter" tabindex="-1" aria-labelledby="cardFilterLabel" aria-hidden="true">
@@ -187,6 +194,7 @@
     <script src="data/cards.js"></script>
     <script src="js/load.js"></script>
     <script src="js/filter.js"></script>
+    <script src="js/sort.js"></script>
     <script src="js/start.js"></script>
   </body>
 </html>

@@ -7,7 +7,7 @@ const loadCards = (container) => {
     el.dataset.set = card.set
     el.dataset.name = card.name
     el.dataset.sub_name = card.sub_name
-    el.dataset.groups = card.groups
+    el.dataset.groups = card.groups.join(', ');
     el.dataset.rarity = card.rarity
     el.dataset.energy_cost = card.energy_cost
     el.dataset.type = card.type
