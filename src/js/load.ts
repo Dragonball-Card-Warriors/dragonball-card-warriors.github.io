@@ -29,7 +29,7 @@ export const loadCards = (container: HTMLElement): void => {
           <img src="images/cards/${card.id}.png" alt="${card.name} card image" width="100%" onError="this.src = 'images/cards/none.png'">
         </div>
         <div class="card-info col-8 p-0">
-          <table class="table" width="100%">
+          <table class="table table-sm" width="100%">
             <thead>
               <tr>
                 <th colspan="4"><h5>${card.name}<h5><h6 class="text-muted">${card.sub_name}</h6></th>
