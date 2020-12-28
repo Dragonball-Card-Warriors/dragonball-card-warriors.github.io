@@ -2,6 +2,7 @@ import { loadCards } from './js/load';
 import { loadSortOptions, sortCards } from './js/sort';
 import { filterCards } from './js/filter';
 import { updateCardInfoModal, toggleDisplay } from './js/display';
+import { cardList } from './data/cards';
 
 const cardContainer = document.getElementById('card-list');
 
@@ -15,4 +16,5 @@ module.exports = {
   filterCards,
   toggleDisplay,
   updateCardInfoModal,
+  cardList,
 };
