@@ -37,8 +37,8 @@ export const updateCardInfoModal = (id: number): void => {
       </tr>
     </thead>
     <tbody>
-      ${card.type == 'Character' ?
-      `<tr>
+      ${card.type == 'Character' ? `
+      <tr>
         <th width="25%" class="text-end">Groups:</th>
         <td width="75%" class="text-start" colspan="3">${card.groups.map(g => `<span class="badge bg-info">${g}</span>`).join(' ')}</td>
       </tr>` : ''}
@@ -48,27 +48,27 @@ export const updateCardInfoModal = (id: number): void => {
         <th width="25%" class="text-end">Cost:</th>
         <td width="25%" class="text-start">${card.energy_cost}</td>
       </tr>
-      ${card.type == 'Character' ?
-      `<tr>
+      ${card.type == 'Character' ? `
+      <tr>
         <th width="25%" class="text-end">Attack:</th>
         <td width="25%" class="text-start">${card.attack || '-'}</td>
         <th width="25%" class="text-end">HP:</th>
         <td width="25%" class="text-start">${card.hit_points || '-'}</td>
       </tr>` : ''}
-      ${card.abilities ?
-      `<tr>
+      ${card.abilities ? `
+      <tr>
         <th width="25%" class="text-end">Ability:</th>
         <td width="75%" class="text-start" colspan="3">${card.abilities}</td>
       </tr>` : ''}
-      ${card.effect ?
-      `<tr>
+      ${card.effect ? `
+      <tr>
         <th colspan="4">Effect:${card.trigger ? `<br/><i>[${card.trigger}]</i>` : ''}</th>
       </tr>
       <tr>
         <td colspan="4">${card.effect}</td>
       </tr>` : ''}
-      ${card.requirements ?
-      `<tr>
+      ${card.requirements ? `
+      <tr>
         <th colspan="4">Requirements:</th>
       </tr>
       <tr>
