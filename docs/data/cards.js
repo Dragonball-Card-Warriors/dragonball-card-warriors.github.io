@@ -1065,7 +1065,7 @@ const cardList = [
     "attack": 3000,
     "hit_points": 1000,
     "abilities": "",
-    "effect": "Deal 2000 DMG to Opponent's Leader or Unit",
+    "effect": "Deals 2000 damage to your opponent's leader or one character on the field",
     "requirements": "Purple owned",
     "trigger": "Upon Appearance",
   },
