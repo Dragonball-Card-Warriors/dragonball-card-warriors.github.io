@@ -40,7 +40,7 @@ export const updateCardInfoModal = (id: number): void => {
       ${card.type == 'Character' ? `
       <tr>
         <th width="25%" class="text-end">Groups:</th>
-        <td width="75%" class="text-start" colspan="3">${card.groups.map(g => `<span class="badge bg-info">${g}</span>`).join(' ')}</td>
+        <td width="75%" class="text-start" colspan="3">${card.groups.map(g => `<span class="badge bg-primary">${g}</span>`).join(' ')}</td>
       </tr>` : ''}
       <tr>
         <th width="25%" class="text-end">Rarity:</th>

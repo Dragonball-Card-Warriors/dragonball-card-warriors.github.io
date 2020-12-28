@@ -9,3 +9,19 @@
 .clickable {
   cursor: pointer;
 }
+
+.no-click {
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Fix for superhero theme selected buttons */
+.btn-check:active+.btn-outline-primary,
+.btn-check:checked+.btn-outline-primary,
+.btn-outline-primary.active,
+.btn-outline-primary.dropdown-toggle.show,
+.btn-outline-primary:active {
+  color: whitesmoke;
+  background-color: #df691a;
+  border-color: rgba(0, 0, 0, 0.2);
+}
