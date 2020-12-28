@@ -1,23 +1,19 @@
 module.exports = {
     root: true,
-    'env': {
-        'browser': true,
-        'es6': true,
-        'es2020': true,
+    env: {
+        browser: true,
+        es6: true,
+        es2020: true,
     },
-    'globals': {
-        'Atomics': 'readonly',
-        'SharedArrayBuffer': 'readonly',
-    },
-    'parser': '@typescript-eslint/parser',
-    'parserOptions': {
-        'project': [
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+        project: [
             './tsconfig.eslint.json',
             './tsconfig.json',
         ],
     },
-    'extends': ['plugin:@typescript-eslint/recommended'],
-    'rules': {
+    extends: ['plugin:@typescript-eslint/recommended'],
+    rules: {
         '@typescript-eslint/no-namespace': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         '@typescript-eslint/no-empty-function': 'off',
