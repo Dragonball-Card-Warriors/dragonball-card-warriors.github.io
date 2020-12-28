@@ -27,7 +27,7 @@
         </button>
         <div class="input-group col-md-4 col-12">
           <div class="btn btn-primary disabled">Sort</div>
-          <select class="form-select" id="sortByOption" oninput="App.sortCards()"></select>
+          <select class="form-select" id="sortByOption" oninput="App.sortCards(App.sortAsc)"></select>
           <button class="btn btn-primary" type="button" onclick="App.sortAsc = !App.sortAsc; this.innerText = App.sortAsc ? '↑' : '↓'; App.sortCards(App.sortAsc);">↑</button>
         </div>
         <button type="button" class="col-md-4 col-6 btn btn-primary" type="button" onclick="App.toggleDisplay();">
