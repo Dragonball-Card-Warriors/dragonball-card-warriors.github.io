@@ -1,32 +1,34 @@
-const loadCards = (container) => {
+import { cardList, rarityColor } from '../data/cards';
+
+export const loadCards = (container: HTMLElement): void => {
   cardList.forEach((card, i) => {
     const el = document.createElement('div');
-    el.className = 'col-md-6 py-2 card-item';
+    el.className = 'col-md-6 col-12 py-2 card-item';
 
     // Apply data attributes
     el.dataset.set = card.set;
     el.dataset.name = card.name;
     el.dataset.sub_name = card.sub_name;
     el.dataset.groups = card.groups.join(', ');
-    el.dataset.rarity = card.rarity;
-    el.dataset.energy_cost = card.energy_cost;
+    el.dataset.rarity = card.rarity.toString();
+    el.dataset.energy_cost = card.energy_cost.toString();
     el.dataset.type = card.type;
     el.dataset.icon = card.icon;
-    el.dataset.attack = card.attack;
-    el.dataset.hit_points = card.hit_points;
+    el.dataset.attack = card.attack.toString();
+    el.dataset.hit_points = card.hit_points.toString();
     el.dataset.abilities = card.abilities;
     el.dataset.effect = card.effect;
     el.dataset.requirements = card.requirements;
     el.dataset.trigger = card.trigger;
-    el.dataset.id = card.id;
+    el.dataset.id = card.id.toString();
 
     // Add elements
     el.innerHTML = `<div class="card mb-3">
       <div class="row m-0">
-        <div class="card-image col-4 p-0 bg-secondary clickable" data-bs-toggle="modal" data-bs-target="#cardInfoModal" onclick="updateCardInfoModal(${card.id});">
+        <div class="card-image col-4 p-0 bg-secondary clickable" data-bs-toggle="modal" data-bs-target="#cardInfoModal" onclick="App.updateCardInfoModal(${card.id});">
           <img src="images/cards/${card.id}.png" alt="${card.name} card image" width="100%" onError="this.src = 'images/cards/none.png'">
         </div>
-        <div class="card-info col-8 pl-0">
+        <div class="card-info col-8 p-0">
           <table class="table" width="100%">
             <thead>
               <tr>

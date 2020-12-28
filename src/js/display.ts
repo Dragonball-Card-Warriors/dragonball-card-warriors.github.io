@@ -1,26 +1,30 @@
+import { rarityColor, cardList } from '../data/cards';
+
 let displayInfo = true;
-const toggleDisplay = () => {
+export const toggleDisplay = (): void => {
   displayInfo = !displayInfo;
   const cardElements = [...document.getElementsByClassName('card-item')];
 
   cardElements.forEach(el => {
-    infoElements = [...el.getElementsByClassName('card-info')];
-    imageElements = [...el.getElementsByClassName('card-image')];
+    const infoElements = [...el.getElementsByClassName('card-info')] as HTMLElement[];
+    const imageElements = [...el.getElementsByClassName('card-image')] as HTMLElement[];
     if (displayInfo) {
       el.classList.replace('col-md-2', 'col-md-6');
+      el.classList.replace('col-4', 'col-12');
       infoElements.forEach(showElement);
-      imageElements.forEach(imageElement => imageElement.classList.replace('col-12', 'col-4'))
+      imageElements.forEach(imageElement => imageElement.classList.replace('col-12', 'col-4'));
     } else {
       el.classList.replace('col-md-6', 'col-md-2');
+      el.classList.replace('col-12', 'col-4');
       infoElements.forEach(hideElement);
-      imageElements.forEach(imageElement => imageElement.classList.replace('col-4', 'col-12'))
+      imageElements.forEach(imageElement => imageElement.classList.replace('col-4', 'col-12'));
     }
   });
-}
+};
 
-updateCardInfoModal  = (id) => {
-  const tableElement = document.getElementById('cardInfoModal').getElementsByTagName('table')[0];
-  const directLink = document.getElementById('directLink');
+export const updateCardInfoModal = (id: number): void => {
+  const tableElement = document.getElementById('cardInfoModal').getElementsByTagName('table')[0] as HTMLElement;
+  const directLink = document.getElementById('directLink') as HTMLAnchorElement;
   directLink.href = `${location.origin + location.pathname}?cardID=${id}`;
   const card = cardList.find(c => c.id == id);
   tableElement.innerHTML = `
@@ -71,4 +75,12 @@ updateCardInfoModal  = (id) => {
         <td colspan="4">${card.requirements}</td>
       </tr>` : ''}
     </tbody>`;
-}
+};
+
+export const hideElement = (el: HTMLElement): void => {
+  el.style.display = 'none';
+};
+
+export const showElement = (el: HTMLElement): void => {
+  el.style.display = 'block';
+};
