@@ -1,6 +1,6 @@
 import { loadCards, loadEffectTypes } from './js/load';
 import { loadSortOptions, sortCards } from './js/sort';
-import { filterCards } from './js/filter';
+import { filterCards, toggleAllFilter } from './js/filter';
 import { updateCardInfoModal, toggleDisplay } from './js/display';
 import { cardList } from './data/cards';
 
@@ -18,4 +18,5 @@ module.exports = {
   toggleDisplay,
   updateCardInfoModal,
   cardList,
+  toggleAllFilter,
 };

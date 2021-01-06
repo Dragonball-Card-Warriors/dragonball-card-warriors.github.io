@@ -68,3 +68,11 @@ export const filterCards = (): void => {
     return shouldShow ? showElement(el) : hideElement(el);
   });
 };
+
+export const toggleAllFilter = (filterName: string): void => {
+  const els = [...document.getElementsByClassName(`filter-${filterName}`)];
+  const checked = els.filter((el: HTMLInputElement) => el.checked).length;
+  const check = checked <= (els.length / 2);
+  els.forEach((el: HTMLInputElement) => el.checked = check);
+  filterCards();
+};
