@@ -49,6 +49,13 @@ export const filterCards = (): void => {
     function: attHPFilterFunction,
   };
 
+  filters.effectTypes = {
+    values: [...document.getElementsByClassName('filter-effect-type')]
+      .filter((el: HTMLInputElement) => el.checked)
+      .map((el: HTMLInputElement) => el.value),
+    function: (values, value): boolean => !values.length || value.split(',').some(v => values.includes(v)),
+  };
+
   const cardElements: HTMLElement[] = [...document.getElementsByClassName('card-item')] as HTMLElement[];
 
   cardElements.forEach((el: HTMLElement) => {

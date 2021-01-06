@@ -199,6 +199,13 @@
                   <label class="btn btn-block btn-outline-primary" for="hp10000">10000+</label>
                 </div>
               </div>
+              <div class="col-12">
+                <label class="form-label">Effect Type</label><br/>
+                <div id="EffectType">
+                  <input type="checkbox" class="btn-check filter-effect-type" id="effectTypeNone" value="" autocomplete="off" onfocus="this.blur()" onchange="App.filterCards()">
+                  <label class="btn btn-outline-primary" for="effectTypeNone">None</label>
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-block btn-primary" data-bs-dismiss="modal">Done</button>

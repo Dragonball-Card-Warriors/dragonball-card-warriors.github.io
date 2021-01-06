@@ -1,4 +1,4 @@
-import { cardList, rarityColor } from '../data/cards';
+import { cardList, rarityColor, EffectType } from '../data/cards';
 
 export const loadCards = (container: HTMLElement): void => {
   cardList.forEach((card, i) => {
@@ -9,7 +9,7 @@ export const loadCards = (container: HTMLElement): void => {
     el.dataset.set = card.set;
     el.dataset.name = card.name;
     el.dataset.sub_name = card.sub_name;
-    el.dataset.groups = card.groups.join(', ');
+    el.dataset.groups = card.groups.join(',');
     el.dataset.rarity = card.rarity.toString();
     el.dataset.energy_cost = card.energy_cost.toString();
     el.dataset.type = card.type;
@@ -18,6 +18,7 @@ export const loadCards = (container: HTMLElement): void => {
     el.dataset.hit_points = card.hit_points.toString();
     el.dataset.abilities = card.abilities;
     el.dataset.effect = card.effect;
+    el.dataset.effectTypes = card.effectTypes.join(',');
     el.dataset.requirements = card.requirements;
     el.dataset.trigger = card.trigger;
     el.dataset.id = card.id.toString();
@@ -79,5 +80,15 @@ export const loadCards = (container: HTMLElement): void => {
       </div>
     </div>`;
     container.appendChild(el);
+  });
+};
+
+
+export const loadEffectTypes = (): void => {
+  const parent = document.getElementById('EffectType');
+  Object.entries(EffectType).forEach(([value, description], i) => {
+    const html = `<input type="checkbox" class="btn-check filter-effect-type" id="effectType${value}" value="${description}" autocomplete="off" onfocus="this.blur()" onchange="App.filterCards()">
+    <label class="btn btn-outline-primary" for="effectType${value}">${description}</label>`;
+    parent.innerHTML += html;
   });
 };
