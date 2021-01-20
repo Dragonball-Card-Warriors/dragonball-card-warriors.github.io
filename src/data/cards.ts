@@ -3663,7 +3663,7 @@ export const cardList: Array<{
     'rarity': Rarity.Rare,
     'energy_cost': 6,
     'type': CardType.Character,
-    'icon': IconType.Yellow,
+    'icon': IconType.Green,
     'attack': 9000,
     'hit_points': 10000,
     'abilities': AbilityType.None,
