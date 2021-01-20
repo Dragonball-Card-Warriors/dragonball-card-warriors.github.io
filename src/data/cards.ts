@@ -1804,7 +1804,7 @@ export const cardList: Array<{
     'abilities': AbilityType.None,
     'effect': 'Summon 1 Friendly Bubbles (Cost 1, ATK 1000, HP 1000)',
     'effectTypes': [EffectType.Other],
-    'requirements': '3 Purple owned',
+    'requirements': '',
     'trigger': 'Upon Appearance',
   },
   {
@@ -1822,7 +1822,7 @@ export const cardList: Array<{
     'abilities': AbilityType.None,
     'effect': 'Gain 6000 ATK',
     'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
+    'requirements': '3 Purple owned',
     'trigger': 'Upon Appearance',
   },
   {
