@@ -83,10 +83,9 @@ export const loadCards = (container: HTMLElement): void => {
   });
 };
 
-
 export const loadEffectTypes = (): void => {
   const parent = document.getElementById('EffectType');
-  Object.entries(EffectType).forEach(([value, description], i) => {
+  Object.entries(EffectType).forEach(([value, description]) => {
     const html = `<input type="checkbox" class="btn-check filter-effect-type" id="effectType${value}" value="${description}" autocomplete="off" onfocus="this.blur()" onchange="App.filterCards()">
     <label class="btn btn-outline-primary" for="effectType${value}">${description}</label>`;
     parent.innerHTML += html;
