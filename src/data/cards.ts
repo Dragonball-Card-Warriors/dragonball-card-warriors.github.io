@@ -583,8 +583,8 @@ export const cardList: Array<{
     'abilities': AbilityType.None,
     'effect': 'Gives Negate Damage to all Friendly Units for this turn.',
     'effectTypes': [EffectType.NegateDamage],
-    'requirements': '',
-    'trigger': '5 Friendly Units',
+    'requirements': '5 Friendly Units',
+    'trigger': '',
   },
   {
     'id': 27,
