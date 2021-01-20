@@ -56,6 +56,13 @@ export const filterCards = (): void => {
     function: (values, value): boolean => !values.length || value.split(',').some(v => values.includes(v)),
   };
 
+  filters.groups = {
+    values: [...document.getElementsByClassName('filter-groups')]
+      .filter((el: HTMLInputElement) => el.checked)
+      .map((el: HTMLInputElement) => el.value),
+    function: (values, value): boolean => !values.length || value.split(',').some(v => values.includes(v)),
+  };
+
   const cardElements: HTMLElement[] = [...document.getElementsByClassName('card-item')] as HTMLElement[];
 
   cardElements.forEach((el: HTMLElement) => {

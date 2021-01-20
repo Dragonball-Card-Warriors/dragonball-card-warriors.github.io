@@ -91,3 +91,13 @@ export const loadEffectTypes = (): void => {
     parent.innerHTML += html;
   });
 };
+
+export const loadGroups = (): void => {
+  const parent = document.getElementById('Groups');
+  const groups = [...new Set(cardList.map(c => c.groups).flat())].sort();
+  Object.entries(groups).forEach(([value, description]) => {
+    const html = `<input type="checkbox" class="btn-check filter-groups" id="group${value}" value="${description}" autocomplete="off" onfocus="this.blur()" onchange="App.filterCards()">
+    <label class="btn btn-outline-primary" for="group${value}">${description}</label>`;
+    parent.innerHTML += html;
+  });
+};

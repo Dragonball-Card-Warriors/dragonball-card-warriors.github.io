@@ -206,6 +206,13 @@
                   <label class="btn btn-outline-primary" for="effectTypeNone">None</label>
                 </div>
               </div>
+              <div class="col-12">
+                <label class="form-label" onclick="App.toggleAllFilter('groups')">Groups</label><br/>
+                <div id="Groups">
+                  <input type="checkbox" class="btn-check filter-groups" id="groupsNone" value="" autocomplete="off" onfocus="this.blur()" onchange="App.filterCards()">
+                  <label class="btn btn-outline-primary" for="groupsNone">None</label>
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-block btn-primary" data-bs-dismiss="modal">Done</button>
