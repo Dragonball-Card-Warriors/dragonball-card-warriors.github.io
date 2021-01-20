@@ -1,4 +1,4 @@
-import { cardList, rarityColor, EffectType } from '../data/cards';
+import { cardList, CardType, rarityColor, EffectType } from '../data/cards';
 
 export const loadCards = (container: HTMLElement): void => {
   cardList.forEach((card, i) => {
@@ -37,7 +37,7 @@ export const loadCards = (container: HTMLElement): void => {
               </tr>
             </thead>
             <tbody>
-              ${card.type == 'Character' ? `
+              ${card.type !== CardType.Event ? `
               <tr>
                 <th width="25%" class="text-end">Groups:</th>
                 <td width="75%" class="text-start" colspan="3">${card.groups.map(g => `<span class="badge bg-primary">${g}</span>`).join(' ')}</td>
@@ -48,7 +48,7 @@ export const loadCards = (container: HTMLElement): void => {
                 <th width="25%" class="text-end">Cost:</th>
                 <td width="25%" class="text-start">${card.energy_cost}</td>
               </tr>
-              ${card.type == 'Character' ? `
+              ${card.type !== CardType.Event ? `
               <tr>
                 <th width="25%" class="text-end">Attack:</th>
                 <td width="25%" class="text-start">${card.attack || '-'}</td>
