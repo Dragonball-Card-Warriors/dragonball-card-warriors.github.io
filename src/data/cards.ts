@@ -2378,7 +2378,7 @@ export const cardList: Array<{
     'type': CardType.Character,
     'icon': IconType.Green,
     'attack': 4000,
-    'hit_points': 5000,
+    'hit_points': 4000,
     'abilities': AbilityType.None,
     'effect': 'Deal 2000 DMG to an Enemy',
     'effectTypes': [EffectType.DealDamage],
@@ -2433,7 +2433,7 @@ export const cardList: Array<{
     'name': 'Android 17',
     'sub_name': 'Biting the Hand that Feeds',
     'groups': [
-      'Android 19',
+      'Android 17',
       'Android',
     ],
     'rarity': Rarity.SuperRare,
