@@ -1968,10 +1968,7 @@ export const cardList: Array<{
     'hit_points': 0,
     'abilities': AbilityType.None,
     'effect': 'Heal 3000 HP to your Leader for each Friendly Unit',
-    'effectTypes': [
-      EffectType.RecoverHitPoints,
-      EffectType.RecoverLifePoints,
-    ],
+    'effectTypes': [EffectType.RecoverLifePoints],
     'requirements': '',
     'trigger': '',
   },
