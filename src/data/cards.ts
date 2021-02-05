@@ -4889,7 +4889,7 @@ export const cardList: Array<{
     'type': CardType.Special,
     'icon': IconType.Blue,
     'attack': 9000,
-    'hit_points': 6000,
+    'hit_points': 7000,
     'abilities': AbilityType.None,
     'effect': '',
     'effectTypes': [],
