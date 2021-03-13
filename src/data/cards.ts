@@ -71,7 +71,7 @@ export const cardList: Array<{
   trigger: string,
 }> = [
   {
-    'id': 0,
+    'id': 1089,
     'set': 'BS',
     'name': 'Frog',
     'sub_name': 'Ginyu\'s Fate',
@@ -89,7 +89,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 1,
+    'id': 1213,
     'set': 'C1',
     'name': 'In Good Hands',
     'sub_name': '',
@@ -107,7 +107,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 2,
+    'id': 1223,
     'set': 'C1',
     'name': 'Mom\'s the Boss',
     'sub_name': '',
@@ -125,7 +125,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 3,
+    'id': 1247,
     'set': 'C1',
     'name': 'Precious Friends',
     'sub_name': '',
@@ -143,7 +143,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 4,
+    'id': 1257,
     'set': 'C1',
     'name': 'Namekian Shield',
     'sub_name': '',
@@ -161,7 +161,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 5,
+    'id': 1266,
     'set': 'C1',
     'name': 'Scouter Malfunction',
     'sub_name': '',
@@ -179,7 +179,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 6,
+    'id': 1294,
     'set': 'C1',
     'name': 'Not a Bad Guy',
     'sub_name': '',
@@ -197,7 +197,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 7,
+    'id': 1009,
     'set': 'C1',
     'name': 'Gohan (Kid)',
     'sub_name': 'Suited Up',
@@ -218,7 +218,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 8,
+    'id': 1026,
     'set': 'BS',
     'name': 'Goten',
     'sub_name': 'If I win…',
@@ -239,7 +239,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 9,
+    'id': 1041,
     'set': 'BS',
     'name': 'Saibaman',
     'sub_name': 'Weird Warriors',
@@ -260,7 +260,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 10,
+    'id': 1042,
     'set': 'BS',
     'name': 'Planetary Warrior B',
     'sub_name': 'Loyal Subject',
@@ -281,7 +281,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 11,
+    'id': 1043,
     'set': 'BS',
     'name': 'Planetary Warrior A',
     'sub_name': 'Officer',
@@ -302,7 +302,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 12,
+    'id': 1074,
     'set': 'C1',
     'name': 'Majin Buu (Innocent)',
     'sub_name': 'Buu\'s Back',
@@ -320,7 +320,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 13,
+    'id': 1079,
     'set': 'C1',
     'name': 'Chi-Chi',
     'sub_name': 'Mad Mama',
@@ -338,7 +338,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 14,
+    'id': 1082,
     'set': 'C1',
     'name': 'Kami',
     'sub_name': 'Earth\'s Guardian',
@@ -362,7 +362,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 15,
+    'id': 1083,
     'set': 'BS',
     'name': 'Mr. Popo',
     'sub_name': 'Kami\'s Assistant',
@@ -380,7 +380,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 16,
+    'id': 1085,
     'set': 'C1',
     'name': 'Dende',
     'sub_name': 'Child of Namek',
@@ -404,7 +404,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 17,
+    'id': 1090,
     'set': 'C1',
     'name': 'Mr. Satan',
     'sub_name': 'Earth\'s Champion?',
@@ -422,7 +422,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 18,
+    'id': 1092,
     'set': 'BS',
     'name': 'Videl',
     'sub_name': 'Mr. Satan\'s Daughter',
@@ -440,7 +440,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 19,
+    'id': 1204,
     'set': 'C1',
     'name': 'x3 Kaioken',
     'sub_name': '',
@@ -458,7 +458,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 20,
+    'id': 1206,
     'set': 'C1',
     'name': 'Fated Confrontation',
     'sub_name': '',
@@ -476,7 +476,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 21,
+    'id': 1209,
     'set': 'C1',
     'name': 'Past Self',
     'sub_name': '',
@@ -494,7 +494,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 22,
+    'id': 1210,
     'set': 'C1',
     'name': 'Entrusted Spirit Bomb',
     'sub_name': '',
@@ -515,7 +515,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 23,
+    'id': 1216,
     'set': 'BS',
     'name': 'Catch the Monkey!',
     'sub_name': '',
@@ -533,7 +533,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 24,
+    'id': 1224,
     'set': 'BS',
     'name': 'Cheer',
     'sub_name': '',
@@ -551,7 +551,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 25,
+    'id': 1230,
     'set': 'C1',
     'name': 'On Edge',
     'sub_name': '',
@@ -569,7 +569,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 26,
+    'id': 1232,
     'set': 'C1',
     'name': 'The Best Team Ever Assembled',
     'sub_name': '',
@@ -587,7 +587,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 27,
+    'id': 1238,
     'set': 'C1',
     'name': 'Help from the Future',
     'sub_name': '',
@@ -605,7 +605,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 28,
+    'id': 1239,
     'set': 'C1',
     'name': 'Classmates',
     'sub_name': '',
@@ -623,7 +623,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 29,
+    'id': 1243,
     'set': 'C1',
     'name': 'The Krillin Household',
     'sub_name': '',
@@ -641,7 +641,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 30,
+    'id': 1258,
     'set': 'C1',
     'name': 'Please don\'t die, Mr. Piccolo!',
     'sub_name': '',
@@ -659,7 +659,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 31,
+    'id': 1262,
     'set': 'C1',
     'name': 'Retreat',
     'sub_name': '',
@@ -677,7 +677,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 32,
+    'id': 1264,
     'set': 'C1',
     'name': 'To Outer Space!',
     'sub_name': '',
@@ -695,7 +695,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 33,
+    'id': 1267,
     'set': 'C1',
     'name': 'Senzu Bean',
     'sub_name': '',
@@ -713,7 +713,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 34,
+    'id': 1270,
     'set': 'C1',
     'name': 'Reunification',
     'sub_name': '',
@@ -734,7 +734,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 35,
+    'id': 1273,
     'set': 'C1',
     'name': 'Goku\'s Mistake',
     'sub_name': '',
@@ -752,7 +752,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 36,
+    'id': 1279,
     'set': 'C1',
     'name': 'Return to the Future',
     'sub_name': '',
@@ -770,7 +770,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 37,
+    'id': 1282,
     'set': 'C1',
     'name': 'Cover Blown',
     'sub_name': '',
@@ -788,7 +788,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 38,
+    'id': 1285,
     'set': 'C1',
     'name': 'Buu the Builder',
     'sub_name': '',
@@ -806,7 +806,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 39,
+    'id': 1295,
     'set': 'C1',
     'name': 'Breather',
     'sub_name': '',
@@ -824,7 +824,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 40,
+    'id': 1296,
     'set': 'C1',
     'name': 'Proud Warrior',
     'sub_name': '',
@@ -842,7 +842,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 41,
+    'id': 1001,
     'set': 'C1',
     'name': 'Goku',
     'sub_name': 'Super Gravity Training',
@@ -863,7 +863,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 42,
+    'id': 1008,
     'set': 'C1',
     'name': 'Gohan (Kid)',
     'sub_name': 'Waiting for Goku',
@@ -884,7 +884,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 43,
+    'id': 1018,
     'set': 'BS',
     'name': 'Vegeta',
     'sub_name': 'Least Favorite Shirt',
@@ -905,7 +905,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 44,
+    'id': 1028,
     'set': 'C1',
     'name': 'Trunks (Kid)',
     'sub_name': 'I\'m gonna win!',
@@ -926,7 +926,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 45,
+    'id': 1035,
     'set': 'BS',
     'name': 'Krillin',
     'sub_name': 'Trepidation',
@@ -944,7 +944,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 46,
+    'id': 1044,
     'set': 'BS',
     'name': 'Planetary Warrior C',
     'sub_name': 'Scout',
@@ -965,7 +965,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 47,
+    'id': 1045,
     'set': 'BS',
     'name': 'Planetary Warrior D',
     'sub_name': 'The Stolen Dragon Ball',
@@ -986,7 +986,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 48,
+    'id': 1046,
     'set': 'BS',
     'name': 'Cui',
     'sub_name': 'Arrogant Rival',
@@ -1007,7 +1007,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 49,
+    'id': 1052,
     'set': 'C1',
     'name': 'Guldo',
     'sub_name': 'Time Stopper',
@@ -1029,7 +1029,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 50,
+    'id': 1068,
     'set': 'C1',
     'name': 'Yamu',
     'sub_name': 'Terrifying Mission',
@@ -1047,7 +1047,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 51,
+    'id': 1070,
     'set': 'C1',
     'name': 'Babidi',
     'sub_name': 'Wizard of the Demon Realm',
@@ -1068,7 +1068,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 52,
+    'id': 1077,
     'set': 'C1',
     'name': 'Bulma',
     'sub_name': 'Android Solution',
@@ -1086,7 +1086,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 53,
+    'id': 1078,
     'set': 'C1',
     'name': 'Bulma',
     'sub_name': 'Worried about Vegeta',
@@ -1104,7 +1104,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 54,
+    'id': 1081,
     'set': 'C1',
     'name': 'Yajirobe',
     'sub_name': 'Master Korin\'s Errand Boy',
@@ -1122,7 +1122,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 55,
+    'id': 1086,
     'set': 'C1',
     'name': 'Dende',
     'sub_name': 'The New Guardian',
@@ -1146,7 +1146,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 56,
+    'id': 1091,
     'set': 'C1',
     'name': 'Mr. Satan',
     'sub_name': 'Supposedly Undefeated',
@@ -1164,7 +1164,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 57,
+    'id': 1101,
     'set': 'C1',
     'name': 'Chiaotzu',
     'sub_name': 'Telekinesis',
@@ -1182,7 +1182,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 58,
+    'id': 1114,
     'set': 'C1',
     'name': 'Android 19',
     'sub_name': 'Energy Absorption',
@@ -1203,7 +1203,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 59,
+    'id': 1226,
     'set': 'C1',
     'name': 'Earth\'s Mightiest Assemble!',
     'sub_name': '',
@@ -1221,7 +1221,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 60,
+    'id': 1227,
     'set': 'C1',
     'name': 'Strength in Numbers',
     'sub_name': '',
@@ -1239,7 +1239,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 61,
+    'id': 1228,
     'set': 'C1',
     'name': 'Peons',
     'sub_name': '',
@@ -1257,7 +1257,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 62,
+    'id': 1236,
     'set': 'BS',
     'name': 'Here to Watch',
     'sub_name': '',
@@ -1275,7 +1275,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 63,
+    'id': 1245,
     'set': 'C1',
     'name': 'Interlude',
     'sub_name': '',
@@ -1293,7 +1293,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 64,
+    'id': 1246,
     'set': 'C1',
     'name': 'Commemorative Photo',
     'sub_name': '',
@@ -1311,7 +1311,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 65,
+    'id': 1248,
     'set': 'C1',
     'name': 'Two Buus',
     'sub_name': '',
@@ -1329,7 +1329,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 66,
+    'id': 1250,
     'set': 'C1',
     'name': 'The Adventure Begins!',
     'sub_name': '',
@@ -1347,7 +1347,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 67,
+    'id': 1252,
     'set': 'C1',
     'name': 'Saiyan weak Point',
     'sub_name': '',
@@ -1365,7 +1365,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 68,
+    'id': 1254,
     'set': 'C1',
     'name': 'Welcome to King Kai\'s Planet',
     'sub_name': '',
@@ -1383,7 +1383,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 69,
+    'id': 1263,
     'set': 'C1',
     'name': 'Ancient Spaceship',
     'sub_name': '',
@@ -1401,7 +1401,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 70,
+    'id': 1274,
     'set': 'C1',
     'name': 'Downgrade',
     'sub_name': '',
@@ -1419,7 +1419,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 71,
+    'id': 1275,
     'set': 'C1',
     'name': 'This was the only place…',
     'sub_name': '',
@@ -1437,7 +1437,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 72,
+    'id': 1276,
     'set': 'C1',
     'name': 'Let\'s Head Back',
     'sub_name': '',
@@ -1455,7 +1455,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 73,
+    'id': 1278,
     'set': 'C1',
     'name': 'Victorious and Tired',
     'sub_name': '',
@@ -1476,7 +1476,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 74,
+    'id': 1283,
     'set': 'C1',
     'name': 'The Hunted',
     'sub_name': '',
@@ -1494,7 +1494,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 75,
+    'id': 1284,
     'set': 'C1',
     'name': 'The People of Earth',
     'sub_name': '',
@@ -1512,7 +1512,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 76,
+    'id': 1287,
     'set': 'C1',
     'name': 'Bad Idea',
     'sub_name': '',
@@ -1530,7 +1530,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 77,
+    'id': 1006,
     'set': 'C1',
     'name': 'Gohan (Kid)',
     'sub_name': 'All Trained Up',
@@ -1551,7 +1551,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 78,
+    'id': 1013,
     'set': 'BS',
     'name': 'Gohan',
     'sub_name': 'The Ultimate High School Student',
@@ -1572,7 +1572,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 79,
+    'id': 1016,
     'set': 'BS',
     'name': 'Vegeta',
     'sub_name': 'Confidence in Spades',
@@ -1594,7 +1594,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 80,
+    'id': 1031,
     'set': 'BS',
     'name': 'Piccolo',
     'sub_name': 'Prepping for the Saiyans',
@@ -1615,7 +1615,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 81,
+    'id': 1034,
     'set': 'C1',
     'name': 'Krillin',
     'sub_name': 'Destructo-Disc',
@@ -1633,7 +1633,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 82,
+    'id': 1038,
     'set': 'C1',
     'name': 'Yamcha',
     'sub_name': 'Warning of Danger',
@@ -1651,7 +1651,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 83,
+    'id': 1048,
     'set': 'C1',
     'name': 'Zarbon',
     'sub_name': 'Bargaining',
@@ -1672,7 +1672,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 84,
+    'id': 1049,
     'set': 'C1',
     'name': 'Recoome',
     'sub_name': 'Beefed-up Bod',
@@ -1694,7 +1694,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 85,
+    'id': 1059,
     'set': 'BS',
     'name': 'Android 19',
     'sub_name': 'Loyal Servant',
@@ -1715,7 +1715,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 86,
+    'id': 1064,
     'set': 'C1',
     'name': 'Android 18',
     'sub_name': 'Show Me the Money',
@@ -1736,7 +1736,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 87,
+    'id': 1069,
     'set': 'C1',
     'name': 'Spopovich',
     'sub_name': 'Rampaging Puppet',
@@ -1754,7 +1754,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 88,
+    'id': 1073,
     'set': 'C1',
     'name': 'Yakon',
     'sub_name': 'Magical Beast of Dark Star',
@@ -1772,7 +1772,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 89,
+    'id': 1080,
     'set': 'C1',
     'name': 'Master Roshi',
     'sub_name': 'A Master\'s Premonition',
@@ -1790,7 +1790,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 90,
+    'id': 1084,
     'set': 'C1',
     'name': 'King Kai',
     'sub_name': 'Guardian of the North Galaxy',
@@ -1808,7 +1808,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 91,
+    'id': 1093,
     'set': 'C1',
     'name': 'Videl',
     'sub_name': 'Less Hair, More Moxie',
@@ -1826,7 +1826,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 92,
+    'id': 1097,
     'set': 'BS',
     'name': 'Goku',
     'sub_name': 'KameHameHa',
@@ -1847,7 +1847,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 93,
+    'id': 1205,
     'set': 'C1',
     'name': 'Lend me your energy!',
     'sub_name': '',
@@ -1865,7 +1865,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 94,
+    'id': 1214,
     'set': 'C1',
     'name': 'Heaven\'s Gaze',
     'sub_name': '',
@@ -1883,7 +1883,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 95,
+    'id': 1217,
     'set': 'BS',
     'name': 'Stall Tactics',
     'sub_name': '',
@@ -1901,7 +1901,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 96,
+    'id': 1231,
     'set': 'C1',
     'name': 'Planetary Warriors',
     'sub_name': '',
@@ -1919,7 +1919,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 97,
+    'id': 1233,
     'set': 'C1',
     'name': 'Trained in the Other World',
     'sub_name': '',
@@ -1937,7 +1937,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 98,
+    'id': 1234,
     'set': 'C1',
     'name': 'Harbinger of Doom',
     'sub_name': '',
@@ -1955,7 +1955,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 99,
+    'id': 1242,
     'set': 'C1',
     'name': 'Family Bonds',
     'sub_name': '',
@@ -1973,7 +1973,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 100,
+    'id': 1249,
     'set': 'C1',
     'name': 'Dragon Balls Collected',
     'sub_name': '',
@@ -1991,7 +1991,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 101,
+    'id': 1253,
     'set': 'C1',
     'name': 'Special Beam Cannon',
     'sub_name': '',
@@ -2009,7 +2009,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 102,
+    'id': 1261,
     'set': 'C1',
     'name': 'The Final Blow',
     'sub_name': '',
@@ -2027,7 +2027,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 103,
+    'id': 1271,
     'set': 'C1',
     'name': 'Terrifying Broadcast',
     'sub_name': '',
@@ -2045,7 +2045,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 104,
+    'id': 1280,
     'set': 'C1',
     'name': 'Silent Goodbye',
     'sub_name': '',
@@ -2063,7 +2063,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 105,
+    'id': 1281,
     'set': 'BS',
     'name': 'Golden Fighter',
     'sub_name': '',
@@ -2081,7 +2081,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 106,
+    'id': 1286,
     'set': 'C1',
     'name': 'Pure Heart',
     'sub_name': '',
@@ -2099,7 +2099,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 107,
+    'id': 1290,
     'set': 'C1',
     'name': 'Back in a Body',
     'sub_name': '',
@@ -2117,7 +2117,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 108,
+    'id': 1292,
     'set': 'C1',
     'name': 'Buying Time',
     'sub_name': '',
@@ -2138,7 +2138,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 109,
+    'id': 1293,
     'set': 'C1',
     'name': 'Lending a Hand',
     'sub_name': '',
@@ -2159,7 +2159,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 110,
+    'id': 1300,
     'set': 'C1',
     'name': 'Overjoyed Friends',
     'sub_name': '',
@@ -2177,7 +2177,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 111,
+    'id': 1007,
     'set': 'C1',
     'name': 'Gohan (Kid)',
     'sub_name': 'Ready to Fight',
@@ -2198,7 +2198,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 112,
+    'id': 1015,
     'set': 'C1',
     'name': 'Gohan (Great Saiyaman)',
     'sub_name': 'Anger Rising',
@@ -2219,7 +2219,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 113,
+    'id': 1019,
     'set': 'C1',
     'name': 'Vegeta',
     'sub_name': 'A Warrior\'s Pride',
@@ -2240,7 +2240,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 114,
+    'id': 1022,
     'set': 'C1',
     'name': 'Trunks',
     'sub_name': 'A New Saiyan',
@@ -2261,7 +2261,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 115,
+    'id': 1027,
     'set': 'C1',
     'name': 'Goten',
     'sub_name': 'Unyielding',
@@ -2282,7 +2282,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 116,
+    'id': 1032,
     'set': 'C1',
     'name': 'Piccolo',
     'sub_name': 'Firm and Focused',
@@ -2303,7 +2303,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 117,
+    'id': 1037,
     'set': 'C1',
     'name': 'Tien',
     'sub_name': 'Risking His Life',
@@ -2321,7 +2321,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 118,
+    'id': 1039,
     'set': 'BS',
     'name': 'Raditz',
     'sub_name': 'Saiyan Dread',
@@ -2343,7 +2343,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 119,
+    'id': 1047,
     'set': 'C1',
     'name': 'Dodoria',
     'sub_name': 'Overconfidence',
@@ -2364,7 +2364,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 120,
+    'id': 1051,
     'set': 'C1',
     'name': 'Jeice',
     'sub_name': 'Red Magma',
@@ -2386,7 +2386,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 121,
+    'id': 1054,
     'set': 'C1',
     'name': 'Frieza (1st Form)',
     'sub_name': 'Galactic Emperor',
@@ -2407,7 +2407,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 122,
+    'id': 1060,
     'set': 'BS',
     'name': 'Android 20',
     'sub_name': 'Deceptive Doctor',
@@ -2428,7 +2428,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 123,
+    'id': 1062,
     'set': 'C1',
     'name': 'Android 17',
     'sub_name': 'Biting the Hand that Feeds',
@@ -2449,7 +2449,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 124,
+    'id': 1072,
     'set': 'BS',
     'name': 'Pui Pui',
     'sub_name': 'Warrior from Planet Zoon',
@@ -2467,7 +2467,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 125,
+    'id': 1087,
     'set': 'BS',
     'name': 'Nail',
     'sub_name': 'Guru\'s Guardian',
@@ -2488,7 +2488,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 126,
+    'id': 1100,
     'set': 'C1',
     'name': 'Krillin',
     'sub_name': 'Solar Flare',
@@ -2506,7 +2506,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 127,
+    'id': 1112,
     'set': 'C1',
     'name': 'Goku',
     'sub_name': 'Spirit Bomb',
@@ -2527,7 +2527,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 128,
+    'id': 1115,
     'set': 'C1',
     'name': 'Android 19',
     'sub_name': 'Precision Strike',
@@ -2548,7 +2548,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 129,
+    'id': 1119,
     'set': 'C1',
     'name': 'Majin Buu (Innocent)',
     'sub_name': 'The Birth of a Majin',
@@ -2566,7 +2566,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 130,
+    'id': 1207,
     'set': 'C1',
     'name': 'Parting Words',
     'sub_name': '',
@@ -2584,7 +2584,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 131,
+    'id': 1208,
     'set': 'C1',
     'name': 'Unthinkable Change',
     'sub_name': '',
@@ -2602,7 +2602,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 132,
+    'id': 1211,
     'set': 'BS',
     'name': 'Emergency Contact',
     'sub_name': '',
@@ -2620,7 +2620,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 133,
+    'id': 1215,
     'set': 'C1',
     'name': 'Judgment',
     'sub_name': '',
@@ -2638,7 +2638,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 134,
+    'id': 1218,
     'set': 'C1',
     'name': 'Dormant Power',
     'sub_name': '',
@@ -2659,7 +2659,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 135,
+    'id': 1240,
     'set': 'C1',
     'name': 'A Voice from Beyond',
     'sub_name': '',
@@ -2677,7 +2677,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 136,
+    'id': 1244,
     'set': 'C1',
     'name': 'Training Partner',
     'sub_name': '',
@@ -2698,7 +2698,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 137,
+    'id': 1255,
     'set': 'C1',
     'name': 'View from the Top',
     'sub_name': '',
@@ -2716,7 +2716,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 138,
+    'id': 1260,
     'set': 'C1',
     'name': 'The Battle for Earth',
     'sub_name': '',
@@ -2737,7 +2737,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 139,
+    'id': 1265,
     'set': 'C1',
     'name': 'Spaceship Modifications',
     'sub_name': '',
@@ -2755,7 +2755,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 140,
+    'id': 1268,
     'set': 'C1',
     'name': 'To a New Planet',
     'sub_name': '',
@@ -2773,7 +2773,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 141,
+    'id': 1288,
     'set': 'C1',
     'name': 'Seeking More Power',
     'sub_name': '',
@@ -2791,7 +2791,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 142,
+    'id': 1297,
     'set': 'C1',
     'name': 'Family Reunion',
     'sub_name': '',
@@ -2809,7 +2809,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 143,
+    'id': 1002,
     'set': 'C1',
     'name': 'Goku (Super Saiyan)',
     'sub_name': 'Back from Heaven',
@@ -2830,7 +2830,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 144,
+    'id': 1004,
     'set': 'C1',
     'name': 'Gohan (Kid)',
     'sub_name': 'Play Pals',
@@ -2854,7 +2854,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 145,
+    'id': 1014,
     'set': 'C1',
     'name': 'Gohan (Great Saiyaman)',
     'sub_name': 'Enter the Great Saiyaman!',
@@ -2875,7 +2875,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 146,
+    'id': 1017,
     'set': 'C1',
     'name': 'Vegeta',
     'sub_name': 'New Battle Suit',
@@ -2896,7 +2896,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 147,
+    'id': 1036,
     'set': 'C1',
     'name': 'Krillin',
     'sub_name': 'Tournament Winnings',
@@ -2914,7 +2914,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 148,
+    'id': 1040,
     'set': 'BS',
     'name': 'Nappa',
     'sub_name': 'Brimming with Arrogance',
@@ -2936,7 +2936,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 149,
+    'id': 1050,
     'set': 'C1',
     'name': 'Burter',
     'sub_name': 'Blue Hurricane',
@@ -2958,7 +2958,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 150,
+    'id': 1055,
     'set': 'C1',
     'name': 'Frieza (2nd Form)',
     'sub_name': 'Looming Nightmare',
@@ -2979,7 +2979,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 151,
+    'id': 1063,
     'set': 'C1',
     'name': 'Android 18',
     'sub_name': 'Killer Counter',
@@ -3000,7 +3000,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 152,
+    'id': 1065,
     'set': 'C1',
     'name': 'Cell (1st Form)',
     'sub_name': 'Kame Hame Ha of Doom',
@@ -3021,7 +3021,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 153,
+    'id': 1088,
     'set': 'C1',
     'name': 'Nail',
     'sub_name': 'Namekian Warrior',
@@ -3045,7 +3045,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 154,
+    'id': 1095,
     'set': 'C1',
     'name': 'Kibito Kai',
     'sub_name': 'Potara Practitioner',
@@ -3066,7 +3066,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 155,
+    'id': 1103,
     'set': 'C1',
     'name': 'Vegeta',
     'sub_name': 'Burst Open and Mix!',
@@ -3091,7 +3091,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 156,
+    'id': 1105,
     'set': 'C1',
     'name': 'Dodoria',
     'sub_name': 'Genocidal Rage',
@@ -3112,7 +3112,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 157,
+    'id': 1107,
     'set': 'C1',
     'name': 'Recoome',
     'sub_name': 'Warmup',
@@ -3134,7 +3134,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 158,
+    'id': 1109,
     'set': 'C1',
     'name': 'Captain Ginyu',
     'sub_name': 'Body Change',
@@ -3156,7 +3156,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 159,
+    'id': 1116,
     'set': 'C1',
     'name': 'Piccolo',
     'sub_name': 'Light Grenade',
@@ -3177,7 +3177,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 160,
+    'id': 1118,
     'set': 'BS',
     'name': 'Cell (2nd Form)',
     'sub_name': 'Evolving Power',
@@ -3198,7 +3198,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 161,
+    'id': 1121,
     'set': 'C1',
     'name': 'Majin Buu (Innocent)',
     'sub_name': 'Candy Beam',
@@ -3216,7 +3216,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 162,
+    'id': 1219,
     'set': 'BS',
     'name': 'World Tournament',
     'sub_name': '',
@@ -3234,7 +3234,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 163,
+    'id': 1220,
     'set': 'C1',
     'name': 'Shenron',
     'sub_name': '',
@@ -3255,7 +3255,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 164,
+    'id': 1225,
     'set': 'C1',
     'name': 'The Battle for Earth',
     'sub_name': '',
@@ -3273,7 +3273,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 165,
+    'id': 1229,
     'set': 'C1',
     'name': 'Planetary Protector',
     'sub_name': '',
@@ -3291,7 +3291,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 166,
+    'id': 1237,
     'set': 'C1',
     'name': 'Hyperbolic Time Chamber',
     'sub_name': '',
@@ -3312,7 +3312,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 167,
+    'id': 1241,
     'set': 'C1',
     'name': 'Alive for a Day',
     'sub_name': '',
@@ -3330,7 +3330,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 168,
+    'id': 1251,
     'set': 'C1',
     'name': 'Hostage',
     'sub_name': '',
@@ -3348,7 +3348,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 169,
+    'id': 1259,
     'set': 'C1',
     'name': 'All Trained Up',
     'sub_name': '',
@@ -3366,7 +3366,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 170,
+    'id': 1269,
     'set': 'C1',
     'name': 'Homecoming',
     'sub_name': '',
@@ -3384,7 +3384,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 171,
+    'id': 1277,
     'set': 'C1',
     'name': 'Trunks\' Death',
     'sub_name': '',
@@ -3402,7 +3402,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 172,
+    'id': 1298,
     'set': 'C1',
     'name': 'For the Family',
     'sub_name': '',
@@ -3423,7 +3423,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 173,
+    'id': 1003,
     'set': 'C1',
     'name': 'Goku',
     'sub_name': 'The Grand Finale',
@@ -3447,7 +3447,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 174,
+    'id': 1005,
     'set': 'C1',
     'name': 'Gohan (Kid)',
     'sub_name': 'Survival Training',
@@ -3468,7 +3468,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 175,
+    'id': 1011,
     'set': 'C1',
     'name': 'Gohan (Super Saiyan)',
     'sub_name': 'Like Father, Like Son',
@@ -3489,7 +3489,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 176,
+    'id': 1023,
     'set': 'C1',
     'name': 'Trunks',
     'sub_name': 'A Son\'s Doubt',
@@ -3510,7 +3510,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 177,
+    'id': 1056,
     'set': 'C1',
     'name': 'Frieza (3rd Form)',
     'sub_name': 'Nightmare Fuel',
@@ -3534,7 +3534,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 178,
+    'id': 1061,
     'set': 'C1',
     'name': 'Android 16',
     'sub_name': 'Mysterious Prototype',
@@ -3555,7 +3555,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 179,
+    'id': 1066,
     'set': 'C1',
     'name': 'Cell (2nd Form)',
     'sub_name': 'Unwelcome Guests',
@@ -3576,7 +3576,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 180,
+    'id': 1071,
     'set': 'C1',
     'name': 'Dabura',
     'sub_name': 'King of the Demon Realm',
@@ -3594,7 +3594,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 181,
+    'id': 1075,
     'set': 'C1',
     'name': 'Majin Buu (Evil)',
     'sub_name': 'The Evil Within',
@@ -3612,7 +3612,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 182,
+    'id': 1094,
     'set': 'C1',
     'name': 'Supreme Kai',
     'sub_name': 'Godly Panic',
@@ -3630,7 +3630,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 183,
+    'id': 1098,
     'set': 'C1',
     'name': 'Raditz',
     'sub_name': 'Mysterious Visitor',
@@ -3652,7 +3652,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 184,
+    'id': 1099,
     'set': 'C1',
     'name': 'Piccolo',
     'sub_name': 'Special Beam Cannon',
@@ -3673,7 +3673,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 185,
+    'id': 1102,
     'set': 'C1',
     'name': 'Nappa',
     'sub_name': 'Energy Wave',
@@ -3695,7 +3695,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 186,
+    'id': 1106,
     'set': 'C1',
     'name': 'Vegeta',
     'sub_name': 'Limitless Power',
@@ -3717,7 +3717,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 187,
+    'id': 1108,
     'set': 'C1',
     'name': 'Recoome',
     'sub_name': 'The Final Blow',
@@ -3739,7 +3739,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 188,
+    'id': 1117,
     'set': 'BS',
     'name': 'Android 17',
     'sub_name': 'Duking it Out',
@@ -3760,7 +3760,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 189,
+    'id': 1122,
     'set': 'C1',
     'name': 'Gotenks (Super Saiyan)',
     'sub_name': 'Galactic Donuts',
@@ -3781,7 +3781,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 190,
+    'id': 1124,
     'set': 'C1',
     'name': 'Goku (Super Saiyan 3)',
     'sub_name': 'Pushing Past Limits',
@@ -3802,7 +3802,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 191,
+    'id': 1222,
     'set': 'C1',
     'name': 'Dream Team',
     'sub_name': '',
@@ -3820,7 +3820,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 192,
+    'id': 1235,
     'set': 'C1',
     'name': 'Problem Children',
     'sub_name': '',
@@ -3838,7 +3838,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 193,
+    'id': 1272,
     'set': 'C1',
     'name': 'Let the Cell Games Begin!',
     'sub_name': '',
@@ -3856,7 +3856,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 194,
+    'id': 1289,
     'set': 'C1',
     'name': 'From Bad to Worse',
     'sub_name': '',
@@ -3874,7 +3874,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 195,
+    'id': 1010,
     'set': 'C1',
     'name': 'Gohan (Teen, Super Saiyan)',
     'sub_name': 'More Determined Than Ever',
@@ -3895,7 +3895,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 196,
+    'id': 1020,
     'set': 'C1',
     'name': 'Vegeta',
     'sub_name': 'Tournament Ready',
@@ -3916,7 +3916,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 197,
+    'id': 1025,
     'set': 'C1',
     'name': 'Trunks',
     'sub_name': 'Concerned Spectator',
@@ -3937,7 +3937,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 198,
+    'id': 1029,
     'set': 'C1',
     'name': 'Gotenks',
     'sub_name': 'Brimming with Confidence',
@@ -3958,7 +3958,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 199,
+    'id': 1033,
     'set': 'C1',
     'name': 'Piccolo',
     'sub_name': 'The World Tournament, Again!',
@@ -3982,7 +3982,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 200,
+    'id': 1053,
     'set': 'C1',
     'name': 'Captain Ginyu',
     'sub_name': 'Noble Leader',
@@ -4004,7 +4004,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 201,
+    'id': 1058,
     'set': 'C1',
     'name': 'King Cold',
     'sub_name': 'Most Feared Family',
@@ -4025,7 +4025,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 202,
+    'id': 1076,
     'set': 'C1',
     'name': 'Super Buu',
     'sub_name': 'Innocence Consumed',
@@ -4043,7 +4043,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 203,
+    'id': 1096,
     'set': 'C1',
     'name': 'Elder Kai',
     'sub_name': 'Sealed in the Sword',
@@ -4061,7 +4061,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 204,
+    'id': 1110,
     'set': 'C1',
     'name': 'Frieza (Final Form)',
     'sub_name': 'Powerful Blow',
@@ -4082,7 +4082,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 205,
+    'id': 1120,
     'set': 'BS',
     'name': 'Dabura',
     'sub_name': 'Unprecedented Struggle',
@@ -4100,7 +4100,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 206,
+    'id': 1125,
     'set': 'BS',
     'name': 'Goku (Super Saiyan 3)',
     'sub_name': 'All-Out Kamehameha!',
@@ -4121,7 +4121,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 207,
+    'id': 1212,
     'set': 'BS',
     'name': 'Back from the Other World',
     'sub_name': '',
@@ -4139,7 +4139,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 208,
+    'id': 1221,
     'set': 'C1',
     'name': 'Porunga',
     'sub_name': '',
@@ -4161,7 +4161,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 209,
+    'id': 1256,
     'set': 'C1',
     'name': 'Hurry, Goku!',
     'sub_name': '',
@@ -4179,7 +4179,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 210,
+    'id': 1291,
     'set': 'C1',
     'name': 'Rescue Mission Accomplished',
     'sub_name': '',
@@ -4200,7 +4200,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 211,
+    'id': 1012,
     'set': 'C1',
     'name': 'Gohan (Super Saiyan)',
     'sub_name': 'Power of the Z-Sword',
@@ -4224,7 +4224,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 212,
+    'id': 1030,
     'set': 'C1',
     'name': 'Gotenks (Super Saiyan)',
     'sub_name': 'Unbelievable Power',
@@ -4248,7 +4248,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 213,
+    'id': 1067,
     'set': 'C1',
     'name': 'Cell (Perfect)',
     'sub_name': 'True Form',
@@ -4269,7 +4269,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 214,
+    'id': 1111,
     'set': 'C1',
     'name': 'Frieza (Final Form)',
     'sub_name': 'Death Beam',
@@ -4290,7 +4290,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 215,
+    'id': 1123,
     'set': 'C1',
     'name': 'Kid Buu',
     'sub_name': 'Barely Breaking a Sweat',
@@ -4308,7 +4308,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 216,
+    'id': 1021,
     'set': 'C1',
     'name': 'Vegeta (Majin)',
     'sub_name': 'Majin and Mad',
@@ -4329,7 +4329,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 217,
+    'id': 1024,
     'set': 'C1',
     'name': 'Trunks (Super Saiyan)',
     'sub_name': 'Beyond Super Saiyan',
@@ -4350,7 +4350,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 218,
+    'id': 1113,
     'set': 'C1',
     'name': 'Frieza (Final Form)',
     'sub_name': 'Full Power Unleashed',
@@ -4374,7 +4374,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 219,
+    'id': 1057,
     'set': 'C1',
     'name': 'Frieza (Final Form)',
     'sub_name': 'Emperor\'s Rage',
@@ -4395,7 +4395,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 220,
+    'id': 1104,
     'set': 'C1',
     'name': 'Vegeta (Great Ape)',
     'sub_name': 'Angered Great Ape',
@@ -4420,7 +4420,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 221,
+    'id': 1299,
     'set': 'C1',
     'name': 'Sight for Sore Eyes',
     'sub_name': '',
@@ -4438,7 +4438,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 222,
+    'id': 1163,
     'set': 'C1',
     'name': 'Goku',
     'sub_name': 'Dragon Hammer Strike',
@@ -4459,7 +4459,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 223,
+    'id': 1181,
     'set': 'C1',
     'name': 'Vegeta (Majin)',
     'sub_name': 'Strength is Everything',
@@ -4480,7 +4480,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 224,
+    'id': 1187,
     'set': 'C1',
     'name': 'Goten',
     'sub_name': 'This is good, huh, Trunks?',
@@ -4501,7 +4501,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 225,
+    'id': 1194,
     'set': 'C1',
     'name': 'Chiaotzu',
     'sub_name': 'This is delicious',
@@ -4519,7 +4519,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 226,
+    'id': 1150,
     'set': 'C1',
     'name': 'Goten & Trunks',
     'sub_name': 'Settling the Score',
@@ -4541,7 +4541,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 227,
+    'id': 1153,
     'set': 'BS',
     'name': 'Babidi & Dabura',
     'sub_name': 'Lying in Wait',
@@ -4562,7 +4562,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 228,
+    'id': 1164,
     'set': 'C1',
     'name': 'Piccolo',
     'sub_name': 'Energy Wave',
@@ -4583,7 +4583,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 229,
+    'id': 1167,
     'set': 'C1',
     'name': 'Gohan (Kid)',
     'sub_name': 'Masenko',
@@ -4604,7 +4604,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 230,
+    'id': 1179,
     'set': 'C1',
     'name': 'Gohan',
     'sub_name': 'Flying Nimbus',
@@ -4625,7 +4625,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 231,
+    'id': 1186,
     'set': 'C1',
     'name': 'Gohan (Kid)',
     'sub_name': 'It\'s all delicious!',
@@ -4646,7 +4646,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 232,
+    'id': 1193,
     'set': 'C1',
     'name': 'Tien',
     'sub_name': 'I could eat more of this!',
@@ -4664,7 +4664,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 233,
+    'id': 1138,
     'set': 'C1',
     'name': 'Piccolo',
     'sub_name': 'Fused with Kami',
@@ -4688,7 +4688,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 234,
+    'id': 1145,
     'set': 'BS',
     'name': 'Krillin, Yamcha & Tien',
     'sub_name': 'Earth\'s Mightiest',
@@ -4710,7 +4710,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 235,
+    'id': 1152,
     'set': 'C1',
     'name': 'Yamu & Spopovich',
     'sub_name': 'On a Malicious Mission',
@@ -4731,7 +4731,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 236,
+    'id': 1154,
     'set': 'C1',
     'name': 'Goten & Trunks',
     'sub_name': 'Calling out a Majin',
@@ -4753,7 +4753,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 237,
+    'id': 1165,
     'set': 'C1',
     'name': 'Gohan (Kid)',
     'sub_name': 'Wrathful Power',
@@ -4774,7 +4774,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 238,
+    'id': 1168,
     'set': 'C1',
     'name': 'Vegeta',
     'sub_name': 'Energy Cutter',
@@ -4795,7 +4795,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 239,
+    'id': 1171,
     'set': 'C1',
     'name': 'Goku (Super Saiyan)',
     'sub_name': 'Power Awakened',
@@ -4816,7 +4816,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 240,
+    'id': 1188,
     'set': 'C1',
     'name': 'Vegeta',
     'sub_name': 'Hmph. Not bad',
@@ -4837,7 +4837,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 241,
+    'id': 1189,
     'set': 'C1',
     'name': 'Trunks',
     'sub_name': 'It\'s amazing!',
@@ -4858,7 +4858,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 242,
+    'id': 1191,
     'set': 'C1',
     'name': 'Krillin',
     'sub_name': 'A Feast with Family',
@@ -4876,7 +4876,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 243,
+    'id': 1126,
     'set': 'C1',
     'name': 'Goku (Super Saiyan)',
     'sub_name': 'Legendary Warrior Awakened',
@@ -4897,7 +4897,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 244,
+    'id': 1030,
     'set': 'C1',
     'name': 'Vegeta (Great Ape)',
     'sub_name': 'Artificial Moon',
@@ -4919,7 +4919,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 245,
+    'id': 1136,
     'set': 'C1',
     'name': 'Gotenks (Super Saiyan 3)',
     'sub_name': 'The Final Blow',
@@ -4943,7 +4943,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance / Upon Appearance',
   },
   {
-    'id': 246,
+    'id': 1155,
     'set': 'C1',
     'name': 'Vegeta & Goku',
     'sub_name': 'Vegeta\'s Got a Plan',
@@ -4965,7 +4965,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 247,
+    'id': 1156,
     'set': 'C1',
     'name': 'Goku & Vegeta',
     'sub_name': 'The Toughest Team-up',
@@ -4987,7 +4987,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 248,
+    'id': 1170,
     'set': 'BS',
     'name': 'Frieza (1st Form)',
     'sub_name': 'Enraged Emperor',
@@ -5008,7 +5008,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 249,
+    'id': 1173,
     'set': 'C1',
     'name': 'Trunks (Super Saiyan)',
     'sub_name': 'Overwhelming Ability',
@@ -5029,7 +5029,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 250,
+    'id': 1185,
     'set': 'C1',
     'name': 'Goku',
     'sub_name': 'Tasty!',
@@ -5050,7 +5050,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 251,
+    'id': 1192,
     'set': 'C1',
     'name': 'Yamcha',
     'sub_name': 'I can win when it comes to eating!',
@@ -5068,7 +5068,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 252,
+    'id': 1199,
     'set': 'C1',
     'name': 'Android 18',
     'sub_name': 'World Tournament Champion',
@@ -5089,7 +5089,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 253,
+    'id': 1128,
     'set': 'C1',
     'name': 'Gohan (Teen, Super Saiyan 2)',
     'sub_name': 'At the Breaking Point',
@@ -5110,7 +5110,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 254,
+    'id': 1134,
     'set': 'C1',
     'name': 'Goten (Super Saiyan)',
     'sub_name': 'Hidden Power',
@@ -5131,7 +5131,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 255,
+    'id': 1139,
     'set': 'C1',
     'name': 'Zarbon',
     'sub_name': 'Hideous Transformation',
@@ -5155,7 +5155,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 256,
+    'id': 1141,
     'set': 'C1',
     'name': 'Mecha Frieza',
     'sub_name': 'Seeking Revenge',
@@ -5176,7 +5176,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 257,
+    'id': 1146,
     'set': 'C1',
     'name': 'Android 19 & 20',
     'sub_name': 'Mysterious Android',
@@ -5201,7 +5201,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance / Always',
   },
   {
-    'id': 258,
+    'id': 1157,
     'set': 'C1',
     'name': 'Goku, Vegeta & Trunks',
     'sub_name': 'Triple Threat',
@@ -5227,7 +5227,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance / Upon Appearance',
   },
   {
-    'id': 259,
+    'id': 1159,
     'set': 'C1',
     'name': 'Gohan, Goten & Trunks',
     'sub_name': 'The Next Generation',
@@ -5250,7 +5250,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 260,
+    'id': 1166,
     'set': 'C1',
     'name': 'Piccolo',
     'sub_name': 'Destroying the Moon',
@@ -5271,7 +5271,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 261,
+    'id': 1169,
     'set': 'C1',
     'name': 'Vegeta',
     'sub_name': 'Intense Energy',
@@ -5292,7 +5292,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 262,
+    'id': 1177,
     'set': 'C1',
     'name': 'Cell (Perfect)',
     'sub_name': 'The Ultimate Evolution',
@@ -5316,7 +5316,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 263,
+    'id': 1090,
     'set': 'C1',
     'name': 'Trunks (Kid)',
     'sub_name': 'Here, try this, Goten!',
@@ -5337,7 +5337,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 264,
+    'id': 1195,
     'set': 'C1',
     'name': 'Master Roshi & Ox-King',
     'sub_name': 'Peace at Last',
@@ -5358,7 +5358,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 265,
+    'id': 1196,
     'set': 'C1',
     'name': 'Tien',
     'sub_name': 'Traveling to Train',
@@ -5376,7 +5376,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 266,
+    'id': 1197,
     'set': 'C1',
     'name': 'King Kai & Bubbles',
     'sub_name': 'All\'s Well That Ends Well',
@@ -5397,7 +5397,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 267,
+    'id': 1198,
     'set': 'C1',
     'name': 'Yajirobe & Master Korin',
     'sub_name': 'Between heaven & Earth',
@@ -5418,7 +5418,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 268,
+    'id': 1200,
     'set': 'C1',
     'name': 'Krillin',
     'sub_name': 'Daddy\'s Pride and Joy',
@@ -5436,7 +5436,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 269,
+    'id': 1202,
     'set': 'BS',
     'name': 'Goku (Super Saiyan)',
     'sub_name': 'Even Stronger Guys',
@@ -5457,7 +5457,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 270,
+    'id': 1131,
     'set': 'C1',
     'name': 'Vegeta (Super Saiyan)',
     'sub_name': 'The Prince Again',
@@ -5478,7 +5478,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 271,
+    'id': 1133,
     'set': 'C1',
     'name': 'Trunks (Super Saiyan)',
     'sub_name': 'Fighting for the Future',
@@ -5499,7 +5499,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 272,
+    'id': 1135,
     'set': 'C1',
     'name': 'Trunks (Kid, Super Saiyan)',
     'sub_name': 'Confidence in Spades',
@@ -5520,7 +5520,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 273,
+    'id': 1142,
     'set': 'C1',
     'name': 'Super Buu',
     'sub_name': 'The Tables Have Turned',
@@ -5541,7 +5541,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance / Always',
   },
   {
-    'id': 274,
+    'id': 1147,
     'set': 'C1',
     'name': 'Android 17 & 18',
     'sub_name': 'Freewheeling Fiends',
@@ -5566,7 +5566,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance / Always',
   },
   {
-    'id': 275,
+    'id': 1158,
     'set': 'C1',
     'name': 'Goku, Gohan, Vegeta & Trunks',
     'sub_name': 'The Four Great Super Saiyans',
@@ -5593,7 +5593,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance / Upon Appearance',
   },
   {
-    'id': 276,
+    'id': 1172,
     'set': 'C1',
     'name': 'Frieza (Final Form)',
     'sub_name': 'Death Ball',
@@ -5614,7 +5614,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 277,
+    'id': 1180,
     'set': 'BS',
     'name': 'Gohan',
     'sub_name': 'KameHameHa',
@@ -5635,7 +5635,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 278,
+    'id': 1127,
     'set': 'C1',
     'name': 'Goku (Super Saiyan 3)',
     'sub_name': 'On Borrowed Time',
@@ -5659,7 +5659,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 279,
+    'id': 1140,
     'set': 'C1',
     'name': 'Frieza (Final Form)',
     'sub_name': 'Full Power',
@@ -5680,7 +5680,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 280,
+    'id': 1149,
     'set': 'C1',
     'name': 'Gohan & Goten',
     'sub_name': 'Ready to Train',
@@ -5705,7 +5705,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance / Always',
   },
   {
-    'id': 281,
+    'id': 1160,
     'set': 'C1',
     'name': 'Gohan, Goten & Trunks',
     'sub_name': 'Earth\'s Defenders',
@@ -5731,7 +5731,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance / Upon Appearance',
   },
   {
-    'id': 282,
+    'id': 1176,
     'set': 'C1',
     'name': 'Gohan (Teen, Super Saiyan 2)',
     'sub_name': 'Duking it Out',
@@ -5752,7 +5752,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 283,
+    'id': 1178,
     'set': 'C1',
     'name': 'Cell (Perfect)',
     'sub_name': 'Absolute Confidence',
@@ -5773,7 +5773,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 284,
+    'id': 1183,
     'set': 'C1',
     'name': 'Super Buu',
     'sub_name': 'Evil Energy',
@@ -5791,7 +5791,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 285,
+    'id': 1201,
     'set': 'C1',
     'name': 'Vegeta',
     'sub_name': 'Unending Battle',
@@ -5812,7 +5812,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 286,
+    'id': 1129,
     'set': 'C1',
     'name': 'Gohan (Potential Unleashed)',
     'sub_name': 'Savior',
@@ -5836,7 +5836,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance / Always',
   },
   {
-    'id': 287,
+    'id': 1143,
     'set': 'C1',
     'name': 'Super Buu',
     'sub_name': 'Gohan\'s Power',
@@ -5854,7 +5854,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 288,
+    'id': 1148,
     'set': 'C1',
     'name': 'Vegeta & Trunks',
     'sub_name': 'Powered Up',
@@ -5879,7 +5879,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance / Always',
   },
   {
-    'id': 289,
+    'id': 1161,
     'set': 'C1',
     'name': 'Goku, Gohan & Gotenks',
     'sub_name': 'Super Warriors Assembled',
@@ -5905,7 +5905,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance / Upon Appearance',
   },
   {
-    'id': 290,
+    'id': 1174,
     'set': 'C1',
     'name': 'Vegeta (Super Saiyan)',
     'sub_name': 'Big Bang Attack',
@@ -5926,7 +5926,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 291,
+    'id': 1175,
     'set': 'C1',
     'name': 'Trunks',
     'sub_name': 'Burning Attack',
@@ -5947,7 +5947,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance',
   },
   {
-    'id': 292,
+    'id': 1182,
     'set': 'C1',
     'name': 'Gotenks (Super Saiyan 3)',
     'sub_name': 'Unstoppable Rage',
@@ -5968,7 +5968,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 293,
+    'id': 1132,
     'set': 'C1',
     'name': 'Vegeta (Super Saiyan)',
     'sub_name': 'Back from the Dead',
@@ -5989,7 +5989,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 294,
+    'id': 1151,
     'set': 'C1',
     'name': 'Supreme Kai & Kibito',
     'sub_name': 'Enigmatic Duo',
@@ -6013,7 +6013,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance / Always',
   },
   {
-    'id': 295,
+    'id': 1162,
     'set': 'C1',
     'name': 'Vegito, Gotenks  & Gohan',
     'sub_name': 'The Ultimate Warriors',
@@ -6039,7 +6039,7 @@ export const cardList: Array<{
     'trigger': 'Upon Appearance / Upon Appearance',
   },
   {
-    'id': 296,
+    'id': 1184,
     'set': 'C1',
     'name': 'Kid Buu',
     'sub_name': 'Spirit Bomb Stopped',
@@ -6057,7 +6057,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 297,
+    'id': 1137,
     'set': 'C1',
     'name': 'Vegito (Super Saiyan)',
     'sub_name': 'Fusion for the Win',
@@ -6078,7 +6078,7 @@ export const cardList: Array<{
     'trigger': 'Always',
   },
   {
-    'id': 298,
+    'id': 1144,
     'set': 'C1',
     'name': 'Kid Buu',
     'sub_name': 'The Original Majin',
@@ -6099,7 +6099,7 @@ export const cardList: Array<{
     'trigger': '',
   },
   {
-    'id': 299,
+    'id': 1203,
     'set': 'C1',
     'name': 'Cell (Perfect)',
     'sub_name': 'Back and Better Than Ever',
