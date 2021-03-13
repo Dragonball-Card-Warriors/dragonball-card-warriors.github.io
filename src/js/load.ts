@@ -6,6 +6,7 @@ export const loadCards = (container: HTMLElement): void => {
     el.className = 'col-md-6 col-12 py-2 card-item';
 
     // Apply data attributes
+    el.dataset.id = card.id.toString();
     el.dataset.set = card.set;
     el.dataset.name = card.name;
     el.dataset.sub_name = card.sub_name;
@@ -14,14 +15,13 @@ export const loadCards = (container: HTMLElement): void => {
     el.dataset.energy_cost = card.energy_cost.toString();
     el.dataset.type = card.type;
     el.dataset.icon = card.icon;
-    el.dataset.attack = card.attack.toString();
-    el.dataset.hit_points = card.hit_points.toString();
+    el.dataset.attack = card.attack?.toString() || '';
+    el.dataset.hit_points = card.hit_points?.toString() || '';
     el.dataset.abilities = card.abilities;
     el.dataset.effect = card.effect;
     el.dataset.effectTypes = card.effectTypes.join(',');
     el.dataset.requirements = card.requirements;
     el.dataset.trigger = card.trigger;
-    el.dataset.id = card.id.toString();
 
     // Add elements
     el.innerHTML = `<div class="card mb-3">
