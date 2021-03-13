@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "webpack",
+    "build-images": "npx ts-node src/build-images.ts",
     "test": "eslint --ext ts ./",
     "test-fix": "eslint --ext ts ./ --fix"
   },
