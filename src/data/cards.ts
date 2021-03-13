@@ -19,29 +19,14 @@ export enum IconType {
   None = '',
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export enum AbilityType {
   Guard = 'Guard',
   Swift = 'Swift',
-  None = '',
   PiercingStrike = 'PiercingStrike',
   NaturalRecovery = 'NaturalRecovery',
-  ReducedCost = "ReducedCost",
-  InstantAppearance = "InstantAppearance"
+  ReducedCost = 'ReducedCost',
+  InstantAppearance = 'InstantAppearance',
+  None = '',
 }
 
 
@@ -63,14 +48,14 @@ export enum EffectType {
   SummonSpecial = 'Summon Special Character',
   RecoverHitPoints = 'Recover Hit Points',
   RecoverLifePoints = 'Recover Life Points',
-  UnableToAttack = 'UnableToAttack',
-  PiercingStrike = 'PiercingStrike',
-  IncreaseEnergyLimit = 'IncreaseEnergyLimit',
-  NaturalRecovery = 'NaturalRecovery',
-  SacrificeCharacter = 'SacrificeCharacter',
-  UnableToAttackLeader = 'UnableToAttackLeader',
-  ReturnOpponentCardToDeck = 'ReturnOpponentCardToDeck',
-  GainSymbol = "GainSymbol"
+  UnableToAttack = 'Unable To Attack',
+  PiercingStrike = 'Piercing Strike',
+  IncreaseEnergyLimit = 'Increase Energy Limit',
+  NaturalRecovery = 'Natural Recovery',
+  SacrificeCharacter = 'Sacrifice Character',
+  UnableToAttackLeader = 'Unable To Attack Leader',
+  ReturnOpponentCardToDeck = 'Return Opponent Card To Deck',
+  GainSymbol = 'Gain Symbol',
 }
 
 export const rarityColor = {

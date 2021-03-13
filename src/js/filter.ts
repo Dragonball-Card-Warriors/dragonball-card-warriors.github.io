@@ -28,12 +28,6 @@ export const filterCards = (): void => {
       .map((el: HTMLInputElement) => el.value),
     function: defaultFilterFunction,
   };
-  filters.abilities = {
-    values: [...document.getElementsByClassName('filter-abilities')]
-      .filter((el: HTMLInputElement) => el.checked)
-      .map((el: HTMLInputElement) => el.value),
-    function: defaultFilterFunction,
-  };
 
   const attHPFilterFunction = (values, value): boolean => !values.length || values.includes(value) || (values.includes('10000') && +value >= 10000);
   filters.attack = {
@@ -49,18 +43,25 @@ export const filterCards = (): void => {
     function: attHPFilterFunction,
   };
 
+  const splitFilterFunction = (values, value): boolean => !values.length || value.split(',').some(v => values.includes(v));
+  filters.abilities = {
+    values: [...document.getElementsByClassName('filter-abilities')]
+      .filter((el: HTMLInputElement) => el.checked)
+      .map((el: HTMLInputElement) => el.value),
+    function: splitFilterFunction,
+  };
   filters.effectTypes = {
     values: [...document.getElementsByClassName('filter-effect-type')]
       .filter((el: HTMLInputElement) => el.checked)
       .map((el: HTMLInputElement) => el.value),
-    function: (values, value): boolean => !values.length || value.split(',').some(v => values.includes(v)),
+    function: splitFilterFunction,
   };
 
   filters.groups = {
     values: [...document.getElementsByClassName('filter-groups')]
       .filter((el: HTMLInputElement) => el.checked)
       .map((el: HTMLInputElement) => el.value),
-    function: (values, value): boolean => !values.length || value.split(',').some(v => values.includes(v)),
+    function: splitFilterFunction,
   };
 
   const cardElements: HTMLElement[] = [...document.getElementsByClassName('card-item')] as HTMLElement[];
