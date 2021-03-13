@@ -25,6 +25,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.11.0",
     "@typescript-eslint/parser": "^4.11.0",
+    "canvas": "^2.7.0",
     "eslint": "^7.16.0",
     "merge-images": "github:RedSparr0w/merge-images#develop-build",
     "ts-loader": "^8.0.12",
