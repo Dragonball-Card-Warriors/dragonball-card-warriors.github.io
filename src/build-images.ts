@@ -41,75 +41,78 @@ function getHPImages(stat = 1000) {
   });
 }
 
-const totalImages = CardData.cardList.length;
+const cardList = CardData.cardList.filter(c => c.id >= 2000);
+const totalImages = cardList.length;
 let imagesGenerated = 0;
 
 console.info(`Preparing to generate ${totalImages} images...`);
 
-CardData.cardList.forEach(card => {
-  const imageData: Array<{
-    src: string,
-    top?: number,
-    bottom?: number,
-    left?: number,
-    right?: number,
-    width?: number,
-    height?: number,
-    custom?: (ctx: Context, image: any) => void,
-  }> = [
-    {
-      src: 'src/images/frame/Background.png',
-      custom: (ctx: Context, image: any) => {
-        ctx.fillStyle = card.type == CardData.CardType.Event ? '#2C2B62' : '#000';
-        ctx.fillRect(0, 0, image.width || image.img.width, image.height || image.img.height);
-        ctx.globalCompositeOperation = 'destination-in';
+(async () => {
+  for (const card of cardList) {
+    const imageData: Array<{
+      src: string,
+      top?: number,
+      bottom?: number,
+      left?: number,
+      right?: number,
+      width?: number,
+      height?: number,
+      custom?: (ctx: Context, image: any) => void,
+    }> = [
+      {
+        src: 'src/images/frame/Background.png',
+        custom: (ctx: Context, image: any) => {
+          ctx.fillStyle = card.type == CardData.CardType.Event ? '#2C2B62' : '#000';
+          ctx.fillRect(0, 0, image.width || image.img.width, image.height || image.img.height);
+          ctx.globalCompositeOperation = 'destination-in';
+        },
       },
-    },
-    {
-      src: `src/images/card/C_${card.id}.png`,
-      top: 17,
-      left: 17,
-      width: 566,
-      height: 966,
-    },
-    {
-      src: `src/images/frame/${CardData.CardType[card.type]}_${CardData.Rarity[card.rarity]}.png`,
-    },
-    {
-      src: `src/images/symbol/${CardData.IconType[card.icon] || 'None'}.png`,
-      bottom: 52,
-      left: 20,
-      width: 170,
-      height: 170,
-    },
-    {
-      src: `src/images/cost/${card.energy_cost || 0}.png`,
-      top: 80,
-      left: card.energy_cost < 10 ? 95 : 70,
-      width: card.energy_cost < 10 ? 50 : 100,
-      height: 80,
-      custom: (ctx, image) => {
-        ctx.fillStyle = '#000';
-        ctx.fillRect(0, 0, image.width || image.img.width, image.height || image.img.height);
-        ctx.globalCompositeOperation = 'destination-in';
+      {
+        src: `src/images/card/C_${card.id}.png`,
+        top: 17,
+        left: 17,
+        width: 566,
+        height: 966,
       },
-    },
-  ];
+      {
+        src: `src/images/frame/${CardData.CardType[card.type]}_${CardData.Rarity[card.rarity]}.png`,
+      },
+      {
+        src: `src/images/symbol/${CardData.IconType[card.icon] || 'None'}.png`,
+        bottom: 52,
+        left: 20,
+        width: 170,
+        height: 170,
+      },
+      {
+        src: `src/images/cost/${card.energy_cost || 0}.png`,
+        top: 80,
+        left: card.energy_cost < 10 ? 95 : 70,
+        width: card.energy_cost < 10 ? 50 : 100,
+        height: 80,
+        custom: (ctx, image) => {
+          ctx.fillStyle = '#000';
+          ctx.fillRect(0, 0, image.width || image.img.width, image.height || image.img.height);
+          ctx.globalCompositeOperation = 'destination-in';
+        },
+      },
+    ];
 
-  if (card.attack != undefined) {
-    imageData.push(...getAttackImages(card.attack));
-  }
-  if (card.hit_points != undefined) {
-    imageData.push(...getHPImages(card.hit_points));
-  }
+    if (card.attack != undefined) {
+      imageData.push(...getAttackImages(card.attack));
+    }
+    if (card.hit_points != undefined) {
+      imageData.push(...getHPImages(card.hit_points));
+    }
 
-  mergeImages(imageData, {
-    Canvas,
-    Image,
-  }).then(b64 => {
+    const b64 = await mergeImages(imageData, {
+      Canvas,
+      Image,
+    });
+
     const base64Image = b64.split(';base64,').pop();
 
     fs.writeFile(`docs/images/cards/${card.id}.png`, base64Image, {encoding: 'base64'}, (e) => e ? console.error('error', e) : null);
     console.info(`Generated ${++imagesGenerated}/${totalImages} images...`);
-  });
-});
+  }
+})();
