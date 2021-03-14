@@ -2,14 +2,17 @@ import fs = require('fs');
 import mergeImages = require('merge-images');
 import { Canvas, Image } from 'canvas';
 import * as CardData from './data/cards';
-import { Context } from 'vm';
+import * as builtImages from './build-images.data.json';
 
-const cardID = 2005,
-  cardRarity = 'SSR',
-  cost = 1,
-  symbol = 'yellow',
-  attack = 1000,
-  hp = 0;
+const keysToCheck = [
+  'id',
+  'type',
+  'rarity',
+  'icon',
+  'energy_cost',
+  'attack',
+  'hit_points',
+];
 
 function getAttackImages(stat = 1000) {
   const stats = stat.toString().split('').reverse();
@@ -41,13 +44,25 @@ function getHPImages(stat = 1000) {
   });
 }
 
-const cardList = CardData.cardList.filter(c => c.id >= 2000);
-const totalImages = cardList.length;
-let imagesGenerated = 0;
+console.info('Checking if any images need updating...');
 
-console.info(`Preparing to generate ${totalImages} images...`);
+const cardList = CardData.cardList.filter(card => {
+  for (const key of keysToCheck) {
+    const c = builtImages.find(c => c.id == card.id);
+    if (!c || card[key] != c[key]) {
+      // need to regenerate image, as key doesn't match
+      return true;
+    }
+  }
+  return false;
+});
 
-(async () => {
+const generateImages = async () => {
+  const totalImages = cardList.length;
+  let imagesGenerated = 0;
+
+  console.info(`Preparing to generate ${totalImages} images...`);
+
   for (const card of cardList) {
     const imageData: Array<{
       src: string,
@@ -57,11 +72,11 @@ console.info(`Preparing to generate ${totalImages} images...`);
       right?: number,
       width?: number,
       height?: number,
-      custom?: (ctx: Context, image: any) => void,
+      custom?: (ctx: CanvasRenderingContext2D, image: any) => void,
     }> = [
       {
         src: 'src/images/frame/Background.png',
-        custom: (ctx: Context, image: any) => {
+        custom: (ctx: CanvasRenderingContext2D, image: any) => {
           ctx.fillStyle = card.type == CardData.CardType.Event ? '#2C2B62' : '#000';
           ctx.fillRect(0, 0, image.width || image.img.width, image.height || image.img.height);
           ctx.globalCompositeOperation = 'destination-in';
@@ -115,4 +130,24 @@ console.info(`Preparing to generate ${totalImages} images...`);
     fs.writeFile(`docs/images/cards/${card.id}.png`, base64Image, {encoding: 'base64'}, (e) => e ? console.error('error', e) : null);
     console.info(`Generated ${++imagesGenerated}/${totalImages} images...`);
   }
-})();
+
+  console.info('Images generated successfully!');
+
+  console.info('Saving card list...');
+
+  fs.writeFile('src/build-images.data.json', JSON.stringify(CardData.cardList.map(card => {
+    const data = {};
+    for (const key of keysToCheck) {
+      data[key] = card[key];
+    }
+    return data;
+  })), (e) => e ? console.error('error', e) : null);
+
+  console.info('Card list saved!');
+};
+
+if (cardList.length) {
+  generateImages();
+} else {
+  console.info('All card images up to date!');
+}
