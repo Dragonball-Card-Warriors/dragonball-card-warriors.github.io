@@ -22,10 +22,10 @@ export enum IconType {
 export enum AbilityType {
   Guard = 'Guard',
   Swift = 'Swift',
-  PiercingStrike = 'PiercingStrike',
-  NaturalRecovery = 'NaturalRecovery',
-  ReducedCost = 'ReducedCost',
-  InstantAppearance = 'InstantAppearance',
+  PiercingStrike = 'Piercing Strike',
+  NaturalRecovery = 'Natural Recovery',
+  ReducedCost = 'Reduced Cost',
+  InstantAppearance = 'Instant Appearance',
   None = '',
 }
 
@@ -6253,7 +6253,7 @@ export const cardList: Array<{
     'hit_points': 4000,
     'abilities': [AbilityType.None],
     'effect': 'Adds +2000 to its own Attack when a Saiyan card other than this one is on the field',
-    'effectTypes': [EffectType.RecoverLifePoints, EffectType.RestoreBank],
+    'effectTypes': [EffectType.AddAttack],
     'requirements': 'Saiyan card other than this one on the field',
     'trigger': 'Always',
   },

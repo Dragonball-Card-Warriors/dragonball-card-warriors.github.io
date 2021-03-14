@@ -65,7 +65,7 @@ export const loadCards = (container: HTMLElement): void => {
                 <th colspan="4">Effect:${card.trigger ? `<br/><i>[${card.trigger}]</i>` : ''}</th>
               </tr>
               <tr>
-                <td colspan="4">${card.effect}</td>
+                <td colspan="4">${card.effect.replace(/\n/g, '<br/>')}</td>
               </tr>` : ''}
               ${card.requirements ? `
               <tr>
