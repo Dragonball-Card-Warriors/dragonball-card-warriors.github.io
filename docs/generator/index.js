@@ -5,7 +5,7 @@ let Settings = new Proxy({
   cost: 1,
   attack: 1000,
   hit_points: 1000,
-  symbol: 'None',
+  symbol: 'none',
 }, {
   set: function(obj, prop, value) {
     obj[prop] = value;
