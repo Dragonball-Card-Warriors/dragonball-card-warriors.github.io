@@ -109,7 +109,11 @@ const cost = await loadImage(`images/cost/${Settings.cost}.png`, (ctx, image) =>
   ctx.fillRect(0, 0, image.width, image.height);
   ctx.globalCompositeOperation = 'destination-in';
 });
-context.drawImage(cost, 97, 80, 50, 80);
+if (Settings.cost < 10) {
+  context.drawImage(cost, 96, 80, 50, 80);
+} else {
+  context.drawImage(cost, 70, 80, 100, 80);
+}
 const cost_gloss = await loadImage(`images/cost/${Settings.type}_gloss.png`);
 context.drawImage(cost_gloss, 2, -3, 240, 249);
 
