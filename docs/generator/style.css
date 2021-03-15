@@ -1,0 +1,49 @@
+
+body {
+    background: url('images/Background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0;
+    margin: 0;
+}
+
+.main-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.main-logo{
+    position: relative;
+    margin-left: -41.5%;
+}
+
+.main-logo img{
+    position: absolute;
+    width: 20%;
+    margin-top: 19%;
+    background: #282726;
+    border-radius: 4.5rem;
+    padding: 5%;
+}
+
+.main-form-1{
+    padding: 9%;
+    background:#282726;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+
+.main-form-1 h3{
+    text-align: center;
+    margin-bottom:12%;
+    color:whitesmoke;
+}
+
+.main-form-1 label{
+    color: whitesmoke;
+}
+
+.main-form-2{
+    padding: 9%;
+    background: #f05837;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
