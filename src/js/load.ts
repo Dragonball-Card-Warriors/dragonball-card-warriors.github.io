@@ -1,4 +1,5 @@
 import { cardList, CardType, rarityColor, EffectType } from '../data/cards';
+import { sortCards } from './sort';
 
 export const supportsWebp = (): Promise<boolean> => new Promise((resolve) => {
   const img = new Image();
@@ -90,6 +91,7 @@ export const loadCards = async (container: HTMLElement): Promise<void> => {
     </div>`;
     container.appendChild(el);
   });
+  sortCards();
 };
 
 export const loadEffectTypes = (): void => {
