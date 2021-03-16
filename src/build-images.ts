@@ -112,7 +112,7 @@ const generateImages = async () => {
       },
       // Symbol
       {
-        src: `docs/generator/images/symbol/${CardData.IconType[card.icon].toLowerCase() || 'none'}.png`,
+        src: `docs/generator/images/symbol/${(CardData.IconType[card.icon] || 'none').toLowerCase()}.png`,
         bottom: 52,
         left: 20,
         width: 170,
