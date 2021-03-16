@@ -41,7 +41,7 @@ return new Promise((resolve, reject) => {
   };
   image.onerror = () => {
     // Load a transparent pixel
-    resolve('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+    image.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
   }
   image.src = url;
 });
@@ -88,7 +88,7 @@ context.drawImage(bg, 4, 4, 620, 996);
 
 // User image
 const mainImage = await loadImage(Settings.image);
-const mask = await loadImage('images/Black.png', (ctx, image) => {
+const mask = await loadImage(`images/Black${Settings.type == 'support' ? '_Support' : ''}.png`, (ctx, image) => {
   const ratio = mainImage.width / mainImage.height;
   let newWidth = image.width;
   let newHeight = newWidth / ratio;
@@ -100,14 +100,21 @@ const mask = await loadImage('images/Black.png', (ctx, image) => {
   const yOffset =
     newHeight > image.height ? (image.height - newHeight) / 2 : 0;
   ctx.drawImage(mainImage, xOffset, yOffset, newWidth, newHeight);
-  // ctx.drawImage(mainImage, 0, 0, mainImage.width, image.height);
   ctx.globalCompositeOperation = 'destination-in';
 });
+
 context.drawImage(mask, 17, 17, 566, 966);
 
 // Card cost
-const cost_type = await loadImage(`images/cost/${Settings.type}.png`);
-context.drawImage(cost_type, 2, -3, 240, 249);
+if (Settings.type == 'support') {
+  const support_overlay = await loadImage(`images/cost/support.png`);
+  context.drawImage(support_overlay, 2, 2, 584, 180);
+  const cost_type = await loadImage(`images/cost/standard.png`);
+  context.drawImage(cost_type, 2, -8, 240, 249);
+} else {
+  const cost_type = await loadImage(`images/cost/${Settings.type}.png`);
+  context.drawImage(cost_type, 2, -3, 240, 249);
+}
 const cost = await loadImage(`images/cost/${Settings.cost}.png`, (ctx, image) => {
   ctx.fillStyle = '#000';
   ctx.fillRect(0, 0, image.width, image.height);
@@ -118,8 +125,13 @@ if (Settings.cost < 10) {
 } else {
   context.drawImage(cost, 70, 80, 100, 80);
 }
-const cost_gloss = await loadImage(`images/cost/${Settings.type}_gloss.png`);
-context.drawImage(cost_gloss, 2, -3, 240, 249);
+if (Settings.type == 'support') {
+  const cost_gloss = await loadImage(`images/cost/standard_gloss.png`);
+  context.drawImage(cost_gloss, 2, -8, 240, 249);
+} else {
+  const cost_gloss = await loadImage(`images/cost/${Settings.type}_gloss.png`);
+  context.drawImage(cost_gloss, 2, -3, 240, 249);
+}
 
 // Stats
 if (Settings.attack || Settings.hit_points) {
