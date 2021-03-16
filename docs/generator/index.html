@@ -11,11 +11,13 @@
   </head>
   <body class="container main-container">
     <div class="row">
-      <div class="col-md-6 main-form-1">
+      <div class="col-md-6 main-form-1 row">
         <h3>Dragonball Card Warriors<br/>Custom Card Generator</h3>
-        <input type="file" accept="image/*" onchange="loadFile(event)"/>
-        <img id="my-image" src="#" alt="your image" width="100"/>
-        <div class="form-group">
+        <div class="col-12">
+          <input type="file" accept="image/*" onchange="loadFile(event)"/>
+          <img id="my-image" src="#" alt="your image" width="100" />
+        </div>
+        <div class="form-group col-6">
           <label for="Rarity" class="form-label">Rarity:</label>
           <select id="Rarity" class="form-select" onchange="Settings.rarity = this.value">
             <option value="N">Normal</option>
@@ -25,7 +27,18 @@
           </select>
         </div>
         <br/>
-        <div class="form-group">
+        <div class="form-group col-6">
+          <label for="Symbol" class="form-label">Symbol:</label>
+          <select id="Symbol" class="form-select" onchange="Settings.symbol = this.value">
+            <option selected value="none">None</option>
+            <option value="blue">Blue</option>
+            <option value="purple">Purple</option>
+            <option value="green">Green</option>
+            <option value="yellow">Yellow</option>
+          </select>
+        </div>
+        <br/>
+        <div class="form-group col-6">
           <label for="Type" class="form-label">Cost Type:</label>
           <select id="Type" class="form-select" onchange="Settings.type = this.value">
             <option selected value="standard">Standard</option>
@@ -35,30 +48,19 @@
           </select>
         </div>
         <br/>
-        <div class="form-group">
+        <div class="form-group col-6">
           <label for="Cost" class="form-label">Cost:</label>
           <input id="Cost" type="number" class="form-control" placeholder="1" value="1" min="0" max="10" onchange="Settings.cost = this.value" />
         </div>
         <br/>
-        <div class="form-group">
+        <div class="form-group col-6">
           <label for="Attack" class="form-label">Attack:</label>
           <input id="Attack" type="number" class="form-control" placeholder="1000" value="1000" step="1000" min="0" max="999999" onchange="Settings.attack = this.value" />
         </div>
         <br/>
-        <div class="form-group">
+        <div class="form-group col-6">
           <label for="HitPoints" class="form-label">Hit Points:</label>
           <input id="HitPoints" type="number" class="form-control" placeholder="1000" value="1000" step="1000" min="0" max="999999" onchange="Settings.hit_points = this.value" />
-        </div>
-        <br/>
-        <div class="form-group">
-          <label for="Symbol" class="form-label">Symbol:</label>
-          <select id="Symbol" class="form-select" onchange="Settings.symbol = this.value">
-            <option selected value="none">None</option>
-            <option value="blue">Blue</option>
-            <option value="purple">Purple</option>
-            <option value="green">Green</option>
-            <option value="yellow">Yellow</option>
-          </select>
         </div>
       </div>
       <div class="col-md-6 main-form-2">
