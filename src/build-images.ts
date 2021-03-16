@@ -126,17 +126,31 @@ const generateImages = async () => {
         width: 170,
         height: 170,
       },
-      // Cost
+    ];
+
+    // Support character
+    if (card.type == CardData.CardType.Support) {
+      imageData.push({
+        src: 'docs/generator/images/cost/support.png',
+        left: 2,
+        top: 2,
+        width: 584,
+        height: 180,
+      });
+    }
+
+    // Cost
+    imageData.push(
       {
         src: `docs/generator/images/cost/${card.type != CardData.CardType.Special ? 'standard' : 'special'}.png`,
         left: 2,
-        top: -4,
+        top: card.type != CardData.CardType.Support ? -4 : -8,
         width: 241,
         height: 250,
       },
       {
         src: `docs/generator/images/cost/${card.energy_cost || 0}.png`,
-        top: 78,
+        top: card.type != CardData.CardType.Support ? 78 : 74,
         left: card.energy_cost < 10 ? 96 : 70,
         width: card.energy_cost < 10 ? 50 : 100,
         height: 80,
@@ -149,11 +163,11 @@ const generateImages = async () => {
       {
         src: `docs/generator/images/cost/${card.type != CardData.CardType.Special ? 'standard' : 'special'}_gloss.png`,
         left: 2,
-        top: -4,
+        top: card.type != CardData.CardType.Support ? -4 : -8,
         width: 241,
         height: 250,
-      },
-    ];
+      }
+    );
 
     // Card stats
     if (card.attack != undefined || card.hit_points != undefined) {
