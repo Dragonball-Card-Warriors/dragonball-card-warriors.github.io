@@ -9,7 +9,15 @@ import { compress as compress_images } from 'compress-images/promise';
 import chalk = require('chalk');
 const info = (...args) => console.info(chalk.bold.blue(...args));
 const success = (...args) => console.info(chalk.bold.green(...args));
-const debug = (...args) => console.debug(chalk.gray(...args));
+const error = (...args) => console.error(...args);
+const progress = (msg, progress, total = 100) => {
+  process.stdout.clearLine(1);
+  process.stdout.cursorTo(0);
+  process.stdout.write(chalk.gray(msg));
+  if (progress >= total) {
+    console.log();
+  }
+};
 
 enum Rarities {
   N = 1,
@@ -60,17 +68,17 @@ function getHPImages(stat = 1000) {
 
 info('Checking if any images need updating...');
 
-// const cardList = CardData.cardList.filter(card => {
-//   for (const key of keysToCheck) {
-//     const c = builtImages.find(c => c.id == card.id);
-//     if (!c || card[key] != c[key]) {
-//       // need to regenerate image, as key doesn't match
-//       return true;
-//     }
-//   }
-//   return false;
-// });
-const cardList = CardData.cardList;
+const cardList = CardData.cardList.filter(card => {
+  for (const key of keysToCheck) {
+    const c = builtImages.find(c => c.id == card.id);
+    if (!c || card[key] != c[key]) {
+      // need to regenerate image, as key doesn't match
+      return true;
+    }
+  }
+  return false;
+});
+// const cardList = CardData.cardList.filter(c => [1000, 1005].includes(c.id));
 
 const generateImages = async () => {
   const totalImages = cardList.length;
@@ -178,7 +186,7 @@ const generateImages = async () => {
     const thumbnail = await sharp(`docs/images/cards/${card.id}.png`).rotate().resize(200).toBuffer();
     await fs.writeFile(`docs/images/cards/${card.id}_thumb.png`, thumbnail);
 
-    debug(`Generated ${++imagesGenerated}/${totalImages} images...`);
+    progress(`Generated ${++imagesGenerated}/${totalImages} images...`, imagesGenerated, totalImages);
   }
 
   success('Images generated successfully!');
@@ -198,7 +206,7 @@ const generateImages = async () => {
     enginesSetup: {
       png: {engine: 'webp', command: false},
     },
-    onProgress: () => debug(`Converted ${++imagesGenerated}/${totalImages} images...`),
+    onProgress: (err) => err ? error(err) : progress(`Converted ${++imagesGenerated}/${totalImages} images...`, imagesGenerated, totalImages),
   });
 
   success('Converted thumbnails to webp successfully!');
@@ -215,9 +223,9 @@ const generateImages = async () => {
       autoupdate: true,
     },
     enginesSetup: {
-      png: {engine: 'pngquant', command: ['--quality=70', '--ext=.png', '--force']},
+      png: {engine: 'pngquant', command: ['--quality=20-70', '--ext=.png', '--force']},
     },
-    onProgress: () => debug(`Compressed ${++imagesGenerated}/${totalImages} images...`),
+    onProgress: (err) => err ? error(err) : progress(`Compressed ${++imagesGenerated}/${totalImages} images...`, imagesGenerated, totalImages),
   });
 
   success('Compressed thumbnails successfully!');
