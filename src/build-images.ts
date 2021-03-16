@@ -4,6 +4,13 @@ import { Canvas, Image } from 'canvas';
 import * as CardData from './data/cards';
 import * as builtImages from './build-images.data.json';
 
+enum Rarities {
+  N = 1,
+  R,
+  SR,
+  SSR,
+}
+
 const keysToCheck = [
   'id',
   'type',
@@ -74,14 +81,20 @@ const generateImages = async () => {
       height?: number,
       custom?: (ctx: CanvasRenderingContext2D, image: any) => void,
     }> = [
+      // Backdrop
       {
-        src: 'src/images/frame/Background.png',
+        src: 'docs/generator/images/Black.png',
+        top: 4,
+        left: 4,
+        width: 620,
+        height: 996,
         custom: (ctx: CanvasRenderingContext2D, image: any) => {
           ctx.fillStyle = card.type == CardData.CardType.Event ? '#2C2B62' : '#000';
           ctx.fillRect(0, 0, image.width || image.img.width, image.height || image.img.height);
           ctx.globalCompositeOperation = 'destination-in';
         },
       },
+      // Main Image
       {
         src: `src/images/card/C_${card.id}.png`,
         top: 17,
@@ -89,20 +102,26 @@ const generateImages = async () => {
         width: 566,
         height: 966,
       },
+      // Symbol
       {
-        src: `src/images/frame/${CardData.CardType[card.type]}_${CardData.Rarity[card.rarity]}.png`,
-      },
-      {
-        src: `src/images/symbol/${CardData.IconType[card.icon] || 'None'}.png`,
+        src: `docs/generator/images/symbol/${CardData.IconType[card.icon].toLowerCase() || 'none'}.png`,
         bottom: 52,
         left: 20,
         width: 170,
         height: 170,
       },
+      // Cost
       {
-        src: `src/images/cost/${card.energy_cost || 0}.png`,
-        top: 80,
-        left: card.energy_cost < 10 ? 95 : 70,
+        src: `docs/generator/images/cost/${card.type != CardData.CardType.Special ? 'standard' : 'special'}.png`,
+        left: 2,
+        top: -4,
+        width: 241,
+        height: 250,
+      },
+      {
+        src: `docs/generator/images/cost/${card.energy_cost || 0}.png`,
+        top: 78,
+        left: card.energy_cost < 10 ? 96 : 70,
         width: card.energy_cost < 10 ? 50 : 100,
         height: 80,
         custom: (ctx, image) => {
@@ -111,14 +130,34 @@ const generateImages = async () => {
           ctx.globalCompositeOperation = 'destination-in';
         },
       },
+      {
+        src: `docs/generator/images/cost/${card.type != CardData.CardType.Special ? 'standard' : 'special'}_gloss.png`,
+        left: 2,
+        top: -4,
+        width: 241,
+        height: 250,
+      },
     ];
 
-    if (card.attack != undefined) {
-      imageData.push(...getAttackImages(card.attack));
+    // Card stats
+    if (card.attack != undefined || card.hit_points != undefined) {
+      imageData.push({
+        src: 'docs/generator/images/Stats.png',
+        left: 184,
+        top: 754,
+      });
+      if (card.attack != undefined) {
+        imageData.push(...getAttackImages(card.attack));
+      }
+      if (card.hit_points != undefined) {
+        imageData.push(...getHPImages(card.hit_points));
+      }
     }
-    if (card.hit_points != undefined) {
-      imageData.push(...getHPImages(card.hit_points));
-    }
+
+    // Frame/Rarity (must be last)
+    imageData.push({
+      src: `docs/generator/images/frame/${Rarities[card.rarity]}.png`,
+    });
 
     const b64 = await mergeImages(imageData, {
       Canvas,
