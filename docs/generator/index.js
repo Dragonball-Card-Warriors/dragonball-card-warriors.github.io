@@ -134,7 +134,7 @@ if (Settings.type == 'support') {
 }
 
 // Stats
-if (Settings.attack || Settings.hit_points) {
+if (Settings.attack > 0 || Settings.hit_points > 0) {
   const stats = await loadImage('images/Stats.png');
   context.drawImage(stats, 184, 754);
   attackImages = await getAttackImages(Settings.attack);
