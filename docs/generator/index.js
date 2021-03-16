@@ -39,6 +39,10 @@ return new Promise((resolve, reject) => {
       }
       resolve(image);
   };
+  image.onerror = () => {
+    // Load a transparent pixel
+    resolve('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+  }
   image.src = url;
 });
 }
