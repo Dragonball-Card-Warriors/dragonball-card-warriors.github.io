@@ -1,8 +1,15 @@
-import fs = require('fs');
+import { promises as fs } from 'fs';
 import mergeImages = require('merge-images');
 import { Canvas, Image } from 'canvas';
 import * as CardData from './data/cards';
 import * as builtImages from './build-images.data.json';
+import sharp = require('sharp');
+import { compress as compress_images } from 'compress-images/promise';
+
+import chalk = require('chalk');
+const info = (...args) => console.info(chalk.bold.blue(...args));
+const success = (...args) => console.info(chalk.bold.green(...args));
+const debug = (...args) => console.debug(chalk.gray(...args));
 
 enum Rarities {
   N = 1,
@@ -51,24 +58,25 @@ function getHPImages(stat = 1000) {
   });
 }
 
-console.info('Checking if any images need updating...');
+info('Checking if any images need updating...');
 
-const cardList = CardData.cardList.filter(card => {
-  for (const key of keysToCheck) {
-    const c = builtImages.find(c => c.id == card.id);
-    if (!c || card[key] != c[key]) {
-      // need to regenerate image, as key doesn't match
-      return true;
-    }
-  }
-  return false;
-});
+// const cardList = CardData.cardList.filter(card => {
+//   for (const key of keysToCheck) {
+//     const c = builtImages.find(c => c.id == card.id);
+//     if (!c || card[key] != c[key]) {
+//       // need to regenerate image, as key doesn't match
+//       return true;
+//     }
+//   }
+//   return false;
+// });
+const cardList = CardData.cardList;
 
 const generateImages = async () => {
   const totalImages = cardList.length;
   let imagesGenerated = 0;
 
-  console.info(`Preparing to generate ${totalImages} images...`);
+  info(`Preparing to generate ${totalImages} images...`);
 
   for (const card of cardList) {
     const imageData: Array<{
@@ -164,29 +172,71 @@ const generateImages = async () => {
       Image,
     });
 
-    const base64Image = b64.split(';base64,').pop();
+    await fs.writeFile(`docs/images/cards/${card.id}.png`, b64.split(';base64,').pop(), {encoding: 'base64'});
 
-    fs.writeFile(`docs/images/cards/${card.id}.png`, base64Image, {encoding: 'base64'}, (e) => e ? console.error('error', e) : null);
-    console.info(`Generated ${++imagesGenerated}/${totalImages} images...`);
+    // Generate thumbnail
+    const thumbnail = await sharp(`docs/images/cards/${card.id}.png`).rotate().resize(200).toBuffer();
+    await fs.writeFile(`docs/images/cards/${card.id}_thumb.png`, thumbnail);
+
+    debug(`Generated ${++imagesGenerated}/${totalImages} images...`);
   }
 
-  console.info('Images generated successfully!');
+  success('Images generated successfully!');
 
-  console.info('Saving card list...');
+  info('Preparing to convert thumbnails to webp...');
 
-  fs.writeFile('src/build-images.data.json', JSON.stringify(CardData.cardList.map(card => {
+  imagesGenerated = 0;
+  const webp = await compress_images({
+    globoptions: true,
+    source: `docs/images/cards/*(${cardList.map(c => c.id).join('|')})_thumb.png`,
+    destination: 'docs/images/cards/',
+    params: {
+      compress_force: true,
+      statistic: false,
+      autoupdate: true,
+    },
+    enginesSetup: {
+      png: {engine: 'webp', command: false},
+    },
+    onProgress: () => debug(`Converted ${++imagesGenerated}/${totalImages} images...`),
+  });
+
+  success('Converted thumbnails to webp successfully!');
+
+  info('Preparing to compress thumbnails...');
+
+  imagesGenerated = 0;
+  const comp = await compress_images({
+    source: `docs/images/cards/*(${cardList.map(c => c.id).join('|')})_thumb.png`,
+    destination: 'docs/images/cards/',
+    params: {
+      compress_force: true,
+      statistic: false,
+      autoupdate: true,
+    },
+    enginesSetup: {
+      png: {engine: 'pngquant', command: ['--quality=70', '--ext=.png', '--force']},
+    },
+    onProgress: () => debug(`Compressed ${++imagesGenerated}/${totalImages} images...`),
+  });
+
+  success('Compressed thumbnails successfully!');
+
+  info('Saving card list...');
+
+  await fs.writeFile('src/build-images.data.json', JSON.stringify(CardData.cardList.map(card => {
     const data = {};
     for (const key of keysToCheck) {
       data[key] = card[key];
     }
     return data;
-  })), (e) => e ? console.error('error', e) : null);
+  })));
 
-  console.info('Card list saved!');
+  success('Card list saved!');
 };
 
 if (cardList.length) {
   generateImages();
 } else {
-  console.info('All card images up to date!');
+  success('All card images up to date!');
 }

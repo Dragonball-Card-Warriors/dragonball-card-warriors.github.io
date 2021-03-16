@@ -1,6 +1,15 @@
 import { cardList, CardType, rarityColor, EffectType } from '../data/cards';
 
-export const loadCards = (container: HTMLElement): void => {
+export const supportsWebp = (): Promise<boolean> => new Promise((resolve) => {
+  const img = new Image();
+  img.onload = img.onerror = () => {
+    resolve(img.width == 1 && img.height == 1);
+  };
+  img.src = 'data:image/webp;base64,UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==';
+});
+
+export const loadCards = async (container: HTMLElement): Promise<void> => {
+  const webpSupport = await supportsWebp();
   cardList.forEach((card, i) => {
     const el = document.createElement('div');
     el.className = 'col-md-6 col-12 py-2 card-item';
@@ -27,7 +36,7 @@ export const loadCards = (container: HTMLElement): void => {
     el.innerHTML = `<div class="card mb-3">
       <div class="row m-0">
         <div class="card-image col-4 p-0 bg-secondary clickable" data-bs-toggle="modal" data-bs-target="#cardInfoModal" onclick="App.updateCardInfoModal(${card.id});">
-          <img src="images/cards/${card.id}.png" alt="${card.name} card image" loading="lazy" width="100%" onError="this.src = 'images/cards/none.png'">
+          <img src="images/cards/${card.id}_thumb.${webpSupport ? 'webp' : 'png'}" alt="${card.name} card image" loading="lazy" width="100%" onError="this.src = 'images/cards/none_thumb.${webpSupport ? 'webp' : 'png'}'">
         </div>
         <div class="card-info col-8 p-0">
           <table class="table table-sm" width="100%">
