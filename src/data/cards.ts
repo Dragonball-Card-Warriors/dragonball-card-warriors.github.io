@@ -56,6 +56,7 @@ export enum EffectType {
   UnableToAttackLeader = 'Unable To Attack Leader',
   ReturnOpponentCardToDeck = 'Return Opponent Card To Deck',
   GainSymbol = 'Gain Symbol',
+  ConsumeBank = 'Consume Bank',
 }
 
 export const rarityColor = {
@@ -2945,6 +2946,7 @@ export const cardList: Array<{
     'effectTypes': [
       EffectType.AddAttack,
       EffectType.AddHitPoints,
+      EffectType.ConsumeBank,
     ],
     'requirements': 'Consume 3 Banked Energy',
     'trigger': 'Upon Appearance',
@@ -3444,7 +3446,10 @@ export const cardList: Array<{
     'hit_points': 8000,
     'abilities': [AbilityType.None],
     'effect': 'Adds 3000 ATK to itself',
-    'effectTypes': [EffectType.AddAttack],
+    'effectTypes': [
+      EffectType.AddAttack,
+      EffectType.ConsumeBank,
+    ],
     'requirements': 'Consume 1 Banked Energy',
     'trigger': 'Upon Appearance',
   },
@@ -4236,6 +4241,7 @@ export const cardList: Array<{
     'effectTypes': [
       EffectType.AddAttack,
       EffectType.AddHitPoints,
+      EffectType.ConsumeBank,
     ],
     'requirements': 'Consume 10 Banked Energy',
     'trigger': 'Upon Appearance',
@@ -4502,6 +4508,7 @@ export const cardList: Array<{
     'effectTypes': [
       EffectType.AddAttack,
       EffectType.AddHitPoints,
+      EffectType.ConsumeBank,
     ],
     'requirements': 'Consume 1 Bank Energy',
     'trigger': 'Upon Appearance',
@@ -5494,7 +5501,10 @@ export const cardList: Array<{
     'hit_points': 16000,
     'abilities': [AbilityType.None],
     'effect': '10000 ATK to itself',
-    'effectTypes': [EffectType.AddAttack],
+    'effectTypes': [
+      EffectType.AddAttack,
+      EffectType.ConsumeBank,
+    ],
     'requirements': 'Consume 5 Banked Energy',
     'trigger': 'Upon Appearance',
   },
