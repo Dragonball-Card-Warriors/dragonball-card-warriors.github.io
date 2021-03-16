@@ -27,7 +27,7 @@ export const loadCards = (container: HTMLElement): void => {
     el.innerHTML = `<div class="card mb-3">
       <div class="row m-0">
         <div class="card-image col-4 p-0 bg-secondary clickable" data-bs-toggle="modal" data-bs-target="#cardInfoModal" onclick="App.updateCardInfoModal(${card.id});">
-          <img src="images/cards/${card.id}.png" alt="${card.name} card image" width="100%" onError="this.src = 'images/cards/none.png'">
+          <img src="images/cards/${card.id}.png" alt="${card.name} card image" loading="lazy" width="100%" onError="this.src = 'images/cards/none.png'">
         </div>
         <div class="card-info col-8 p-0">
           <table class="table table-sm" width="100%">
