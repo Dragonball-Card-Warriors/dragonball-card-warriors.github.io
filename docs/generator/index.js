@@ -128,9 +128,9 @@ const cost = await loadImage(`images/cost/${Settings.cost}.png`, (ctx, image) =>
   ctx.globalCompositeOperation = 'destination-in';
 });
 if (Settings.cost < 10) {
-  context.drawImage(cost, 96, 80, 50, 80);
+  context.drawImage(cost, 96, 78, 50, 80);
 } else {
-  context.drawImage(cost, 70, 80, 100, 80);
+  context.drawImage(cost, 70, 78, 100, 80);
 }
 let cost_gloss;
 switch (Settings.type) {
