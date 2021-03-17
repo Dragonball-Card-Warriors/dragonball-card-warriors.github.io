@@ -6243,9 +6243,9 @@ export const cardList: Array<{
     'type': CardType.Event,
     'icon': IconType.None,
     'abilities': [AbilityType.None],
-    'effect': 'You must have Racoome, Jeice, Burter, Guldo and Captain Ginyu on your side of the field to use this card.\nGives Negate Damage to all Ginyu Force cards on your side of the field until your opponents turn ends',
+    'effect': 'You must have Recoome, Jeice, Burter, Guldo and Captain Ginyu on your side of the field to use this card.\nGives Negate Damage to all Ginyu Force cards on your side of the field until your opponents turn ends',
     'effectTypes': [EffectType.NegateDamage],
-    'requirements': 'Racoome, Jeice, Burter, Guldo and Captain Ginyu on your side of the field',
+    'requirements': 'Recoome, Jeice, Burter, Guldo and Captain Ginyu on your side of the field',
     'trigger': '',
   },
   {
@@ -7025,10 +7025,10 @@ export const cardList: Array<{
   {
     'id': 2024,
     'set': 'C2',
-    'name': 'Racoome',
+    'name': 'Recoome',
     'sub_name': 'Final Pose',
     'groups': [
-      'Racoome',
+      'Recoome',
       'Ginyu Force',
       'Frieza Force',
     ],
@@ -7114,7 +7114,7 @@ export const cardList: Array<{
     'attack': 5000,
     'hit_points': 5000,
     'abilities': [AbilityType.None],
-    'effect': '(No Req) Draws 1 Racoome, Burter, Jeice and Guldo cards each with a cost of 3 or lower.\n(Yellow Consumed) Causes 1 Racoome, Burter, Jeice and Guldo cards each with a cost of 3 or less to appear from your hand ("Upon Appearance" effects are not triggered)',
+    'effect': '(No Req) Draws 1 Recoome, Burter, Jeice and Guldo cards each with a cost of 3 or lower.\n(Yellow Consumed) Causes 1 Recoome, Burter, Jeice and Guldo cards each with a cost of 3 or less to appear from your hand ("Upon Appearance" effects are not triggered)',
     'effectTypes': [EffectType.DrawCard, EffectType.Other],
     'requirements': 'Yellow Consumed',
     'trigger': 'Upon Appearance',
