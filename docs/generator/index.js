@@ -6,6 +6,8 @@ let Settings = new Proxy({
   attack: 1000,
   hit_points: 1000,
   symbol: 'none',
+  show_shine: true,
+  sparkles: 10,
 }, {
   set: function(obj, prop, value) {
     obj[prop] = value;
@@ -171,6 +173,62 @@ const updateCanvas = async () => {
   const frame = await loadImage(`images/frame/${Settings.rarity}.png`);
   context.drawImage(frame, 0, 0);
 
+  // Star/Shine
+  if (Settings.show_shine) {
+    const star = await loadImage(`images/Star_${Settings.rarity}.png`);
+    const shine = await loadImage(`images/Shine0.png`, (ctx, image) => {
+      ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+      ctx.fillRect(0, 0, image.width, image.height);
+      ctx.globalCompositeOperation = 'destination-in';
+    });
+    const shine1 = await loadImage(`images/Shine1.png`, (ctx, image) => {
+      ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+      ctx.fillRect(0, 0, image.width, image.height);
+      ctx.globalCompositeOperation = 'destination-in';
+    });
+    switch (Settings.rarity) {
+      // Draw stars from bottom to top
+      case 'SSR':
+        // Forth star
+        context.drawImage(shine, 558, 220, 144, 144);
+        context.drawImage(shine1, 558, 220, 144, 144);
+        context.drawImage(star, 603, 259, 60, 60);
+        // Fall through
+      case 'SR':
+        // Third star
+        context.drawImage(shine, 584, 172, 96, 96);
+        context.drawImage(shine1, 584, 172, 96, 96);
+        context.drawImage(star, 603, 186, 60, 60);
+        // Second star
+        context.drawImage(shine, 558, 74, 144, 144);
+        context.drawImage(shine1, 558, 74, 144, 144);
+        context.drawImage(star, 603, 114, 60, 60);
+        // First star
+        context.drawImage(shine, 584, 24, 96, 96);
+        context.drawImage(shine1, 584, 24, 96, 96);
+        context.drawImage(star, 603, 42, 60, 60);
+    }
+  }
+
+  // Sparkles
+  if (Settings.sparkles > 0 && Settings.rarity.endsWith('SR')) {
+    const sparkle = await loadImage(`images/Sparkle.png`, (ctx, image) => {
+      ctx.fillStyle = "rgba(255, 0, 0, 1)";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+      ctx.rotate(-0.2)
+      ctx.fillRect(0, 0, image.width, image.height);
+      ctx.globalCompositeOperation = 'destination-in';
+    });
+    context.drawImage(sparkle, 517, 180, 120, 120);
+    context.drawImage(sparkle, 630, 10, 80, 80);
+    context.drawImage(sparkle, 558, 60, 50, 50);
+    const min_x = 580;
+    const min_y = 340;
+    for (let i = 0; i < Settings.sparkles; i++) {
+      const size = Math.floor(Math.random() * 100) + 20;
+      context.drawImage(sparkle, Math.floor(Math.random() * 90) + min_x - size / 2, Math.floor(Math.random() * 650) + min_y - size / 2, size, size);
+    }
+  }
 
   document.getElementById('image-preview').src = canvas.toDataURL();
 };
