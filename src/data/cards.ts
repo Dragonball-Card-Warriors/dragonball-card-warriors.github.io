@@ -7830,7 +7830,7 @@ export const cardList: Array<{
     'attack': 12000,
     'hit_points': 11000,
     'abilities': [AbilityType.InstantAppearance],
-    'effect': '(2 Yellow Owned) Gives itself Swift Attack and Negate Damage when you have 2 or more Frieza cards in your graveyard,\n(Purple, Blue, Green Consumed) Appears from yuor SP deck at no energy cost if you consume a symbol and have Frieza in your graveyard',
+    'effect': '(2 Yellow Owned) Gives itself Swift Attack and Negate Damage when you have 2 or more Frieza cards in your graveyard,\n(Purple, Blue, Green Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Frieza in your graveyard',
     'effectTypes': [EffectType.SwiftAttack, EffectType.NegateDamage],
     'requirements': '2 Yellow Owned, Purple, Blue, Green Consumed',
     'trigger': 'Always',
