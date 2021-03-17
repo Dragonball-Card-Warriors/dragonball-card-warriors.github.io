@@ -22,17 +22,17 @@
           <select id="Rarity" class="form-select" onchange="Settings.rarity = this.value">
             <option value="N">Normal</option>
             <option value="R">Rare</option>
-            <option value="SR">Super Rare</option>
-            <option selected value="SSR">Legendary</option>
+            <option selected value="SR">Super Rare</option>
+            <option value="SSR">Legendary</option>
           </select>
         </div>
         <div class="form-group col-6">
           <label for="Symbol" class="form-label">Symbol:</label>
           <select id="Symbol" class="form-select" onchange="Settings.symbol = this.value">
-            <option selected value="none">None</option>
+            <option value="none">None</option>
             <option value="blue">Blue</option>
             <option value="purple">Purple</option>
-            <option value="green">Green</option>
+            <option selected value="green">Green</option>
             <option value="yellow">Yellow</option>
           </select>
         </div>
@@ -47,15 +47,15 @@
         </div>
         <div class="form-group col-6">
           <label for="Cost" class="form-label">Cost:</label>
-          <input id="Cost" type="number" class="form-control" placeholder="1" value="1" min="0" max="10" onchange="Settings.cost = +this.value" />
+          <input id="Cost" type="number" class="form-control" placeholder="1" value="5" min="0" max="10" onchange="Settings.cost = +this.value" />
         </div>
         <div class="form-group col-6">
           <label for="Attack" class="form-label">Attack:</label>
-          <input id="Attack" type="number" class="form-control" placeholder="1000" value="1000" step="1000" min="0" max="999999" onchange="Settings.attack = +this.value" />
+          <input id="Attack" type="number" class="form-control" placeholder="1000" value="3000" step="1000" min="0" max="999999" onchange="Settings.attack = +this.value" />
         </div>
         <div class="form-group col-6">
           <label for="HitPoints" class="form-label">Hit Points:</label>
-          <input id="HitPoints" type="number" class="form-control" placeholder="1000" value="1000" step="1000" min="0" max="999999" onchange="Settings.hit_points = +this.value" />
+          <input id="HitPoints" type="number" class="form-control" placeholder="1000" value="4000" step="1000" min="0" max="999999" onchange="Settings.hit_points = +this.value" />
         </div>
         <div class="form-group col-6">
           <label for="ShinyStars" class="form-label">Shiny Stars:</label>
