@@ -15,16 +15,15 @@ let Settings = new Proxy({
   }
 });
 
-var loadFile = function(event) {
-var reader = new FileReader();
-reader.onload = function(){
-  Settings.image = reader.result;
-};
-reader.readAsDataURL(event.target.files[0]);
+const loadFile = function(event) {
+  const reader = new FileReader();
+  reader.onload = function(){
+    Settings.image = reader.result;
+  };
+  reader.readAsDataURL(event.target.files[0]);
 };
 
-const loadImage = (url, custom) => {
-return new Promise((resolve, reject) => {
+const loadImage = (url, custom) => new Promise((resolve, reject) => {
   let image = new Image();
   image.onload = () => {
       if (custom) {
@@ -45,135 +44,135 @@ return new Promise((resolve, reject) => {
   }
   image.src = url;
 });
-}
 
 function getAttackImages(stat = 1000) {
-return new Promise((resolve, reject) => {
-  stat = stat.toString().split('').reverse();
+  return new Promise((resolve, reject) => {
+    stat = stat.toString().split('').reverse();
 
-  const stats = stat.map(async (num, i) => {
-    return await loadImage(`images/attack/${num}.png`);
+    const stats = stat.map(async (num, i) => {
+      return await loadImage(`images/attack/${num}.png`);
+    });
+    resolve(Promise.all(stats));
   });
-  resolve(Promise.all(stats));
-});
 }
 
 function getHPImages(stat = 1000) {
-return new Promise((resolve, reject) => {
-  stat = stat.toString().split('').reverse();
+  return new Promise((resolve, reject) => {
+    stat = stat.toString().split('').reverse();
 
-  const stats = stat.map(async (num, i) => {
-    return await loadImage(`images/hp/${num}.png`);
+    const stats = stat.map(async (num, i) => {
+      return await loadImage(`images/hp/${num}.png`);
+    });
+    resolve(Promise.all(stats));
   });
-  resolve(Promise.all(stats));
-});
 }
 
 const updateCanvas = async () => {
-var output = document.getElementById('my-image');
-output.src = Settings.image;
+  const output = document.getElementById('my-image');
+  output.src = Settings.image;
 
-const canvas = document.getElementById('my-canvas');
-canvas.width = 697;
-canvas.height = 1000;
-const context = canvas.getContext('2d');
+  const canvas = document.getElementById('my-canvas');
+  canvas.width = 697;
+  canvas.height = 1000;
+  const context = canvas.getContext('2d');
 
-// Background
-const bg = await loadImage('images/Black.png', (ctx, image) => {
-  ctx.fillStyle = Settings.type == 'event' ? '#2C2B62' : '#000';
-  ctx.fillRect(0, 0, image.width, image.height);
-  ctx.globalCompositeOperation = 'destination-in';
-});
-context.drawImage(bg, 4, 4, 620, 996);
+  // Background
+  const bg = await loadImage('images/Black.png', (ctx, image) => {
+    ctx.fillStyle = Settings.type == 'event' ? '#2C2B62' : '#000';
+    ctx.fillRect(0, 0, image.width, image.height);
+    ctx.globalCompositeOperation = 'destination-in';
+  });
+  context.drawImage(bg, 4, 4, 620, 996);
 
-// User image
-const mainImage = await loadImage(Settings.image);
-const mask = await loadImage(`images/Black${Settings.type == 'support' ? '_Support' : Settings.type == 'event' ? '_Event' : ''}.png`, (ctx, image) => {
-  const ratio = mainImage.width / mainImage.height;
-  let newWidth = image.width;
-  let newHeight = newWidth / ratio;
-  if (newHeight < image.height) {
-    newHeight = image.height;
-    newWidth = newHeight * ratio;
+  // User image
+  const mainImage = await loadImage(Settings.image);
+  const mask = await loadImage(`images/Black${Settings.type == 'support' ? '_Support' : Settings.type == 'event' ? '_Event' : ''}.png`, (ctx, image) => {
+    const ratio = mainImage.width / mainImage.height;
+    let newWidth = image.width;
+    let newHeight = newWidth / ratio;
+    if (newHeight < image.height) {
+      newHeight = image.height;
+      newWidth = newHeight * ratio;
+    }
+    const xOffset = newWidth > image.width ? (image.width - newWidth) / 2 : 0;
+    const yOffset =
+      newHeight > image.height ? (image.height - newHeight) / 2 : 0;
+    ctx.drawImage(mainImage, xOffset, yOffset, newWidth, newHeight);
+    ctx.globalCompositeOperation = 'destination-in';
+  });
+
+  context.drawImage(mask, 17, 17, 566, 966);
+
+  // Card cost
+  let cost_type;
+  switch (Settings.type) {
+    case 'support':
+      const support_overlay = await loadImage(`images/cost/support.png`);
+      context.drawImage(support_overlay, 2, 2, 584, 180);
+      cost_type = await loadImage(`images/cost/standard.png`);
+      context.drawImage(cost_type, 2, -8, 240, 249);
+      break;
+    case 'event':
+      cost_type = await loadImage(`images/cost/standard.png`);
+      context.drawImage(cost_type, 2, -3, 240, 249);
+      break;
+    default:
+      cost_type = await loadImage(`images/cost/${Settings.type}.png`);
+      context.drawImage(cost_type, 2, -3, 240, 249);
   }
-  const xOffset = newWidth > image.width ? (image.width - newWidth) / 2 : 0;
-  const yOffset =
-    newHeight > image.height ? (image.height - newHeight) / 2 : 0;
-  ctx.drawImage(mainImage, xOffset, yOffset, newWidth, newHeight);
-  ctx.globalCompositeOperation = 'destination-in';
-});
-
-context.drawImage(mask, 17, 17, 566, 966);
-
-// Card cost
-let cost_type;
-switch (Settings.type) {
-  case 'support':
-    const support_overlay = await loadImage(`images/cost/support.png`);
-    context.drawImage(support_overlay, 2, 2, 584, 180);
-    cost_type = await loadImage(`images/cost/standard.png`);
-    context.drawImage(cost_type, 2, -8, 240, 249);
-    break;
-  case 'event':
-    cost_type = await loadImage(`images/cost/standard.png`);
-    context.drawImage(cost_type, 2, -3, 240, 249);
-    break;
-  default:
-    cost_type = await loadImage(`images/cost/${Settings.type}.png`);
-    context.drawImage(cost_type, 2, -3, 240, 249);
-}
-const cost = await loadImage(`images/cost/${Settings.cost}.png`, (ctx, image) => {
-  ctx.fillStyle = '#000';
-  ctx.fillRect(0, 0, image.width, image.height);
-  ctx.globalCompositeOperation = 'destination-in';
-});
-if (Settings.cost < 10) {
-  context.drawImage(cost, 96, 78, 50, 80);
-} else {
-  context.drawImage(cost, 70, 78, 100, 80);
-}
-let cost_gloss;
-switch (Settings.type) {
-  case 'support':
-    cost_gloss = await loadImage(`images/cost/standard_gloss.png`);
-    context.drawImage(cost_gloss, 2, -8, 240, 249);
-    break;
-  case 'event':
-    cost_gloss = await loadImage(`images/cost/standard_gloss.png`);
-    context.drawImage(cost_gloss, 2, -3, 240, 249);
-    break;
-  default:
-    cost_gloss = await loadImage(`images/cost/${Settings.type}_gloss.png`);
-    context.drawImage(cost_gloss, 2, -3, 240, 249);
-}
-
-// Stats
-if (Settings.type != 'event' && (Settings.attack > 0 || Settings.hit_points > 0)) {
-  const stats = await loadImage('images/Stats.png');
-  context.drawImage(stats, 184, 754);
-  attackImages = await getAttackImages(Settings.attack);
-  let left = 506;
-  attackImages.forEach((image, i) => {
-    context.drawImage(image, left - i * 46, 767, 46, 88);
+  const cost = await loadImage(`images/cost/${Settings.cost}.png`, (ctx, image) => {
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, image.width, image.height);
+    ctx.globalCompositeOperation = 'destination-in';
   });
-  hpImages = await getHPImages(Settings.hit_points);
-  left = 506;
-  hpImages.forEach((image, i) => {
-    context.drawImage(image, left - i * 46, 864, 46, 88);
-  });
-}
+  if (Settings.cost < 10) {
+    context.drawImage(cost, 96, 78, 50, 80);
+  } else {
+    context.drawImage(cost, 70, 78, 100, 80);
+  }
+  let cost_gloss;
+  switch (Settings.type) {
+    case 'support':
+      cost_gloss = await loadImage(`images/cost/standard_gloss.png`);
+      context.drawImage(cost_gloss, 2, -8, 240, 249);
+      break;
+    case 'event':
+      cost_gloss = await loadImage(`images/cost/standard_gloss.png`);
+      context.drawImage(cost_gloss, 2, -3, 240, 249);
+      break;
+    default:
+      cost_gloss = await loadImage(`images/cost/${Settings.type}_gloss.png`);
+      context.drawImage(cost_gloss, 2, -3, 240, 249);
+  }
 
-// Icon
-if (Settings.type != 'event') {
-  const symbol = await loadImage(`images/symbol/${Settings.symbol}.png`);
-  context.drawImage(symbol, 20, 779, 170, 170);
-}
+  // Stats
+  if (Settings.type != 'event' && (Settings.attack > 0 || Settings.hit_points > 0)) {
+    const stats = await loadImage('images/Stats.png');
+    context.drawImage(stats, 184, 754);
+    attackImages = await getAttackImages(Settings.attack);
+    let left = 506;
+    attackImages.forEach((image, i) => {
+      context.drawImage(image, left - i * 46, 767, 46, 88);
+    });
+    hpImages = await getHPImages(Settings.hit_points);
+    left = 506;
+    hpImages.forEach((image, i) => {
+      context.drawImage(image, left - i * 46, 864, 46, 88);
+    });
+  }
 
-// Frame
-const frame = await loadImage(`images/frame/${Settings.rarity}.png`);
-context.drawImage(frame, 0, 0);
+  // Icon
+  if (Settings.type != 'event') {
+    const symbol = await loadImage(`images/symbol/${Settings.symbol}.png`);
+    context.drawImage(symbol, 20, 779, 170, 170);
+  }
 
-document.getElementById('image-preview').src = canvas.toDataURL();
+  // Frame
+  const frame = await loadImage(`images/frame/${Settings.rarity}.png`);
+  context.drawImage(frame, 0, 0);
+
+
+  document.getElementById('image-preview').src = canvas.toDataURL();
 };
 
 updateCanvas();
