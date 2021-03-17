@@ -18,6 +18,15 @@
           <img id="my-image" src="#" alt="your image" width="100" />
         </div>
         <div class="form-group col-6">
+          <label for="Type" class="form-label">Card Type:</label>
+          <select id="Type" class="form-select" onchange="Settings.type = this.value">
+            <option selected value="standard">Standard</option>
+            <option value="special">Special</option>
+            <option value="support">Support</option>
+            <option value="event">Event</option>
+          </select>
+        </div>
+        <div class="form-group col-6">
           <label for="Rarity" class="form-label">Rarity:</label>
           <select id="Rarity" class="form-select" onchange="Settings.rarity = this.value">
             <option value="N">Normal</option>
@@ -25,6 +34,10 @@
             <option selected value="SR">Super Rare</option>
             <option value="SSR">Legendary</option>
           </select>
+        </div>
+        <div class="form-group col-6">
+          <label for="Cost" class="form-label">Cost:</label>
+          <input id="Cost" type="number" class="form-control" placeholder="1" value="5" min="0" max="10" onchange="Settings.cost = +this.value" />
         </div>
         <div class="form-group col-6">
           <label for="Symbol" class="form-label">Symbol:</label>
@@ -35,19 +48,6 @@
             <option selected value="green">Green</option>
             <option value="yellow">Yellow</option>
           </select>
-        </div>
-        <div class="form-group col-6">
-          <label for="Type" class="form-label">Cost Type:</label>
-          <select id="Type" class="form-select" onchange="Settings.type = this.value">
-            <option selected value="standard">Standard</option>
-            <option value="special">Special</option>
-            <option value="support">Support</option>
-            <option value="event">Event</option>
-          </select>
-        </div>
-        <div class="form-group col-6">
-          <label for="Cost" class="form-label">Cost:</label>
-          <input id="Cost" type="number" class="form-control" placeholder="1" value="5" min="0" max="10" onchange="Settings.cost = +this.value" />
         </div>
         <div class="form-group col-6">
           <label for="Attack" class="form-label">Attack:</label>
