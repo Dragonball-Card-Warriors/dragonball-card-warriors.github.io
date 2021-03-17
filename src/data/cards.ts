@@ -1691,8 +1691,8 @@ export const cardList: Array<{
     'hit_points': 7000,
     'abilities': [AbilityType.None],
     'effect': 'Gain 8000 ATK',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '3 Banked Energy',
+    'effectTypes': [EffectType.AddAttack, EffectType.ConsumeBank],
+    'requirements': 'Consumes 3 Banked Energy',
     'trigger': 'Upon Appearance',
   },
   {
