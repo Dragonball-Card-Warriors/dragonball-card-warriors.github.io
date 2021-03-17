@@ -140,7 +140,7 @@ export default class DeckManager {
     const backImage = document.createElement('img');
     backImage.className = 'clickable';
     backImage.onclick = () => this.hideDeck();
-    backImage.src = 'images/Deck.png';
+    backImage.src = 'images/deck.png';
     const backBr = document.createElement('br');
     const backText = document.createElement('span');
     backText.innerText = 'Back to decks';
