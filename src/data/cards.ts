@@ -7955,12 +7955,9 @@ export const cardList: Array<{
   {
     'id': 2101,
     'set': 'C2',
-    'name': 'Cell Jr.',
+    'name': 'Super Ghost Kamikaze Attack',
     'sub_name': '',
-    'groups': [
-      'Cell Jr.',
-      'Android',
-    ],
+    'groups': [],
     'rarity': Rarity.Normal,
     'energy_cost': 0,
     'type': CardType.Support,

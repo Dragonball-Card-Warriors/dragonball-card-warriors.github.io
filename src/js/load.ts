@@ -36,8 +36,9 @@ export const loadCards = async (container: HTMLElement): Promise<void> => {
     // Add elements
     el.innerHTML = `<div class="card mb-3">
       <div class="row m-0">
-        <div class="card-image col-4 p-0 bg-secondary clickable" data-bs-toggle="modal" data-bs-target="#cardInfoModal" onclick="App.updateCardInfoModal(${card.id});">
-          <img src="images/cards/${card.id}_thumb.${webpSupport ? 'webp' : 'png'}" alt="${card.name} card image" loading="lazy" width="100%" onError="this.src = 'images/cards/none_thumb.${webpSupport ? 'webp' : 'png'}'">
+        <div class="card-image col-4 p-0 bg-secondary">
+          <img class="clickable" data-bs-toggle="modal" data-bs-target="#cardInfoModal" src="images/cards/${card.id}_thumb.${webpSupport ? 'webp' : 'png'}" alt="${card.name} card image" loading="lazy" width="100%" onError="this.src = 'images/cards/none_thumb.${webpSupport ? 'webp' : 'png'}'" onclick="App.updateCardInfoModal(${card.id});">
+          <img class="clickable add-to-deck" src="images/deck_icon.png" onclick="App.deckManager.addCard(${card.id})"/>
         </div>
         <div class="card-info col-8 p-0">
           <table class="table table-sm" width="100%">

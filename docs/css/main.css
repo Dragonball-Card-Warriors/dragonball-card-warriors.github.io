@@ -5,6 +5,23 @@
 .card-image {
   border-radius: 10px;
 }
+#card-list .add-to-deck {
+  display: none;
+}
+#card-list.deck-selected .add-to-deck {
+  display: block;
+}
+.card-image.col-4 .add-to-deck {
+  position: absolute;
+  top: 0px;
+  right: -32px;
+  z-index: 10;
+}
+.card-image.col-12 .add-to-deck {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+}
 
 .clickable {
   cursor: pointer;
@@ -24,4 +41,63 @@
   color: whitesmoke;
   background-color: #df691a;
   border-color: rgba(0, 0, 0, 0.2);
+}
+
+/*
+ * DECK BUILDER
+ */
+deck {
+  position: fixed;
+  bottom: -280px;
+  left: 0;
+  width: 100vw;
+  height: 280px;
+  transition: all 0.5s;
+  border-top: black 1px solid;
+  z-index: 50;
+}
+deck.shown {
+  bottom: 0px;
+}
+
+deck .tab {
+  position: absolute;
+  top: -50px;
+  right: 30px;
+  width: 120px;
+  height: 50px;
+  border-radius: 5px 5px 0px 0px;
+  border: black 1px solid;
+  border-bottom: none;
+}
+
+deck .deck-select,
+deck .card-select {
+  color: whitesmoke;
+}
+deck .deck-select:hover,
+deck .card-select:hover {
+  color: rgb(212, 212, 212);
+}
+deck .deck-select img {
+  height: 230px;
+}
+deck .card-select img {
+  height: 180px;
+}
+deck #decks,
+deck #deck-cards {
+  position: absolute;
+  top: 280px;
+  left: 0px;
+  width: 100vw;
+  height: 280px;
+  transition: all 0.5s;
+  border-left: black 1px solid;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+deck #decks.shown,
+deck #deck-cards.shown {
+  top: 0px;
 }

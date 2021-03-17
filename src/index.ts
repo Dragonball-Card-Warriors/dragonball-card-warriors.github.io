@@ -3,6 +3,7 @@ import { loadSortOptions, sortCards } from './js/sort';
 import { filterCards, toggleAllFilter } from './js/filter';
 import { updateCardInfoModal, toggleDisplay } from './js/display';
 import { cardList } from './data/cards';
+import DeckManager from './js/deck';
 
 const cardContainer = document.getElementById('card-list');
 
@@ -20,4 +21,5 @@ module.exports = {
   updateCardInfoModal,
   cardList,
   toggleAllFilter,
+  deckManager: new DeckManager(),
 };
