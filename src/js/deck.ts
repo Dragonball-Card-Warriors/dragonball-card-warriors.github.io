@@ -96,17 +96,16 @@ export default class DeckManager {
   addCardHtml(card: typeof cardList[0]): void {
     const deckCardsEl = document.getElementById('deck-cards');
     const cardEl = document.createElement('div');
-    cardEl.className = 'm-2 card-select';
+    cardEl.className = 'm-2 card-select clickable';
     cardEl.dataset.card = card.id.toString();
-    const image = document.createElement('img');
-    image.setAttribute('data-bs-toggle', 'modal');
-    image.setAttribute('data-bs-target', '#cardInfoModal');
-    image.className = 'clickable';
-    image.onclick = () => updateCardInfoModal(card.id);
-    image.oncontextmenu = (e) => {
+    cardEl.setAttribute('data-bs-toggle', 'modal');
+    cardEl.setAttribute('data-bs-target', '#cardInfoModal');
+    cardEl.onclick = () => updateCardInfoModal(card.id);
+    cardEl.oncontextmenu = (e) => {
       this.removeCard(card.id);
       e.preventDefault();
     };
+    const image = document.createElement('img');
     image.src = `images/cards/${card.id}_thumb.png`;
     const br = document.createElement('br');
     const text = document.createElement('span');
@@ -136,10 +135,9 @@ export default class DeckManager {
     this.clearHTML(deckCardsEl);
 
     const backEl = document.createElement('div');
-    backEl.className = 'm-2 card-select';
+    backEl.className = 'm-2 card-select clickable';
+    backEl.onclick = () => this.hideDeck();
     const backImage = document.createElement('img');
-    backImage.className = 'clickable';
-    backImage.onclick = () => this.hideDeck();
     backImage.src = 'images/deck.png';
     const backBr = document.createElement('br');
     const backText = document.createElement('span');
