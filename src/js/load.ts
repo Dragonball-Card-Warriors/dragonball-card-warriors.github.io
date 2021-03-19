@@ -69,7 +69,7 @@ export const loadCards = async (container: HTMLElement): Promise<void> => {
               ${card.abilities && card.abilities.length ? `
               <tr>
                 <th width="25%" class="text-end">Ability:</th>
-                <td width="75%" class="text-start" colspan="3">${card.abilities}</td>
+                <td width="75%" class="text-start" colspan="3">${card.abilities.join(', ')}</td>
               </tr>` : ''}
               ${card.effect ? `
               <tr>
