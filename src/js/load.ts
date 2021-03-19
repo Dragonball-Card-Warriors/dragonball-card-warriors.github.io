@@ -27,7 +27,7 @@ export const loadCards = async (container: HTMLElement): Promise<void> => {
     el.dataset.icon = card.icon;
     el.dataset.attack = card.attack?.toString() || '';
     el.dataset.hit_points = card.hit_points?.toString() || '';
-    el.dataset.abilities = card.abilities.join(',');
+    el.dataset.abilities = card.abilities?.join(',');
     el.dataset.effect = card.effect;
     el.dataset.effectTypes = card.effectTypes.join(',');
     el.dataset.requirements = card.requirements;
