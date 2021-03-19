@@ -66,7 +66,7 @@ export const loadCards = async (container: HTMLElement): Promise<void> => {
                 <th width="25%" class="text-end">HP:</th>
                 <td width="25%" class="text-start">${card.hit_points || '-'}</td>
               </tr>` : ''}
-              ${card.abilities ? `
+              ${card.abilities && card.abilities.length ? `
               <tr>
                 <th width="25%" class="text-end">Ability:</th>
                 <td width="75%" class="text-start" colspan="3">${card.abilities}</td>
@@ -76,14 +76,14 @@ export const loadCards = async (container: HTMLElement): Promise<void> => {
                 <th colspan="4">Effect:${card.trigger ? `<br/><i>[${card.trigger}]</i>` : ''}</th>
               </tr>
               <tr>
-                <td colspan="4">${card.effect.replace(/\n/g, '<br/>')}</td>
+                <td colspan="4">${card.effect.replace(/\n/g, '<br/>').replace(/\b(Green|Blue|Yellow|Purple)\b/g, symbol => `<img class="symbol-icon" src="generator/images/symbol/${symbol.toLowerCase()}.png"/>`)}</td>
               </tr>` : ''}
               ${card.requirements ? `
               <tr>
                 <th colspan="4">Requirements:</th>
               </tr>
               <tr>
-                <td colspan="4">${card.requirements}</td>
+                <td colspan="4">${card.requirements.replace(/\n/g, '<br/>').replace(/\b(Green|Blue|Yellow|Purple)\b/g, symbol => `<img class="symbol-icon" src="generator/images/symbol/${symbol.toLowerCase()}.png"/>`)}</td>
               </tr>` : ''}
             </tbody>
           </table>

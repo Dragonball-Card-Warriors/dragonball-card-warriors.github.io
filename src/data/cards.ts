@@ -61,12 +61,28 @@ export enum EffectType {
   SummonSupport = 'Summon Support',
 }
 
+// Not used yet
+export enum TriggerType {
+  UponAppearance = 'Upon Appearance',
+  Always = 'Always',
+}
+
 export const rarityColor = {
   [Rarity.Normal]: '#808080',
   [Rarity.Rare]: '#cd7f32',
   [Rarity.SuperRare]: '#aaa9ad',
   [Rarity.Legendary]: '#d4af37',
 };
+
+// Not used yet
+export class Effect {
+  constructor(
+    public effectType: EffectType,
+    public description: string,
+    public requirements: string,
+    public trigger: TriggerType
+  ) {}
+}
 
 export const cardList: Array<{
   id: number,
@@ -1024,7 +1040,7 @@ export const cardList: Array<{
       EffectType.AddAttack,
       EffectType.AddHitPoints,
     ],
-    'requirements': 'Consume 1 Purple',
+    'requirements': 'Purple Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -1746,7 +1762,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Gain 6000 ATK',
     'effectTypes': [EffectType.AddAttack],
-    'requirements': '3 Purple owned',
+    'requirements': 'Purple Purple Purple owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -1767,7 +1783,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Deal 4000 DMG to an Enemy',
     'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Consume 1 Blue',
+    'requirements': 'Blue Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -2103,7 +2119,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.Guard],
     'effect': 'Give Guard to all friendly Units',
     'effectTypes': [EffectType.Guard],
-    'requirements': '2 Purple owned',
+    'requirements': 'Purple Purple owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -2411,7 +2427,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Adds 6000 ATK when it\'s your turn',
     'effectTypes': [EffectType.AddAttack],
-    'requirements': '2 Blue owned',
+    'requirements': 'Blue Blue owned',
     'trigger': 'Always',
   },
   {
@@ -2733,7 +2749,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Give Swift to all Friendly Units',
     'effectTypes': [EffectType.SwiftAttack],
-    'requirements': '2 Blue owned',
+    'requirements': 'Blue Blue owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -2754,7 +2770,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.Guard],
     'effect': 'Deal 7000 DMG to all other Units',
     'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Consume 2 Purple',
+    'requirements': 'Purple Purple Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -3057,7 +3073,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Kill an Enemy Unit that costs 4 or less',
     'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Consume 1 Blue',
+    'requirements': 'Blue Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -3284,7 +3300,7 @@ export const cardList: Array<{
       EffectType.AddAttack,
       EffectType.AddHitPoints,
     ],
-    'requirements': '3 Blue owned',
+    'requirements': 'Blue Blue Blue owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -3366,12 +3382,12 @@ export const cardList: Array<{
     'attack': 8000,
     'hit_points': 12000,
     'abilities': [AbilityType.None],
-    'effect': 'You must have 1 energy in your bank to Attack with this Unit / Adds 8000 ATK to self on Opponent\'s Turn',
+    'effect': 'You must have 1 energy in your bank to Attack with this Unit.\nAdds 8000 ATK to self on Opponent\'s Turn',
     'effectTypes': [
       EffectType.AddAttack,
       EffectType.Other,
     ],
-    'requirements': 'None / Purple Owned',
+    'requirements': 'None\nPurple Owned',
     'trigger': 'Always',
   },
   {
@@ -3513,7 +3529,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Kill one enemy Unit',
     'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Purple, Green, Blue owned',
+    'requirements': 'Purple Green Blue owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -3535,7 +3551,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Deal 4000 DMG to an Enemy',
     'effectTypes': [EffectType.DealDamage],
-    'requirements': '2 Purple owned',
+    'requirements': 'Purple Purple owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -3557,7 +3573,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Deal 5000 DMG to an Enemy',
     'effectTypes': [EffectType.DealDamage],
-    'requirements': '2 Blue owned',
+    'requirements': 'Blue Blue owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -3621,7 +3637,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Kill an Enemy Unit',
     'effectTypes': [EffectType.KillCharacter],
-    'requirements': '2 Yellow, 1 Green owned',
+    'requirements': 'Yellow Yellow Green owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -3748,7 +3764,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.Guard],
     'effect': 'Add 3000 ATK to all Friendly Units',
     'effectTypes': [EffectType.AddAttack],
-    'requirements': '1 Green, 1 Blue owned',
+    'requirements': 'Green Blue owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -3953,7 +3969,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Gain 5000 ATK',
     'effectTypes': [EffectType.AddAttack],
-    'requirements': '1 Purple, 1 Blue, 1 Green owned',
+    'requirements': 'Purple Blue Green owned',
     'trigger': 'Always',
   },
   {
@@ -4072,7 +4088,7 @@ export const cardList: Array<{
       EffectType.AddHitPoints,
       EffectType.AddAttack,
     ],
-    'requirements': '2 Green owned',
+    'requirements': 'Green Green owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -4153,7 +4169,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Gains the following: (Always: 3000 ATK to itself for each enemy Unit)',
     'effectTypes': [EffectType.AddAttack],
-    'requirements': '1 Purple, 1 Yellow owned',
+    'requirements': 'Purple Yellow owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -4219,7 +4235,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Kill all Units',
     'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Consume 1 Purple, 1 Blue, 1 Green, 1 Yellow',
+    'requirements': 'Purple Blue Green Yellow Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -4762,13 +4778,13 @@ export const cardList: Array<{
     'attack': 5000,
     'hit_points': 8000,
     'abilities': [AbilityType.None],
-    'effect': 'Deal 5000 DMG to an Enemy / Adds 1000 ATK to itself for Each Goten & Trunks card in your hand',
+    'effect': 'Deal 5000 DMG to an Enemy.\nAdds 1000 ATK to itself for Each Goten & Trunks card in your hand',
     'effectTypes': [
       EffectType.DealDamage,
       EffectType.AddAttack,
     ],
-    'requirements': 'Consume 1 Green / None',
-    'trigger': 'Upon Appearance / Upon Appearance',
+    'requirements': 'Green Consumed\nNone',
+    'trigger': 'Upon Appearance\nUpon Appearance',
   },
   {
     'id': 1155,
@@ -4811,7 +4827,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Deal 3000 DMG to an Enemy for each Goku & Vegeta card in your hand',
     'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Consume 1 Purple, 1 Blue',
+    'requirements': 'Purple Blue Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -4853,7 +4869,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Deal 4000 DMG to an Enemy',
     'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Consume 1 Blue',
+    'requirements': 'Blue Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -4979,7 +4995,7 @@ export const cardList: Array<{
       EffectType.AddAttack,
       EffectType.AddHitPoints,
     ],
-    'requirements': '2 Blue owned',
+    'requirements': 'Blue Blue owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -5000,7 +5016,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Adds 20000 HP to itself',
     'effectTypes': [EffectType.AddHitPoints],
-    'requirements': 'Consume 1 Yellow',
+    'requirements': 'Yellow Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -5020,13 +5036,13 @@ export const cardList: Array<{
     'attack': 8000,
     'hit_points': 8000,
     'abilities': [AbilityType.None],
-    'effect': 'Return all Friendly Android 19 & Android 20 Units to your hand / Add 1000 ATK to itself for each Android 19 and Android 20 card in your hand',
+    'effect': 'Return all Friendly Android 19 & Android 20 Units to your hand\nAdd 1000 ATK to itself for each Android 19 and Android 20 card in your hand',
     'effectTypes': [
       EffectType.ReturnCharacter,
       EffectType.AddAttack,
     ],
-    'requirements': 'None / Purple Owned',
-    'trigger': 'Upon Appearance / Always',
+    'requirements': 'None\nPurple Owned',
+    'trigger': 'Upon Appearance\nAlways',
   },
   {
     'id': 1157,
@@ -5046,13 +5062,13 @@ export const cardList: Array<{
     'attack': 4000,
     'hit_points': 4000,
     'abilities': [AbilityType.None],
-    'effect': 'Return all Friendly Goku, Vegeta & Trunks Units to your hand / Deal 3000 DMG to the enemy Leader for each Goku, Vegeta and Trunks card in your hand',
+    'effect': 'Return all Friendly Goku, Vegeta & Trunks Units to your hand\nDeal 3000 DMG to the enemy Leader for each Goku, Vegeta and Trunks card in your hand',
     'effectTypes': [
       EffectType.ReturnCharacter,
       EffectType.DealDamage,
     ],
-    'requirements': 'None / Yellow Consumed',
-    'trigger': 'Upon Appearance / Upon Appearance',
+    'requirements': 'None\nYellow Consumed',
+    'trigger': 'Upon Appearance\nUpon Appearance',
   },
   {
     'id': 1159,
@@ -5360,13 +5376,13 @@ export const cardList: Array<{
     'attack': 9000,
     'hit_points': 16000,
     'abilities': [AbilityType.None],
-    'effect': 'Returns all Goten and Trunks Units to their owners\' hands / Adds 1000 ATK to itself for each Goten and Trunks card in your hand',
+    'effect': 'Returns all Goten and Trunks Units to their owners\' hands\nAdds 1000 ATK to itself for each Goten and Trunks card in your hand',
     'effectTypes': [
       EffectType.ReturnCharacter,
       EffectType.AddAttack,
     ],
-    'requirements': 'None / Purple Owned',
-    'trigger': 'Upon Appearance / Always',
+    'requirements': 'None\nPurple Owned',
+    'trigger': 'Upon Appearance\nAlways',
   },
   {
     'id': 1147,
@@ -5385,13 +5401,13 @@ export const cardList: Array<{
     'attack': 11000,
     'hit_points': 11000,
     'abilities': [AbilityType.None],
-    'effect': 'Returns all Android 17 and Android 18 Units to their owners\' hands / Adds 1000 ATK to itself for each Android 17 and Android 18 card in your hand',
+    'effect': 'Returns all Android 17 and Android 18 Units to their owners\' hands\nAdds 1000 ATK to itself for each Android 17 and Android 18 card in your hand',
     'effectTypes': [
       EffectType.ReturnCharacter,
       EffectType.AddAttack,
     ],
-    'requirements': 'None / Purple Owned',
-    'trigger': 'Upon Appearance / Always',
+    'requirements': 'None\nPurple Owned',
+    'trigger': 'Upon Appearance\nAlways',
   },
   {
     'id': 1158,
@@ -5412,13 +5428,13 @@ export const cardList: Array<{
     'attack': 7000,
     'hit_points': 7000,
     'abilities': [AbilityType.None],
-    'effect': 'Return all Friendly Goku, Gohan, Vegeta & Trunks Units to your hand / Deal 3000 DMG to the enemy Leader for each Goku, Gohan, Vegeta and Trunks card in your hand',
+    'effect': 'Return all Friendly Goku, Gohan, Vegeta & Trunks Units to your hand\nDeal 3000 DMG to the enemy Leader for each Goku, Gohan, Vegeta and Trunks card in your hand',
     'effectTypes': [
       EffectType.ReturnCharacter,
       EffectType.DealDamage,
     ],
-    'requirements': 'None / Yellow Consumed',
-    'trigger': 'Upon Appearance / Upon Appearance',
+    'requirements': 'None\nYellow Consumed',
+    'trigger': 'Upon Appearance\nUpon Appearance',
   },
   {
     'id': 1172,
@@ -5438,7 +5454,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Kill all other Units',
     'effectTypes': [EffectType.KillCharacter],
-    'requirements': '3 Yellow Consumed',
+    'requirements': 'Yellow Yellow Yellow Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -5527,13 +5543,13 @@ export const cardList: Array<{
     'attack': 13000,
     'hit_points': 13000,
     'abilities': [AbilityType.None],
-    'effect': 'Return all Friendly Gohan & Goten Units to your hand / 1000 ATK to itself for each Gohan & Goten in your hand',
+    'effect': 'Return all Friendly Gohan & Goten Units to your hand\n1000 ATK to itself for each Gohan & Goten in your hand',
     'effectTypes': [
       EffectType.ReturnCharacter,
       EffectType.AddAttack,
     ],
-    'requirements': 'None / Blue owned',
-    'trigger': 'Upon Appearance / Always',
+    'requirements': 'None\nBlue owned',
+    'trigger': 'Upon Appearance\nAlways',
   },
   {
     'id': 1160,
@@ -5553,13 +5569,13 @@ export const cardList: Array<{
     'attack': 9000,
     'hit_points': 9000,
     'abilities': [AbilityType.None],
-    'effect': 'Return all Friendly Gohan, Goten & Trunks Units to your hand / 4000 DMG to the Enemy Leader for each Gohan, Goten & Trunks in your hand',
+    'effect': 'Return all Friendly Gohan, Goten & Trunks Units to your hand\n4000 DMG to the Enemy Leader for each Gohan, Goten & Trunks in your hand',
     'effectTypes': [
       EffectType.ReturnCharacter,
       EffectType.DealDamage,
     ],
-    'requirements': 'None / Yellow Consumed',
-    'trigger': 'Upon Appearance / Upon Appearance',
+    'requirements': 'None\nYellow Consumed',
+    'trigger': 'Upon Appearance\nUpon Appearance',
   },
   {
     'id': 1176,
@@ -5658,13 +5674,13 @@ export const cardList: Array<{
     'attack': 12000,
     'hit_points': 15000,
     'abilities': [AbilityType.None],
-    'effect': 'Draw 1 Card / Add 8000 ATK to itself on your turn',
+    'effect': 'Draw 1 Card\nAdd 8000 ATK to itself on your turn',
     'effectTypes': [
       EffectType.DrawCard,
       EffectType.AddAttack,
     ],
-    'requirements': 'None / Yellow Owned',
-    'trigger': 'Upon Appearance / Always',
+    'requirements': 'None\nYellow Owned',
+    'trigger': 'Upon Appearance\nAlways',
   },
   {
     'id': 1143,
@@ -5701,13 +5717,13 @@ export const cardList: Array<{
     'attack': 17000,
     'hit_points': 17000,
     'abilities': [AbilityType.None],
-    'effect': 'Return all Friendly Vegeta and Trunks Units to your hand / Add 1000 ATK to itself for each Vegeta and Trunks card in your hand',
+    'effect': 'Return all Friendly Vegeta and Trunks Units to your hand\nAdd 1000 ATK to itself for each Vegeta and Trunks card in your hand',
     'effectTypes': [
       EffectType.ReturnCharacter,
       EffectType.AddAttack,
     ],
-    'requirements': 'None / Blue Owned',
-    'trigger': 'Upon Appearance / Always',
+    'requirements': 'None\nBlue Owned',
+    'trigger': 'Upon Appearance\nAlways',
   },
   {
     'id': 1161,
@@ -5727,13 +5743,13 @@ export const cardList: Array<{
     'attack': 13000,
     'hit_points': 13000,
     'abilities': [AbilityType.None],
-    'effect': 'Return all Friendly Goku, Gohan & Gotenks Units to your hand / Deal 4000 DMG to the Enemy Leader for each Gohan, Goku and Gotenks card in your hand',
+    'effect': 'Return all Friendly Goku, Gohan & Gotenks Units to your hand\nDeal 4000 DMG to the Enemy Leader for each Gohan, Goku and Gotenks card in your hand',
     'effectTypes': [
       EffectType.ReturnCharacter,
       EffectType.DealDamage,
     ],
-    'requirements': 'None / Yellow Owned',
-    'trigger': 'Upon Appearance / Upon Appearance',
+    'requirements': 'None\nYellow Owned',
+    'trigger': 'Upon Appearance\nUpon Appearance',
   },
   {
     'id': 1174,
@@ -5774,7 +5790,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Deal 5000 DMG to an Enemy',
     'effectTypes': [EffectType.DealDamage],
-    'requirements': '2 Blue Owned',
+    'requirements': 'Blue Blue Owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -5835,13 +5851,13 @@ export const cardList: Array<{
     'attack': 18000,
     'hit_points': 18000,
     'abilities': [AbilityType.None],
-    'effect': 'Returns all Friendly Supreme Kai Units to your hand / Adds 1000 ATK to itself for each Supreme Kai in your hand',
+    'effect': 'Returns all Friendly Supreme Kai Units to your hand\nAdds 1000 ATK to itself for each Supreme Kai in your hand',
     'effectTypes': [
       EffectType.ReturnCharacter,
       EffectType.AddAttack,
     ],
-    'requirements': 'None / Blue Owned',
-    'trigger': 'Upon Appearance / Always',
+    'requirements': 'None\nBlue Owned',
+    'trigger': 'Upon Appearance\nAlways',
   },
   {
     'id': 1162,
@@ -5861,13 +5877,13 @@ export const cardList: Array<{
     'attack': 15000,
     'hit_points': 15000,
     'abilities': [AbilityType.None],
-    'effect': 'Return all Friendly Gotenks & Gohan Units to your hand / Deal 5000 DMG to the enemy leader for each Gotenks & Gohan card in your hand',
+    'effect': 'Return all Friendly Gotenks & Gohan Units to your hand\nDeal 5000 DMG to the enemy leader for each Gotenks & Gohan card in your hand',
     'effectTypes': [
       EffectType.ReturnCharacter,
       EffectType.DealDamage,
     ],
-    'requirements': 'None / Consume 2 Yellow',
-    'trigger': 'Upon Appearance / Upon Appearance',
+    'requirements': 'None\nYellow Yellow Consumed',
+    'trigger': 'Upon Appearance\nUpon Appearance',
   },
   {
     'id': 1184,
@@ -5947,7 +5963,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.Guard],
     'effect': 'Complete restore the HP of all Friendly Units',
     'effectTypes': [EffectType.RecoverHitPoints],
-    'requirements': 'Consume 3 Purple',
+    'requirements': 'Purple Purple Purple Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -6581,7 +6597,7 @@ export const cardList: Array<{
       AbilityType.PiercingStrike,
       AbilityType.Swift,
     ],
-    'effect': 'Gains 1 Green symbol',
+    'effect': 'Gains Green symbol',
     'effectTypes': [EffectType.GainSymbol],
     'requirements': '',
     'trigger': 'Upon Appearance',
@@ -7261,7 +7277,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.NaturalRecovery],
     'effect': 'KOs one random character on the opponent\'s side of the field for each Frieza card in your graveyard',
     'effectTypes': [EffectType.KillCharacter],
-    'requirements': '2 Yellow Consumed, Frieza card in graveyard',
+    'requirements': 'Yellow Yellow Consumed, Frieza card in graveyard',
     'trigger': 'Upon Appearance',
   },
   {
@@ -7298,7 +7314,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.ReducedCost],
     'effect': 'Adds +4000 to its own Attack, +4000 to its own Hit Points and gives itself Guard.\n-1 to the cost of this card in your hand for each character card in your graveyard',
     'effectTypes': [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.Guard],
-    'requirements': '2 Purple Owned',
+    'requirements': 'Purple Purple Owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -7317,9 +7333,9 @@ export const cardList: Array<{
     'attack': 3000,
     'hit_points': 4000,
     'abilities': [AbilityType.None],
-    'effect': '(no reqs) Adds 1 energy to your bank, (Purple, Blue, Green Consumed)Gives itself Swift Attack',
+    'effect': '(no reqs) Adds 1 energy to your bank,\n(Purple Blue Green Consumed)Gives itself Swift Attack',
     'effectTypes': [EffectType.SwiftAttack, EffectType.AddBankEnergy],
-    'requirements': 'Purple, Blue, Green Consumed',
+    'requirements': 'Purple Blue Green Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -7359,9 +7375,9 @@ export const cardList: Array<{
     'attack': 5000,
     'hit_points': 6000,
     'abilities': [AbilityType.InstantAppearance],
-    'effect': '(Purple Owned) Destroys 1 character with 3000 Hit Points or less on your opponent\'s side of the field.\n(3 Green Consumed) Appears from your SP deck at no energy cost if you consume a symbol',
+    'effect': '(Purple Owned) Destroys 1 character with 3000 Hit Points or less on your opponent\'s side of the field.\n(Green Green Green Consumed) Appears from your SP deck at no energy cost if you consume a symbol',
     'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Purple Owned, 3 Green consumed',
+    'requirements': 'Purple Owned,\nGreen Green Green Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -7525,7 +7541,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': '(Purple Owned) Restores your bank,\n(Blue Owned) Draws 1 card',
     'effectTypes': [EffectType.RestoreBank, EffectType.DrawCard],
-    'requirements': 'Purple, Blue Owned',
+    'requirements': 'Purple Blue Owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -7546,7 +7562,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Deals 7000 damage to your opponent\'s leader or 1 character on the field',
     'effectTypes': [EffectType.DealDamage],
-    'requirements': '4 Blue Consumed',
+    'requirements': 'Blue Blue Blue Blue Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -7565,9 +7581,9 @@ export const cardList: Array<{
     'attack': 7000,
     'hit_points': 8000,
     'abilities': [AbilityType.InstantAppearance],
-    'effect': '(2 Green Consumed) Deals 7000 damage to all other characters on the field, (3 Purple Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Vegeta in your graveyard',
+    'effect': '(Green Green Consumed) Deals 7000 damage to all other characters on the field,\n(Purple Purple Purple Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Vegeta in your graveyard',
     'effectTypes': [EffectType.DealDamage],
-    'requirements': '2 Green Consumed, 3 Purple Consumed',
+    'requirements': 'Green Green Consumed, Purple Purple Purple Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -7609,7 +7625,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Destroys 1 character on the oppponent\'s side of the field, then deals 2000 damage to the opponent\'s leader',
     'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Blue, Purple Owned',
+    'requirements': 'Blue Purple Owned',
     'trigger': 'Upon Appearance',
   },
   {
@@ -7628,9 +7644,9 @@ export const cardList: Array<{
     'attack': 8000,
     'hit_points': 7000,
     'abilities': [AbilityType.InstantAppearance],
-    'effect': '(2 Green Consumed) KOs all characters with Guard on the opponent\'s side of the field.\n(3 Blue Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Android 16 in your graveyard',
+    'effect': '(Green Green Consumed) KOs all characters with Guard on the opponent\'s side of the field.\n(Blue Blue Blue Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Android 16 in your graveyard',
     'effectTypes': [EffectType.KillCharacter],
-    'requirements': '2 Green Consumed, 3 Blue Consumed',
+    'requirements': 'Green Green Consumed, Blue Blue Blue Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -7670,9 +7686,9 @@ export const cardList: Array<{
     'attack': 7000,
     'hit_points': 7000,
     'abilities': [AbilityType.InstantAppearance],
-    'effect': '(no reqs) Gives itself Swift Attack and "Unable to attack opponent\'s leader".\n(Purple, Blue, Green Consumed) Appears from your SP deck at no energy cost if you consume a symbol',
+    'effect': '(no reqs) Gives itself Swift Attack and "Unable to attack opponent\'s leader".\n(Purple Blue Green Consumed) Appears from your SP deck at no energy cost if you consume a symbol',
     'effectTypes': [EffectType.SwiftAttack, EffectType.UnableToAttackLeader],
-    'requirements': 'Purple, Blue, Green Consumed',
+    'requirements': 'Purple Blue Green Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -7770,9 +7786,9 @@ export const cardList: Array<{
     'attack': 15000,
     'hit_points': 15000,
     'abilities': [AbilityType.InstantAppearance],
-    'effect': '(no req) Deals 5000 damage to 1 character on your opponent\'s side of the field for each Saiyan card in your graveyard, (Blue, Green, Yellow Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Goku in your graveyard',
+    'effect': '(no req) Deals 5000 damage to 1 character on your opponent\'s side of the field for each Saiyan card in your graveyard,\n(Blue Green Yellow Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Goku in your graveyard',
     'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Blue, Green, Yellow Consumed',
+    'requirements': 'Blue Green Yellow Consumed',
     'trigger': 'Upon Appearance',
   },
   {
@@ -7830,9 +7846,9 @@ export const cardList: Array<{
     'attack': 12000,
     'hit_points': 11000,
     'abilities': [AbilityType.InstantAppearance],
-    'effect': '(2 Yellow Owned) Gives itself Swift Attack and Negate Damage when you have 2 or more Frieza cards in your graveyard,\n(Purple, Blue, Green Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Frieza in your graveyard',
+    'effect': '(Yellow Yellow Owned) Gives itself Swift Attack and Negate Damage when you have 2 or more Frieza cards in your graveyard,\n(Purple Blue Green Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Frieza in your graveyard',
     'effectTypes': [EffectType.SwiftAttack, EffectType.NegateDamage],
-    'requirements': '2 Yellow Owned, Purple, Blue, Green Consumed',
+    'requirements': 'Yellow Yellow Owned, Purple Blue Green Consumed',
     'trigger': 'Always',
   },
   {
@@ -7850,7 +7866,7 @@ export const cardList: Array<{
     'abilities': [AbilityType.None],
     'effect': 'Deals 1000 damage to your opponent\'s leader and all characters on their side of the field for each unit of energy in your bank',
     'effectTypes': [EffectType.DealDamage],
-    'requirements': '2 Yellow Consumed',
+    'requirements': 'Yellow Yellow Consumed',
     'trigger': 'Upon Appearance',
   },
   {
