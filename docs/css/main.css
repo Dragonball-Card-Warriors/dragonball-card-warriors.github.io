@@ -31,6 +31,9 @@
   cursor: default;
   pointer-events: none;
 }
+.no-border {
+  border: none;
+}
 
 img.symbol-icon {
   height: 24px;

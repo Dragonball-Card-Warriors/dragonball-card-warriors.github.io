@@ -1,4 +1,5 @@
 import { rarityColor, cardList } from '../data/cards';
+import { getCardEffectHTML } from './load';
 
 let displayInfo = true;
 export const toggleDisplay = (): void => {
@@ -60,20 +61,7 @@ export const updateCardInfoModal = (id: number): void => {
         <th width="25%" class="text-end">Ability:</th>
         <td width="75%" class="text-start" colspan="3">${card.abilities}</td>
       </tr>` : ''}
-      ${card.effect ? `
-      <tr>
-        <th colspan="4">Effect:${card.trigger ? `<br/><i>[${card.trigger}]</i>` : ''}</th>
-      </tr>
-      <tr>
-        <td colspan="4">${card.effect}</td>
-      </tr>` : ''}
-      ${card.requirements ? `
-      <tr>
-        <th colspan="4">Requirements:</th>
-      </tr>
-      <tr>
-        <td colspan="4">${card.requirements}</td>
-      </tr>` : ''}
+      ${getCardEffectHTML(card.effects)}
     </tbody>`;
 };
 

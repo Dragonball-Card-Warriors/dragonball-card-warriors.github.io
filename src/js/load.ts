@@ -1,4 +1,4 @@
-import { cardList, CardType, rarityColor, EffectType } from '../data/cards';
+import { cardList, CardType, rarityColor, EffectType, Effect } from '../data/cards';
 import { sortCards } from './sort';
 
 export const supportsWebp = (): Promise<boolean> => new Promise((resolve) => {
@@ -8,6 +8,25 @@ export const supportsWebp = (): Promise<boolean> => new Promise((resolve) => {
   };
   img.src = 'data:image/webp;base64,UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==';
 });
+
+export const getCardEffectHTML = (effects: Effect[]): string => {
+  if (!effects) {
+    return '';
+  }
+  let html = `<tr>
+    <th colspan="4">Effects:</th>
+  </tr>`;
+  effects?.forEach(effect => {
+    if (effect.trigger) {
+      html += `<tr><th colspan="4" class="no-border">[${effect.trigger.toUpperCase()}]</th></tr>`;
+    }
+    if (effect.requirements) {
+      html += `<tr><td colspan="4" class="no-border text-warning">${effect.requirements?.replace(/\n/g, '<br/>').replace(/\b(Green|Blue|Yellow|Purple)\b/g, symbol => `<img class="symbol-icon" src="generator/images/symbol/${symbol.toLowerCase()}.png"/>`)}</td></tr>`;
+    }
+    html += `<tr><td colspan="4">${effect.description.replace(/\n/g, '<br/>').replace(/\b(Green|Blue|Yellow|Purple)\b/g, symbol => `<img class="symbol-icon" src="generator/images/symbol/${symbol.toLowerCase()}.png"/>`)}</td></tr>`;
+  });
+  return html;
+};
 
 export const loadCards = async (container: HTMLElement): Promise<void> => {
   const webpSupport = await supportsWebp();
@@ -28,10 +47,9 @@ export const loadCards = async (container: HTMLElement): Promise<void> => {
     el.dataset.attack = card.attack?.toString() || '';
     el.dataset.hit_points = card.hit_points?.toString() || '';
     el.dataset.abilities = card.abilities?.join(',');
-    el.dataset.effect = card.effect;
-    el.dataset.effectTypes = card.effectTypes.join(',');
-    el.dataset.requirements = card.requirements;
-    el.dataset.trigger = card.trigger;
+    el.dataset.effectTypes = card.effects?.map(e => e.type)?.flat().join(',');
+    el.dataset.requirements = card.effects?.map(e => e.requirements).join(',');
+    el.dataset.trigger = card.effects?.map(e => e.trigger).join(',');
 
     // Add elements
     el.innerHTML = `<div class="card mb-3">
@@ -71,20 +89,7 @@ export const loadCards = async (container: HTMLElement): Promise<void> => {
                 <th width="25%" class="text-end">Ability:</th>
                 <td width="75%" class="text-start" colspan="3">${card.abilities.join(', ')}</td>
               </tr>` : ''}
-              ${card.effect ? `
-              <tr>
-                <th colspan="4">Effect:${card.trigger ? `<br/><i>[${card.trigger}]</i>` : ''}</th>
-              </tr>
-              <tr>
-                <td colspan="4">${card.effect.replace(/\n/g, '<br/>').replace(/\b(Green|Blue|Yellow|Purple)\b/g, symbol => `<img class="symbol-icon" src="generator/images/symbol/${symbol.toLowerCase()}.png"/>`)}</td>
-              </tr>` : ''}
-              ${card.requirements ? `
-              <tr>
-                <th colspan="4">Requirements:</th>
-              </tr>
-              <tr>
-                <td colspan="4">${card.requirements.replace(/\n/g, '<br/>').replace(/\b(Green|Blue|Yellow|Purple)\b/g, symbol => `<img class="symbol-icon" src="generator/images/symbol/${symbol.toLowerCase()}.png"/>`)}</td>
-              </tr>` : ''}
+              ${getCardEffectHTML(card.effects)}
             </tbody>
           </table>
         </div>

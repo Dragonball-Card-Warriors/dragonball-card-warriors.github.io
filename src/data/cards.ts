@@ -61,9 +61,12 @@ export enum EffectType {
 }
 
 // Not used yet
+
 export enum TriggerType {
   UponAppearance = 'Upon Appearance',
   Always = 'Always',
+  EventCard = '',
+  Other = '',
 }
 
 export const rarityColor = {
@@ -76,10 +79,10 @@ export const rarityColor = {
 // Not used yet
 export class Effect {
   constructor(
-    public effectType: EffectType,
+    public type: EffectType[],
     public description: string,
-    public requirements: string,
-    public trigger: TriggerType
+    public trigger?: TriggerType,
+    public requirements?: string
   ) {}
 }
 
@@ -95,11 +98,8 @@ export const cardList: Array<{
   icon: IconType,
   attack?: number,
   hit_points?: number,
-  abilities?: Array<AbilityType>,
-  effect: string,
-  effectTypes: EffectType[],
-  requirements: string,
-  trigger: string,
+  abilities?: AbilityType[],
+  effects?: Effect[],
 }> = [
   {
     'id': 1089,
@@ -114,10 +114,6 @@ export const cardList: Array<{
     'attack': 1000,
     'hit_points': 1000,
     'abilities': [AbilityType.Guard],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1213,
@@ -129,10 +125,12 @@ export const cardList: Array<{
     'energy_cost': 0,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Removes any effects applied to all androids on the field. (Always effects not removed)',
-    'effectTypes': [EffectType.RemoveEffects],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.RemoveEffects],
+        'Removes any effects applied to all androids on the field. (Always effects not removed)'
+      ),
+    ],
   },
   {
     'id': 1223,
@@ -144,10 +142,12 @@ export const cardList: Array<{
     'energy_cost': 0,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draws 1 card. Afterward, select 1 card from your hand and return it to the deck',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 card. Afterward, select 1 card from your hand and return it to the deck'
+      ),
+    ],
   },
   {
     'id': 1247,
@@ -159,10 +159,12 @@ export const cardList: Array<{
     'energy_cost': 0,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Adds 3000 HP to one friendly Character',
-    'effectTypes': [EffectType.AddHitPoints],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddHitPoints],
+        'Adds 3000 HP to one friendly Character'
+      ),
+    ],
   },
   {
     'id': 1257,
@@ -174,10 +176,12 @@ export const cardList: Array<{
     'energy_cost': 0,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Gives Guard to one character on the field',
-    'effectTypes': [EffectType.Guard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.Guard],
+        'Gives Guard to one character on the field'
+      ),
+    ],
   },
   {
     'id': 1266,
@@ -189,10 +193,12 @@ export const cardList: Array<{
     'energy_cost': 0,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Removes any effects applied to one regular character on the field. (Always effects not removed)',
-    'effectTypes': [EffectType.RemoveEffects],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.RemoveEffects],
+        'Removes any effects applied to one regular character on the field. (Always effects not removed)'
+      ),
+    ],
   },
   {
     'id': 1294,
@@ -204,10 +210,12 @@ export const cardList: Array<{
     'energy_cost': 0,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Returns one regular character on your side of the field that has taken damage to your hand',
-    'effectTypes': [EffectType.ReturnCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Returns one regular character on your side of the field that has taken damage to your hand'
+      ),
+    ],
   },
   {
     'id': 1009,
@@ -225,10 +233,6 @@ export const cardList: Array<{
     'attack': 3000,
     'hit_points': 4000,
     'abilities': [AbilityType.Guard],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1026,
@@ -245,10 +249,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 1000,
     'hit_points': 3000,
-    'effect': 'Draw a card',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': 'Blue owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw a card',
+        TriggerType.UponAppearance,
+        'Blue owned'
+      ),
+    ],
   },
   {
     'id': 1041,
@@ -266,10 +274,6 @@ export const cardList: Array<{
     'attack': 1000,
     'hit_points': 1000,
     'abilities': [AbilityType.Swift],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1042,
@@ -286,10 +290,6 @@ export const cardList: Array<{
     'icon': IconType.None,
     'attack': 1000,
     'hit_points': 3000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1043,
@@ -306,10 +306,6 @@ export const cardList: Array<{
     'icon': IconType.None,
     'attack': 3000,
     'hit_points': 1000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1074,
@@ -323,10 +319,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 2000,
     'hit_points': 3000,
-    'effect': '1 Bank Energy',
-    'effectTypes': [EffectType.AddBankEnergy],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddBankEnergy],
+        '1 Bank Energy',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1079,
@@ -340,10 +339,12 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 4000,
     'hit_points': 4000,
-    'effect': '3000 ATK to self when Goku is on the enemy field ',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        '3000 ATK to self when Goku is on the enemy field '
+      ),
+    ],
   },
   {
     'id': 1082,
@@ -360,13 +361,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 2000,
     'hit_points': 2000,
-    'effect': '2000 ATK & HP to one Friendly Unit',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        '2000 ATK & HP to one Friendly Unit',
+        TriggerType.EventCard,
+        'Blue owned'
+      ),
     ],
-    'requirements': 'Blue owned',
-    'trigger': '',
   },
   {
     'id': 1083,
@@ -380,10 +382,6 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 2000,
     'hit_points': 4000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1085,
@@ -400,13 +398,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 2000,
     'hit_points': 3000,
-    'effect': '1000 ATK & HP to one Friendly Unit',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        '1000 ATK & HP to one Friendly Unit',
+        TriggerType.UponAppearance
+      ),
     ],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1090,
@@ -421,10 +419,6 @@ export const cardList: Array<{
     'attack': 1000,
     'hit_points': 5000,
     'abilities': [AbilityType.Guard],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1092,
@@ -438,10 +432,6 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 5000,
     'hit_points': 1000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1204,
@@ -453,10 +443,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Triples the ATK of one character on your side of the field until the end of the turn. (You cannot attack opponent\'s leader.)',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Triples the ATK of one character on your side of the field until the end of the turn. (You cannot attack opponent\'s leader.)'
+      ),
+    ],
   },
   {
     'id': 1206,
@@ -468,10 +460,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Select one character on your side of the field and one on the opponent\'s side. Each will deal damage to the other equal to their respective ATK values.',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Select one character on your side of the field and one on the opponent\'s side. Each will deal damage to the other equal to their respective ATK values.'
+      ),
+    ],
   },
   {
     'id': 1209,
@@ -483,10 +477,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw 1 Unit with a cost of 2 or less. (If there are none, draw 1 other card)',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 1 Unit with a cost of 2 or less. (If there are none, draw 1 other card)'
+      ),
+    ],
   },
   {
     'id': 1210,
@@ -498,13 +494,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Unlocks your bank and immediately restores it',
-    'effectTypes': [
-      EffectType.UnlockBank,
-      EffectType.RestoreBank,
+    'effects': [
+      new Effect(
+        [EffectType.UnlockBank, EffectType.RestoreBank],
+        'Unlocks your bank and immediately restores it'
+      ),
     ],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1216,
@@ -516,10 +511,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Gives Swift to 1 Friendly Unit for this turn.',
-    'effectTypes': [EffectType.SwiftAttack],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack],
+        'Gives Swift to 1 Friendly Unit for this turn.'
+      ),
+    ],
   },
   {
     'id': 1224,
@@ -531,10 +528,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': '3000 ATK to one friendly Unit',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        '3000 ATK to one friendly Unit'
+      ),
+    ],
   },
   {
     'id': 1230,
@@ -546,10 +545,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Returns 1 card from your hand to your deck. Draw 2 cards',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Returns 1 card from your hand to your deck. Draw 2 cards'
+      ),
+    ],
   },
   {
     'id': 1232,
@@ -561,10 +562,14 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Gives Negate Damage to all Friendly Units for this turn.',
-    'effectTypes': [EffectType.NegateDamage],
-    'requirements': '5 Friendly Units',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.NegateDamage],
+        'Gives Negate Damage to all Friendly Units for this turn.',
+        TriggerType.EventCard,
+        '5 Friendly Units'
+      ),
+    ],
   },
   {
     'id': 1238,
@@ -576,10 +581,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw 1 random 7 cost or higher card. (If there are none, draw 1 other card)',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 1 random 7 cost or higher card. (If there are none, draw 1 other card)'
+      ),
+    ],
   },
   {
     'id': 1239,
@@ -591,10 +598,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw 1 event card that costs 3 or less. (If there are none, draw 1 other card)',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 1 event card that costs 3 or less. (If there are none, draw 1 other card)'
+      ),
+    ],
   },
   {
     'id': 1243,
@@ -606,10 +615,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw 1 card. If the card costs 1 or less draw a card',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 1 card. If the card costs 1 or less draw a card'
+      ),
+    ],
   },
   {
     'id': 1258,
@@ -621,10 +632,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Returns one Unit on the field that has taken damage to their respective hand',
-    'effectTypes': [EffectType.ReturnCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Returns one Unit on the field that has taken damage to their respective hand'
+      ),
+    ],
   },
   {
     'id': 1262,
@@ -636,10 +649,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Returns one Friendly Unit to your hand',
-    'effectTypes': [EffectType.ReturnCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Returns one Friendly Unit to your hand'
+      ),
+    ],
   },
   {
     'id': 1264,
@@ -651,10 +666,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw 1 card. If the card is an Event card, draw a card',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 1 card. If the card is an Event card, draw a card'
+      ),
+    ],
   },
   {
     'id': 1267,
@@ -666,10 +683,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Completely restores the HP of one friendly Unit',
-    'effectTypes': [EffectType.RecoverHitPoints],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.RecoverHitPoints],
+        'Completely restores the HP of one friendly Unit'
+      ),
+    ],
   },
   {
     'id': 1270,
@@ -681,13 +700,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Return 2 regular characters on your side of the field to your hand. Summon 1 SP card equal to or less than the combined cost of the 2 Returned',
-    'effectTypes': [
-      EffectType.ReturnCharacter,
-      EffectType.SummonSpecial,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter, EffectType.SummonSpecial],
+        'Return 2 regular characters on your side of the field to your hand. Summon 1 SP card equal to or less than the combined cost of the 2 Returned'
+      ),
     ],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1273,
@@ -699,10 +717,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw 1 event card with a cost of 6 or less. (If there are none, draw 1 other card)',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 1 event card with a cost of 6 or less. (If there are none, draw 1 other card)'
+      ),
+    ],
   },
   {
     'id': 1279,
@@ -714,10 +734,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Restores your Bank',
-    'effectTypes': [EffectType.RestoreBank],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.RestoreBank],
+        'Restores your Bank'
+      ),
+    ],
   },
   {
     'id': 1282,
@@ -729,10 +751,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw 1 Gohan (If there are none, draw 1 other card)',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 1 Gohan (If there are none, draw 1 other card)'
+      ),
+    ],
   },
   {
     'id': 1285,
@@ -744,10 +768,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw 1 Card. If the card is Majin Buu, draw 1 more card',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 1 Card. If the card is Majin Buu, draw 1 more card'
+      ),
+    ],
   },
   {
     'id': 1295,
@@ -759,10 +785,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Recover 4000 HP for all friendly Units',
-    'effectTypes': [EffectType.RecoverHitPoints],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.RecoverHitPoints],
+        'Recover 4000 HP for all friendly Units'
+      ),
+    ],
   },
   {
     'id': 1296,
@@ -774,10 +802,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Remove any effects applied to one Unit (Always effects not removed)',
-    'effectTypes': [EffectType.RemoveEffects],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.RemoveEffects],
+        'Remove any effects applied to one Unit (Always effects not removed)'
+      ),
+    ],
   },
   {
     'id': 1001,
@@ -794,10 +824,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 4000,
     'hit_points': 4000,
-    'effect': 'Gain 3000 ATK',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Blue Owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Gain 3000 ATK',
+        TriggerType.UponAppearance,
+        'Blue Owned'
+      ),
+    ],
   },
   {
     'id': 1008,
@@ -815,10 +849,6 @@ export const cardList: Array<{
     'attack': 5000,
     'hit_points': 4000,
     'abilities': [AbilityType.Guard],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1018,
@@ -835,10 +865,6 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 3000,
     'hit_points': 6000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1028,
@@ -855,10 +881,6 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 5000,
     'hit_points': 4000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1035,
@@ -872,10 +894,6 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 4000,
     'hit_points': 5000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1044,
@@ -892,10 +910,6 @@ export const cardList: Array<{
     'icon': IconType.None,
     'attack': 4000,
     'hit_points': 2000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1045,
@@ -912,10 +926,6 @@ export const cardList: Array<{
     'icon': IconType.None,
     'attack': 3000,
     'hit_points': 3000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1046,
@@ -932,10 +942,6 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 6000,
     'hit_points': 3000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1052,
@@ -954,10 +960,6 @@ export const cardList: Array<{
     'attack': 3000,
     'hit_points': 6000,
     'abilities': [AbilityType.Guard],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1068,
@@ -971,10 +973,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 3000,
     'hit_points': 3000,
-    'effect': 'Gain 4000 ATK',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Friendly Spopovich',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Gain 4000 ATK',
+        TriggerType.Always,
+        'Friendly Spopovich'
+      ),
+    ],
   },
   {
     'id': 1070,
@@ -988,13 +994,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 2000,
     'hit_points': 3000,
-    'effect': '3000 ATK & HP to one Friendly Unit',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        '3000 ATK & HP to one Friendly Unit',
+        TriggerType.UponAppearance,
+        'Purple Consumed'
+      ),
     ],
-    'requirements': 'Purple Consumed',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1077,
@@ -1008,10 +1015,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 1000,
     'hit_points': 7000,
-    'effect': 'Removes any effects applied to all androids on the field. (Always effects not removed)',
-    'effectTypes': [EffectType.RemoveEffects],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.RemoveEffects],
+        'Removes any effects applied to all androids on the field. (Always effects not removed)',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1078,
@@ -1025,10 +1035,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 1000,
     'hit_points': 2000,
-    'effect': 'Add 2 Energy to your Bank',
-    'effectTypes': [EffectType.AddBankEnergy],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddBankEnergy],
+        'Add 2 Energy to your Bank',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1081,
@@ -1042,10 +1055,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 3000,
     'hit_points': 2000,
-    'effect': '5000 HP to one Friendly Unit',
-    'effectTypes': [EffectType.AddHitPoints],
-    'requirements': 'Blue owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddHitPoints],
+        '5000 HP to one Friendly Unit',
+        TriggerType.UponAppearance,
+        'Blue owned'
+      ),
+    ],
   },
   {
     'id': 1086,
@@ -1062,13 +1079,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 2000,
     'hit_points': 3000,
-    'effect': '2000 ATK & HP to one Friendly Unit',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        '2000 ATK & HP to one Friendly Unit',
+        TriggerType.UponAppearance
+      ),
     ],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1091,
@@ -1082,10 +1099,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 5000,
     'hit_points': 4000,
-    'effect': 'Gain Guard',
-    'effectTypes': [EffectType.Guard],
-    'requirements': 'Friendly Unit',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.Guard],
+        'Gain Guard',
+        TriggerType.Always,
+        'Friendly Unit'
+      ),
+    ],
   },
   {
     'id': 1101,
@@ -1099,10 +1120,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 3000,
     'hit_points': 1000,
-    'effect': 'Deals 2000 damage to your opponent\'s leader or one character on the field',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Purple owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 2000 damage to your opponent\'s leader or one character on the field',
+        TriggerType.UponAppearance,
+        'Purple owned'
+      ),
+    ],
   },
   {
     'id': 1114,
@@ -1119,10 +1144,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 1000,
     'hit_points': 2000,
-    'effect': 'For every 2 or less cost enemy Unit, add 1 Energy to your Bank',
-    'effectTypes': [EffectType.AddBankEnergy],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddBankEnergy],
+        'For every 2 or less cost enemy Unit, add 1 Energy to your Bank',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1226,
@@ -1134,10 +1162,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 1 SP Unit with a cost of 3 or less',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Summon 1 SP Unit with a cost of 3 or less'
+      ),
+    ],
   },
   {
     'id': 1227,
@@ -1149,10 +1179,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Deal 1000 DMG to the Opponent\'s Leader for every Friendly Unit',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 1000 DMG to the Opponent\'s Leader for every Friendly Unit'
+      ),
+    ],
   },
   {
     'id': 1228,
@@ -1164,10 +1196,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 3 Peons (Cost 1, ATK 1000, HP 1000)',
-    'effectTypes': [EffectType.SummonSupport],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSupport],
+        'Summon 3 Peons (Cost 1, ATK 1000, HP 1000)'
+      ),
+    ],
   },
   {
     'id': 1236,
@@ -1179,10 +1213,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw 2 cards. Return 1 card in your hand to your deck.',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 2 cards. Return 1 card in your hand to your deck.'
+      ),
+    ],
   },
   {
     'id': 1245,
@@ -1194,10 +1230,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Return as many cards as you like from your hand to your deck; draw the same amount.',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Return as many cards as you like from your hand to your deck; draw the same amount.'
+      ),
+    ],
   },
   {
     'id': 1246,
@@ -1209,10 +1247,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Return an Enemy Unit to your opponent\'s hand with a cost of 4 or less.',
-    'effectTypes': [EffectType.ReturnCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return an Enemy Unit to your opponent\'s hand with a cost of 4 or less.'
+      ),
+    ],
   },
   {
     'id': 1248,
@@ -1224,10 +1264,14 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 1 Majin Buu SP Unit, Cost equal or less than your energy limit.',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': 'Majin Buu on the field',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Summon 1 Majin Buu SP Unit, Cost equal or less than your energy limit.',
+        TriggerType.EventCard,
+        'Majin Buu on the field'
+      ),
+    ],
   },
   {
     'id': 1250,
@@ -1239,10 +1283,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw 1 card. If the cost is 3 or less, draw a card.',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 1 card. If the cost is 3 or less, draw a card.'
+      ),
+    ],
   },
   {
     'id': 1252,
@@ -1254,10 +1300,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Removes any effects applied to all Enemy Units on the field. (Always effects not removed)',
-    'effectTypes': [EffectType.RemoveEffects],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.RemoveEffects],
+        'Removes any effects applied to all Enemy Units on the field. (Always effects not removed)'
+      ),
+    ],
   },
   {
     'id': 1254,
@@ -1269,10 +1317,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw 1 card. If the cost is 5 or more, draw a card.',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 1 card. If the cost is 5 or more, draw a card.'
+      ),
+    ],
   },
   {
     'id': 1263,
@@ -1284,10 +1334,14 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw as many cards as your opponent currently holds.',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': 'Last card in hand',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw as many cards as your opponent currently holds.',
+        TriggerType.EventCard,
+        'Last card in hand'
+      ),
+    ],
   },
   {
     'id': 1274,
@@ -1299,10 +1353,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Removes any effects applied to one Unit on the field. (Always effects not removed) Draw a card',
-    'effectTypes': [EffectType.RemoveEffects],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.RemoveEffects],
+        'Removes any effects applied to one Unit on the field. (Always effects not removed) Draw a card'
+      ),
+    ],
   },
   {
     'id': 1275,
@@ -1314,10 +1370,14 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Kill 1 Enemy Unit, Kill all Friendly Units',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Units on both sides of the field',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kill 1 Enemy Unit, Kill all Friendly Units',
+        TriggerType.EventCard,
+        'Units on both sides of the field'
+      ),
+    ],
   },
   {
     'id': 1276,
@@ -1329,10 +1389,14 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Returns one Unit on the field to their respective hand.',
-    'effectTypes': [EffectType.ReturnCharacter],
-    'requirements': 'HP must be Less than ATK',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Returns one Unit on the field to their respective hand.',
+        TriggerType.EventCard,
+        'HP must be Less than ATK'
+      ),
+    ],
   },
   {
     'id': 1278,
@@ -1344,13 +1408,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Recover 6000 HP to one Friendly Unit or your Leader',
-    'effectTypes': [
-      EffectType.RecoverHitPoints,
-      EffectType.RecoverLifePoints,
+    'effects': [
+      new Effect(
+        [EffectType.RecoverHitPoints, EffectType.RecoverLifePoints],
+        'Recover 6000 HP to one Friendly Unit or your Leader'
+      ),
     ],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1283,
@@ -1362,10 +1425,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw 3 cards. Return 2 cards to your Deck.',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 3 cards. Return 2 cards to your Deck.'
+      ),
+    ],
   },
   {
     'id': 1284,
@@ -1377,10 +1442,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Add 1 Energy to your bank for each Friendly Unit',
-    'effectTypes': [EffectType.AddBankEnergy],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddBankEnergy],
+        'Add 1 Energy to your bank for each Friendly Unit'
+      ),
+    ],
   },
   {
     'id': 1287,
@@ -1392,10 +1459,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Kill 1 Unit that costs 3 or less',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kill 1 Unit that costs 3 or less'
+      ),
+    ],
   },
   {
     'id': 1006,
@@ -1412,10 +1481,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 6000,
     'hit_points': 4000,
-    'effect': 'Add 3000 ATK',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Blue owned, Your turn',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 3000 ATK',
+        TriggerType.Always,
+        'Blue owned, Your turn'
+      ),
+    ],
   },
   {
     'id': 1013,
@@ -1433,10 +1506,6 @@ export const cardList: Array<{
     'attack': 6000,
     'hit_points': 5000,
     'abilities': [AbilityType.Guard],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1016,
@@ -1454,10 +1523,6 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 4000,
     'hit_points': 7000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1031,
@@ -1474,10 +1539,6 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 6000,
     'hit_points': 5000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1034,
@@ -1491,10 +1552,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 2000,
     'hit_points': 1000,
-    'effect': 'Deal 3000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 3000 DMG to an Enemy',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1038,
@@ -1508,10 +1572,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 4000,
     'hit_points': 7000,
-    'effect': 'Gains Guard',
-    'effectTypes': [EffectType.Guard],
-    'requirements': 'Blue owned',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.Guard],
+        'Gains Guard',
+        TriggerType.Always,
+        'Blue owned'
+      ),
+    ],
   },
   {
     'id': 1048,
@@ -1528,10 +1596,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 5000,
     'hit_points': 6000,
-    'effect': 'Add 2000 ATK',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Your Turn',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 2000 ATK',
+        TriggerType.Always,
+        'Your Turn'
+      ),
+    ],
   },
   {
     'id': 1049,
@@ -1550,10 +1622,13 @@ export const cardList: Array<{
     'attack': 3000,
     'hit_points': 7000,
     'abilities': [AbilityType.Guard],
-    'effect': 'Add 2000 ATK when this takes damage',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 2000 ATK when this takes damage',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1059,
@@ -1570,10 +1645,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 4000,
     'hit_points': 4000,
-    'effect': 'Heal 1000 HP to your Leader',
-    'effectTypes': [EffectType.RecoverLifePoints],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.RecoverLifePoints],
+        'Heal 1000 HP to your Leader',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1064,
@@ -1590,10 +1668,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 4000,
     'hit_points': 5000,
-    'effect': 'Add 1 Energy to your bank for each Card in your Hand',
-    'effectTypes': [EffectType.AddBankEnergy],
-    'requirements': 'Purple owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddBankEnergy],
+        'Add 1 Energy to your bank for each Card in your Hand',
+        TriggerType.UponAppearance,
+        'Purple owned'
+      ),
+    ],
   },
   {
     'id': 1069,
@@ -1607,10 +1689,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 5000,
     'hit_points': 3000,
-    'effect': 'Gain 4000 ATK',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Friendly Yamu',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Gain 4000 ATK',
+        TriggerType.Always,
+        'Friendly Yamu'
+      ),
+    ],
   },
   {
     'id': 1073,
@@ -1624,10 +1710,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 2000,
     'hit_points': 7000,
-    'effect': 'Gain 8000 ATK',
-    'effectTypes': [EffectType.AddAttack, EffectType.ConsumeBank],
-    'requirements': 'Consumes 3 Banked Energy',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.ConsumeBank],
+        'Gain 8000 ATK',
+        TriggerType.UponAppearance,
+        'Consumes 3 Banked Energy'
+      ),
+    ],
   },
   {
     'id': 1080,
@@ -1641,10 +1731,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 3000,
     'hit_points': 7000,
-    'effect': 'Add 3000 HP to a Friendly Goku Unit',
-    'effectTypes': [EffectType.AddHitPoints],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddHitPoints],
+        'Add 3000 HP to a Friendly Goku Unit',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1084,
@@ -1658,10 +1751,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 3000,
     'hit_points': 3000,
-    'effect': 'Summon 1 Friendly Bubbles (Cost 1, ATK 1000, HP 1000)',
-    'effectTypes': [EffectType.SummonSupport],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSupport],
+        'Summon 1 Friendly Bubbles (Cost 1, ATK 1000, HP 1000)',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1093,
@@ -1675,10 +1771,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 3000,
     'hit_points': 7000,
-    'effect': 'Gain 6000 ATK',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Purple Purple Purple owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Gain 6000 ATK',
+        TriggerType.UponAppearance,
+        'Purple Purple Purple owned'
+      ),
+    ],
   },
   {
     'id': 1097,
@@ -1695,10 +1795,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 4000,
     'hit_points': 4000,
-    'effect': 'Deal 4000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Blue Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 4000 DMG to an Enemy',
+        TriggerType.UponAppearance,
+        'Blue Consumed'
+      ),
+    ],
   },
   {
     'id': 1205,
@@ -1710,10 +1814,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Add energy to your bank equal to your energy limit',
-    'effectTypes': [EffectType.AddBankEnergy],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddBankEnergy],
+        'Add energy to your bank equal to your energy limit'
+      ),
+    ],
   },
   {
     'id': 1214,
@@ -1725,10 +1831,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw 3 Cards. Return 1 card to your Deck.',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 3 Cards. Return 1 card to your Deck.'
+      ),
+    ],
   },
   {
     'id': 1217,
@@ -1740,10 +1848,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Return an Enemy Unit to your opponent\'s hand.',
-    'effectTypes': [EffectType.ReturnCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return an Enemy Unit to your opponent\'s hand.'
+      ),
+    ],
   },
   {
     'id': 1231,
@@ -1755,10 +1865,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 3 Planetary Warriors (Cost 1, ATK 2000, HP 1000)',
-    'effectTypes': [EffectType.SummonSupport],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSupport],
+        'Summon 3 Planetary Warriors (Cost 1, ATK 2000, HP 1000)'
+      ),
+    ],
   },
   {
     'id': 1233,
@@ -1770,10 +1882,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Add 1000 ATK to a Friendly Unit for each card in your Hand.',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 1000 ATK to a Friendly Unit for each card in your Hand.'
+      ),
+    ],
   },
   {
     'id': 1234,
@@ -1785,10 +1899,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 1 SP Unit with a cost Equal or Less than your energy limit called Frieza',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Summon 1 SP Unit with a cost Equal or Less than your energy limit called Frieza'
+      ),
+    ],
   },
   {
     'id': 1242,
@@ -1800,10 +1916,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Heal 3000 HP to your Leader for each Friendly Unit',
-    'effectTypes': [EffectType.RecoverLifePoints],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.RecoverLifePoints],
+        'Heal 3000 HP to your Leader for each Friendly Unit'
+      ),
+    ],
   },
   {
     'id': 1249,
@@ -1815,10 +1933,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw 2 Cards.',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 2 Cards.'
+      ),
+    ],
   },
   {
     'id': 1253,
@@ -1830,10 +1950,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Kill 1 Unit',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kill 1 Unit'
+      ),
+    ],
   },
   {
     'id': 1261,
@@ -1845,10 +1967,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Kill 1 Unit with 10000 HP or Less',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kill 1 Unit with 10000 HP or Less'
+      ),
+    ],
   },
   {
     'id': 1271,
@@ -1860,10 +1984,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Return all of your cards to the deck. Draw 3 cards',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Return all of your cards to the deck. Draw 3 cards'
+      ),
+    ],
   },
   {
     'id': 1280,
@@ -1875,10 +2001,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Return 1 card to your hand, add energy to your bank equal to the cost.',
-    'effectTypes': [EffectType.AddBankEnergy],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddBankEnergy],
+        'Return 1 card to your hand, add energy to your bank equal to the cost.'
+      ),
+    ],
   },
   {
     'id': 1281,
@@ -1890,10 +2018,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Deal 7000 DMG to 1 Unit',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 7000 DMG to 1 Unit'
+      ),
+    ],
   },
   {
     'id': 1286,
@@ -1905,10 +2035,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Add 2000 HP to a friendly Unit for each friendly Unit',
-    'effectTypes': [EffectType.AddHitPoints],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddHitPoints],
+        'Add 2000 HP to a friendly Unit for each friendly Unit'
+      ),
+    ],
   },
   {
     'id': 1290,
@@ -1920,10 +2052,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 1 SP Unit with a cost Equal or Less than your energy limit called Vegeta',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Summon 1 SP Unit with a cost Equal or Less than your energy limit called Vegeta'
+      ),
+    ],
   },
   {
     'id': 1292,
@@ -1935,13 +2069,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Add 4000 ATK & HP to all Vegeta & Majin Buu Units on the field',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        'Add 4000 ATK & HP to all Vegeta & Majin Buu Units on the field'
+      ),
     ],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1293,
@@ -1953,13 +2086,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Add 1000 ATK & HP to a Friendly Unit for each Friendly Unit',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        'Add 1000 ATK & HP to a Friendly Unit for each Friendly Unit'
+      ),
     ],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1300,
@@ -1971,10 +2103,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Add 4000 HP to all Friendly Units',
-    'effectTypes': [EffectType.AddHitPoints],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddHitPoints],
+        'Add 4000 HP to all Friendly Units'
+      ),
+    ],
   },
   {
     'id': 1007,
@@ -1992,10 +2126,13 @@ export const cardList: Array<{
     'attack': 4000,
     'hit_points': 6000,
     'abilities': [AbilityType.Guard],
-    'effect': 'Adds 2000 ATK whenever this takes DMG',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 2000 ATK whenever this takes DMG',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1015,
@@ -2013,10 +2150,14 @@ export const cardList: Array<{
     'attack': 4000,
     'hit_points': 9000,
     'abilities': [AbilityType.Guard],
-    'effect': 'Give Guard to all friendly Units',
-    'effectTypes': [EffectType.Guard],
-    'requirements': 'Purple Purple owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.Guard],
+        'Give Guard to all friendly Units',
+        TriggerType.UponAppearance,
+        'Purple Purple owned'
+      ),
+    ],
   },
   {
     'id': 1019,
@@ -2034,10 +2175,6 @@ export const cardList: Array<{
     'attack': 9000,
     'hit_points': 4000,
     'abilities': [AbilityType.Guard],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1022,
@@ -2054,10 +2191,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 9000,
     'hit_points': 3000,
-    'effect': 'Restores your Bank',
-    'effectTypes': [EffectType.RestoreBank],
-    'requirements': 'Blue owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.RestoreBank],
+        'Restores your Bank',
+        TriggerType.UponAppearance,
+        'Blue owned'
+      ),
+    ],
   },
   {
     'id': 1027,
@@ -2074,10 +2215,6 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 6000,
     'hit_points': 5000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1032,
@@ -2094,10 +2231,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 7000,
     'hit_points': 5000,
-    'effect': 'Gives itself Swift',
-    'effectTypes': [EffectType.SwiftAttack],
-    'requirements': 'Blue owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack],
+        'Gives itself Swift',
+        TriggerType.UponAppearance,
+        'Blue owned'
+      ),
+    ],
   },
   {
     'id': 1037,
@@ -2111,10 +2252,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 6000,
     'hit_points': 6000,
-    'effect': 'Gives itself Guard whenever this takes DMG',
-    'effectTypes': [EffectType.Guard],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.Guard],
+        'Gives itself Guard whenever this takes DMG',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1039,
@@ -2132,10 +2276,6 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 5000,
     'hit_points': 7000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1047,
@@ -2152,10 +2292,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 6000,
     'hit_points': 5000,
-    'effect': 'Adds 3000 ATK when it\'s your turn',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 3000 ATK when it\'s your turn',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1051,
@@ -2173,10 +2316,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 4000,
     'hit_points': 4000,
-    'effect': 'Deal 2000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 2000 DMG to an Enemy',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1054,
@@ -2193,10 +2339,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 11000,
     'hit_points': 5000,
-    'effect': 'You must have 1 energy in your bank to Attack with this Unit',
-    'effectTypes': [EffectType.Other],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.Other],
+        'You must have 1 energy in your bank to Attack with this Unit',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1060,
@@ -2213,10 +2362,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 3000,
     'hit_points': 8000,
-    'effect': 'Restores your Bank',
-    'effectTypes': [EffectType.RestoreBank],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.RestoreBank],
+        'Restores your Bank',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1062,
@@ -2233,10 +2385,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 5000,
     'hit_points': 8000,
-    'effect': 'Gives itself Swift',
-    'effectTypes': [EffectType.SwiftAttack],
-    'requirements': 'Purple owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack],
+        'Gives itself Swift',
+        TriggerType.UponAppearance,
+        'Purple owned'
+      ),
+    ],
   },
   {
     'id': 1072,
@@ -2250,10 +2406,6 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 4000,
     'hit_points': 8000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1087,
@@ -2270,10 +2422,6 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 3000,
     'hit_points': 9000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1100,
@@ -2287,10 +2435,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 3000,
     'hit_points': 6000,
-    'effect': 'Remove any effects applied to all other Units (SP Included)',
-    'effectTypes': [EffectType.RemoveEffects],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.RemoveEffects],
+        'Remove any effects applied to all other Units (SP Included)',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1112,
@@ -2307,10 +2458,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 4000,
     'hit_points': 7000,
-    'effect': 'Adds 6000 ATK when it\'s your turn',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Blue Blue owned',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 6000 ATK when it\'s your turn',
+        TriggerType.Always,
+        'Blue Blue owned'
+      ),
+    ],
   },
   {
     'id': 1115,
@@ -2327,10 +2482,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 5000,
     'hit_points': 6000,
-    'effect': 'Gives itself Swift',
-    'effectTypes': [EffectType.SwiftAttack],
-    'requirements': '1 Bank Energy owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack],
+        'Gives itself Swift',
+        TriggerType.UponAppearance,
+        '1 Bank Energy owned'
+      ),
+    ],
   },
   {
     'id': 1119,
@@ -2344,10 +2503,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 6000,
     'hit_points': 6000,
-    'effect': 'Adds 1 Energy to your bank',
-    'effectTypes': [EffectType.AddBankEnergy],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddBankEnergy],
+        'Adds 1 Energy to your bank',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1207,
@@ -2359,10 +2521,12 @@ export const cardList: Array<{
     'energy_cost': 4,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Deals 7000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 7000 DMG to an Enemy'
+      ),
+    ],
   },
   {
     'id': 1208,
@@ -2374,10 +2538,12 @@ export const cardList: Array<{
     'energy_cost': 4,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Kills all Units that cost 3 or less',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kills all Units that cost 3 or less'
+      ),
+    ],
   },
   {
     'id': 1211,
@@ -2389,10 +2555,12 @@ export const cardList: Array<{
     'energy_cost': 4,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon an SP Unit that costs 3 or less and give it Swift',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Summon an SP Unit that costs 3 or less and give it Swift'
+      ),
+    ],
   },
   {
     'id': 1215,
@@ -2404,10 +2572,12 @@ export const cardList: Array<{
     'energy_cost': 4,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Kill a Unit that costs 4 or more',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kill a Unit that costs 4 or more'
+      ),
+    ],
   },
   {
     'id': 1218,
@@ -2419,13 +2589,12 @@ export const cardList: Array<{
     'energy_cost': 4,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': '5000 ATK & HP to one Friendly Unit that costs 3 or less',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        '5000 ATK & HP to one Friendly Unit that costs 3 or less'
+      ),
     ],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1240,
@@ -2437,10 +2606,12 @@ export const cardList: Array<{
     'energy_cost': 4,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Return all Enemy Units that cost 6 or more to the opponent\'s hand',
-    'effectTypes': [EffectType.ReturnCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return all Enemy Units that cost 6 or more to the opponent\'s hand'
+      ),
+    ],
   },
   {
     'id': 1244,
@@ -2452,13 +2623,12 @@ export const cardList: Array<{
     'energy_cost': 4,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': '2000 ATK & HP to allfriendly Units that cost 4 or less',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        '2000 ATK & HP to allfriendly Units that cost 4 or less'
+      ),
     ],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1255,
@@ -2470,10 +2640,12 @@ export const cardList: Array<{
     'energy_cost': 4,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw 4 cards, return 2 to your Deck',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 4 cards, return 2 to your Deck'
+      ),
+    ],
   },
   {
     'id': 1260,
@@ -2485,13 +2657,12 @@ export const cardList: Array<{
     'energy_cost': 4,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 1 SP Unit that costs 4 or less, give it Swift',
-    'effectTypes': [
-      EffectType.SummonSpecial,
-      EffectType.SwiftAttack,
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial, EffectType.SwiftAttack],
+        'Summon 1 SP Unit that costs 4 or less, give it Swift'
+      ),
     ],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1265,
@@ -2503,10 +2674,12 @@ export const cardList: Array<{
     'energy_cost': 4,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draw cards until you hold as many as your opponent',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw cards until you hold as many as your opponent'
+      ),
+    ],
   },
   {
     'id': 1268,
@@ -2518,10 +2691,12 @@ export const cardList: Array<{
     'energy_cost': 4,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Return all Units to their owner\'s hands that cost 2 or less',
-    'effectTypes': [EffectType.ReturnCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return all Units to their owner\'s hands that cost 2 or less'
+      ),
+    ],
   },
   {
     'id': 1288,
@@ -2533,10 +2708,12 @@ export const cardList: Array<{
     'energy_cost': 4,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Make the ATK of one Unit equal to the Highest ATK Unit on the Field',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Make the ATK of one Unit equal to the Highest ATK Unit on the Field'
+      ),
+    ],
   },
   {
     'id': 1297,
@@ -2548,10 +2725,12 @@ export const cardList: Array<{
     'energy_cost': 4,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': '6000 HP to all Friendly Units',
-    'effectTypes': [EffectType.AddHitPoints],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddHitPoints],
+        '6000 HP to all Friendly Units'
+      ),
+    ],
   },
   {
     'id': 1002,
@@ -2568,10 +2747,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 3000,
     'hit_points': 4000,
-    'effect': '3000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        '3000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1004,
@@ -2588,13 +2770,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 6000,
     'hit_points': 6000,
-    'effect': 'Heal 5000 HP to your Leader or a Friendly Unit',
-    'effectTypes': [
-      EffectType.RecoverLifePoints,
-      EffectType.RecoverHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.RecoverLifePoints, EffectType.RecoverHitPoints],
+        'Heal 5000 HP to your Leader or a Friendly Unit',
+        TriggerType.UponAppearance,
+        'Purple owned'
+      ),
     ],
-    'requirements': 'Purple owned',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1014,
@@ -2611,10 +2794,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 6000,
     'hit_points': 7000,
-    'effect': 'Give Swift to all Friendly Units',
-    'effectTypes': [EffectType.SwiftAttack],
-    'requirements': 'Blue Blue owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack],
+        'Give Swift to all Friendly Units',
+        TriggerType.UponAppearance,
+        'Blue Blue owned'
+      ),
+    ],
   },
   {
     'id': 1017,
@@ -2632,10 +2819,14 @@ export const cardList: Array<{
     'attack': 6000,
     'hit_points': 4000,
     'abilities': [AbilityType.Guard],
-    'effect': 'Deal 7000 DMG to all other Units',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Purple Purple Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 7000 DMG to all other Units',
+        TriggerType.UponAppearance,
+        'Purple Purple Consumed'
+      ),
+    ],
   },
   {
     'id': 1036,
@@ -2649,10 +2840,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 6000,
     'hit_points': 6000,
-    'effect': 'Add 1 Energy to your bank for each Card in your Hand',
-    'effectTypes': [EffectType.AddBankEnergy],
-    'requirements': 'Green owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddBankEnergy],
+        'Add 1 Energy to your bank for each Card in your Hand',
+        TriggerType.UponAppearance,
+        'Green owned'
+      ),
+    ],
   },
   {
     'id': 1040,
@@ -2670,10 +2865,6 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 10000,
     'hit_points': 6000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1050,
@@ -2692,10 +2883,13 @@ export const cardList: Array<{
     'attack': 7000,
     'hit_points': 7000,
     'abilities': [AbilityType.Swift],
-    'effect': 'Add 3000 ATK when there is a friendly Jeice',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 3000 ATK when there is a friendly Jeice',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1055,
@@ -2712,10 +2906,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 8000,
     'hit_points': 10000,
-    'effect': 'You must have 1 energy in your bank to Attack with this Unit',
-    'effectTypes': [EffectType.Other],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.Other],
+        'You must have 1 energy in your bank to Attack with this Unit',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1063,
@@ -2732,10 +2929,6 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 8000,
     'hit_points': 7000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1065,
@@ -2752,10 +2945,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 6000,
     'hit_points': 7000,
-    'effect': 'Restores your bank',
-    'effectTypes': [EffectType.RestoreBank],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.RestoreBank],
+        'Restores your bank',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1088,
@@ -2772,13 +2968,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 5000,
     'hit_points': 8000,
-    'effect': 'Gives itself Guard when this takes DMG. Adds 2000 ATK to itself when it takes DMG',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.Guard,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.Guard],
+        'Gives itself Guard when this takes DMG. Adds 2000 ATK to itself when it takes DMG',
+        TriggerType.Always
+      ),
     ],
-    'requirements': '',
-    'trigger': 'Always',
   },
   {
     'id': 1095,
@@ -2792,13 +2988,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 5000,
     'hit_points': 8000,
-    'effect': 'Heal 3000 HP to a Friendly Unit or Leader',
-    'effectTypes': [
-      EffectType.RecoverHitPoints,
-      EffectType.RecoverLifePoints,
+    'effects': [
+      new Effect(
+        [EffectType.RecoverHitPoints, EffectType.RecoverLifePoints],
+        'Heal 3000 HP to a Friendly Unit or Leader',
+        TriggerType.UponAppearance
+      ),
     ],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1103,
@@ -2816,14 +3012,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 6000,
     'hit_points': 4000,
-    'effect': 'Add 6000 ATK & HP to itself',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
-      EffectType.ConsumeBank,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.ConsumeBank],
+        'Add 6000 ATK & HP to itself',
+        TriggerType.UponAppearance,
+        'Consume 3 Banked Energy'
+      ),
     ],
-    'requirements': 'Consume 3 Banked Energy',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1105,
@@ -2840,10 +3036,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 7000,
     'hit_points': 5000,
-    'effect': 'Add 5000 ATK on your Turn',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 5000 ATK on your Turn',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1107,
@@ -2862,10 +3061,6 @@ export const cardList: Array<{
     'attack': 7000,
     'hit_points': 9000,
     'abilities': [AbilityType.Guard],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1109,
@@ -2883,10 +3078,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 5000,
     'hit_points': 5000,
-    'effect': 'Return one enemy Unit to the opponent\'s hand',
-    'effectTypes': [EffectType.ReturnCharacter],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return one enemy Unit to the opponent\'s hand',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1116,
@@ -2903,10 +3101,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 4000,
     'hit_points': 5000,
-    'effect': 'Deal 3000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 3000 DMG to an Enemy',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1118,
@@ -2923,10 +3124,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 6000,
     'hit_points': 7000,
-    'effect': 'Kill an Enemy Unit that costs 4 or less',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Blue Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kill an Enemy Unit that costs 4 or less',
+        TriggerType.UponAppearance,
+        'Blue Consumed'
+      ),
+    ],
   },
   {
     'id': 1121,
@@ -2940,10 +3145,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 4000,
     'hit_points': 6000,
-    'effect': 'Kill a Random Unit',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kill a Random Unit',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1219,
@@ -2955,10 +3163,12 @@ export const cardList: Array<{
     'energy_cost': 5,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 1 SP Unit with cost equal to or less, than the highest cost enemy Unit',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Summon 1 SP Unit with cost equal to or less, than the highest cost enemy Unit'
+      ),
+    ],
   },
   {
     'id': 1220,
@@ -2970,13 +3180,12 @@ export const cardList: Array<{
     'energy_cost': 5,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Perform 3 of the following actions in any combination:- 1. Heal 8000 HP to a friendly Unit, 2. Draw 2 Cards, Return 1 card to your Deck from your hand',
-    'effectTypes': [
-      EffectType.RecoverHitPoints,
-      EffectType.DrawCard,
+    'effects': [
+      new Effect(
+        [EffectType.RecoverHitPoints, EffectType.DrawCard],
+        'Perform 3 of the following actions in any combination:- 1. Heal 8000 HP to a friendly Unit, 2. Draw 2 Cards, Return 1 card to your Deck from your hand'
+      ),
     ],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1225,
@@ -2988,10 +3197,12 @@ export const cardList: Array<{
     'energy_cost': 5,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 1 or 2 SP Cards that cost 5 Cost or less in total. 1000 ATK to all Vegeta and Nappa Friendly Units',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Summon 1 or 2 SP Cards that cost 5 Cost or less in total. 1000 ATK to all Vegeta and Nappa Friendly Units'
+      ),
+    ],
   },
   {
     'id': 1229,
@@ -3003,10 +3214,12 @@ export const cardList: Array<{
     'energy_cost': 5,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 1-3 SP Cards that cost 4 or less in total.',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Summon 1-3 SP Cards that cost 4 or less in total.'
+      ),
+    ],
   },
   {
     'id': 1237,
@@ -3018,13 +3231,12 @@ export const cardList: Array<{
     'energy_cost': 5,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': '1000 ATK & HP to one Friendly Unit for each energy in your energy limit',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        '1000 ATK & HP to one Friendly Unit for each energy in your energy limit'
+      ),
     ],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1241,
@@ -3036,10 +3248,14 @@ export const cardList: Array<{
     'energy_cost': 5,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Discard 1 card from your hand. Summon 1 SP Goku Unit',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': 'No Friendly Goku',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Discard 1 card from your hand. Summon 1 SP Goku Unit',
+        TriggerType.EventCard,
+        'No Goku on your side of the field'
+      ),
+    ],
   },
   {
     'id': 1251,
@@ -3051,10 +3267,12 @@ export const cardList: Array<{
     'energy_cost': 5,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Select 1 Enemy Unit that costs 2 or less. Return it from the enemy Field to YOUR hand',
-    'effectTypes': [EffectType.ReturnCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Select 1 Enemy Unit that costs 2 or less. Return it from the enemy Field to YOUR hand'
+      ),
+    ],
   },
   {
     'id': 1259,
@@ -3066,10 +3284,12 @@ export const cardList: Array<{
     'energy_cost': 5,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Select 1 Friendly Unit; Kill all Enemy Units with HP less than the Attack',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Select 1 Friendly Unit; Kill all Enemy Units with HP less than the Attack'
+      ),
+    ],
   },
   {
     'id': 1269,
@@ -3081,10 +3301,12 @@ export const cardList: Array<{
     'energy_cost': 5,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 1 SP Goku that is equal or less than the cost of your Energy Limit',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Summon 1 SP Goku that is equal or less than the cost of your Energy Limit'
+      ),
+    ],
   },
   {
     'id': 1277,
@@ -3096,10 +3318,12 @@ export const cardList: Array<{
     'energy_cost': 5,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Kill 1 Unit',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kill 1 Unit'
+      ),
+    ],
   },
   {
     'id': 1298,
@@ -3111,13 +3335,12 @@ export const cardList: Array<{
     'energy_cost': 5,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': '3000 ATK & HP to all Friendly Units',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        '3000 ATK & HP to all Friendly Units'
+      ),
     ],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1003,
@@ -3134,13 +3357,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 9000,
     'hit_points': 8000,
-    'effect': '3000 ATK & HP to all Friendly Units',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        '3000 ATK & HP to all Friendly Units',
+        TriggerType.UponAppearance,
+        'Blue Blue Blue owned'
+      ),
     ],
-    'requirements': 'Blue Blue Blue owned',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1005,
@@ -3157,10 +3381,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 9000,
     'hit_points': 9000,
-    'effect': 'Summon 1 Dinosaur (Cost 1, ATK 3000, HP 3000)',
-    'effectTypes': [EffectType.SummonSupport],
-    'requirements': 'Purple owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSupport],
+        'Summon 1 Dinosaur (Cost 1, ATK 3000, HP 3000)',
+        TriggerType.UponAppearance,
+        'Purple owned'
+      ),
+    ],
   },
   {
     'id': 1011,
@@ -3178,10 +3406,6 @@ export const cardList: Array<{
     'attack': 8000,
     'hit_points': 13000,
     'abilities': [AbilityType.Guard],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1023,
@@ -3198,10 +3422,6 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 10000,
     'hit_points': 11000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1056,
@@ -3218,13 +3438,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 8000,
     'hit_points': 12000,
-    'effect': 'You must have 1 energy in your bank to Attack with this Unit.\nAdds 8000 ATK to self on Opponent\'s Turn',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.Other,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.Other],
+        'You must have 1 energy in your bank to Attack with this Unit.\nAdds 8000 ATK to self on Opponent\'s Turn',
+        TriggerType.Always,
+        'None\nPurple Owned'
+      ),
     ],
-    'requirements': 'None\nPurple Owned',
-    'trigger': 'Always',
   },
   {
     'id': 1061,
@@ -3241,10 +3462,6 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 8000,
     'hit_points': 13000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1066,
@@ -3261,10 +3478,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 7000,
     'hit_points': 11000,
-    'effect': 'Adds 5000 ATK to itself on Opponent\'s Turn',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 5000 ATK to itself on Opponent\'s Turn',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1071,
@@ -3278,10 +3498,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 11000,
     'hit_points': 6000,
-    'effect': 'Gives itself Swift',
-    'effectTypes': [EffectType.SwiftAttack],
-    'requirements': 'Green owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack],
+        'Gives itself Swift',
+        TriggerType.UponAppearance,
+        'Green owned'
+      ),
+    ],
   },
   {
     'id': 1075,
@@ -3295,13 +3519,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 12000,
     'hit_points': 8000,
-    'effect': 'Adds 3000 ATK to itself',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.ConsumeBank,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.ConsumeBank],
+        'Adds 3000 ATK to itself',
+        TriggerType.UponAppearance,
+        'Consume 1 Banked Energy'
+      ),
     ],
-    'requirements': 'Consume 1 Banked Energy',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1094,
@@ -3315,10 +3540,13 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 6000,
     'hit_points': 8000,
-    'effect': 'Add 6000 ATK to a Friendly Unit',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 6000 ATK to a Friendly Unit',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1098,
@@ -3336,10 +3564,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 8000,
     'hit_points': 8000,
-    'effect': 'Gives itself Swift',
-    'effectTypes': [EffectType.SwiftAttack],
-    'requirements': 'Green owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack],
+        'Gives itself Swift',
+        TriggerType.UponAppearance,
+        'Green owned'
+      ),
+    ],
   },
   {
     'id': 1099,
@@ -3356,10 +3588,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 9000,
     'hit_points': 10000,
-    'effect': 'Kill one enemy Unit',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Purple Green Blue owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kill one enemy Unit',
+        TriggerType.UponAppearance,
+        'Purple Green Blue owned'
+      ),
+    ],
   },
   {
     'id': 1102,
@@ -3377,10 +3613,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 9000,
     'hit_points': 9000,
-    'effect': 'Deal 4000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Purple Purple owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 4000 DMG to an Enemy',
+        TriggerType.UponAppearance,
+        'Purple Purple owned'
+      ),
+    ],
   },
   {
     'id': 1106,
@@ -3398,10 +3638,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 10000,
     'hit_points': 6000,
-    'effect': 'Deal 5000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Blue Blue owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 5000 DMG to an Enemy',
+        TriggerType.UponAppearance,
+        'Blue Blue owned'
+      ),
+    ],
   },
   {
     'id': 1108,
@@ -3419,10 +3663,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 5000,
     'hit_points': 9000,
-    'effect': 'Kill one enemy Unit with 6000 HP or Less',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kill one enemy Unit with 6000 HP or Less',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1117,
@@ -3439,10 +3686,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 10000,
     'hit_points': 9000,
-    'effect': 'Adds 3000 ATK to itself',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Purple owned',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 3000 ATK to itself',
+        TriggerType.Always,
+        'Purple owned'
+      ),
+    ],
   },
   {
     'id': 1122,
@@ -3459,10 +3710,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 9000,
     'hit_points': 9000,
-    'effect': 'Kill an Enemy Unit',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Yellow Yellow Green owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kill an Enemy Unit',
+        TriggerType.UponAppearance,
+        'Yellow Yellow Green owned'
+      ),
+    ],
   },
   {
     'id': 1124,
@@ -3479,10 +3734,6 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 11000,
     'hit_points': 10000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1222,
@@ -3494,10 +3745,12 @@ export const cardList: Array<{
     'energy_cost': 6,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 1 or 2 SP Units that cost 6 or less in total. Add 1000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Summon 1 or 2 SP Units that cost 6 or less in total. Add 1000 ATK to all Friendly Units'
+      ),
+    ],
   },
   {
     'id': 1235,
@@ -3509,10 +3762,12 @@ export const cardList: Array<{
     'energy_cost': 6,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 3 Cell Jr. (Cost 2, ATK 4000, HP 1000)',
-    'effectTypes': [EffectType.SummonSupport],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSupport],
+        'Summon 3 Cell Jr. (Cost 2, ATK 4000, HP 1000)'
+      ),
+    ],
   },
   {
     'id': 1272,
@@ -3524,10 +3779,12 @@ export const cardList: Array<{
     'energy_cost': 6,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 1 SP Unit. Your opponent gains Banked Energy equal to the cost',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Summon 1 SP Unit. Your opponent gains Banked Energy equal to the cost'
+      ),
+    ],
   },
   {
     'id': 1289,
@@ -3539,10 +3796,12 @@ export const cardList: Array<{
     'energy_cost': 6,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Add 10000 ATK a Friendly Unit for this Turn',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 10000 ATK a Friendly Unit for this Turn'
+      ),
+    ],
   },
   {
     'id': 1010,
@@ -3559,10 +3818,13 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 9000,
     'hit_points': 13000,
-    'effect': 'Add 6000 ATK to itself whenever it takes DMG',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 6000 ATK to itself whenever it takes DMG',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1020,
@@ -3580,10 +3842,14 @@ export const cardList: Array<{
     'attack': 11000,
     'hit_points': 10000,
     'abilities': [AbilityType.Guard],
-    'effect': 'Add 3000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Green Blue owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 3000 ATK to all Friendly Units',
+        TriggerType.UponAppearance,
+        'Green Blue owned'
+      ),
+    ],
   },
   {
     'id': 1025,
@@ -3600,10 +3866,6 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 11000,
     'hit_points': 13000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1029,
@@ -3620,10 +3882,6 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 13000,
     'hit_points': 12000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1033,
@@ -3640,13 +3898,13 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 9000,
     'hit_points': 5000,
-    'effect': '5000 ATK & HP to a Friendly Unit',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        '5000 ATK & HP to a Friendly Unit',
+        TriggerType.UponAppearance
+      ),
     ],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1053,
@@ -3664,10 +3922,13 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 10000,
     'hit_points': 10000,
-    'effect': '5000 ATK to all Friendly Ginyu Force Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        '5000 ATK to all Friendly Ginyu Force Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1058,
@@ -3684,10 +3945,13 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 8000,
     'hit_points': 14000,
-    'effect': '3000 ATK to all Friendly Frieza Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        '3000 ATK to all Friendly Frieza Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1076,
@@ -3701,10 +3965,6 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 15000,
     'hit_points': 11000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1096,
@@ -3718,10 +3978,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 4000,
     'hit_points': 10000,
-    'effect': 'Heal your Leader for 10000',
-    'effectTypes': [EffectType.RecoverLifePoints],
-    'requirements': 'Yellow owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.RecoverLifePoints],
+        'Heal your Leader for 10000',
+        TriggerType.UponAppearance,
+        'Yellow owned'
+      ),
+    ],
   },
   {
     'id': 1110,
@@ -3739,10 +4003,6 @@ export const cardList: Array<{
     'attack': 13000,
     'hit_points': 7000,
     'abilities': [AbilityType.Swift],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1120,
@@ -3756,10 +4016,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 9000,
     'hit_points': 12000,
-    'effect': 'Add 5000 ATK on Opponent\'s Turn',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 5000 ATK on Opponent\'s Turn',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1125,
@@ -3776,10 +4039,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 10000,
     'hit_points': 12000,
-    'effect': 'Gain 5000 ATK',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Purple Blue Green owned',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Gain 5000 ATK',
+        TriggerType.Always,
+        'Purple Blue Green owned'
+      ),
+    ],
   },
   {
     'id': 1212,
@@ -3791,10 +4058,12 @@ export const cardList: Array<{
     'energy_cost': 7,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Discard 1 card from your hand. Summon 1 SP Unit equal to or less than the cost',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Discard 1 card from your hand. Summon 1 SP Unit equal to or less than the cost'
+      ),
+    ],
   },
   {
     'id': 1221,
@@ -3806,14 +4075,13 @@ export const cardList: Array<{
     'energy_cost': 7,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Perform 3 of the following actions in any combination:- 1. Heal 5000 HP to a friendly Unit or Leader, 2. Draw 2 Cards',
-    'effectTypes': [
-      EffectType.RecoverLifePoints,
-      EffectType.RecoverHitPoints,
-      EffectType.DrawCard,
+    'effects': [
+      new Effect(
+        [EffectType.RecoverLifePoints, EffectType.RecoverHitPoints, EffectType.DrawCard],
+        'Perform 3 of the following actions in any combination:- 1. Heal 5000 HP to a friendly Unit or Leader, 2. Draw 2 Cards',
+        TriggerType.EventCard
+      ),
     ],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1256,
@@ -3825,10 +4093,12 @@ export const cardList: Array<{
     'energy_cost': 7,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 1 SP Unit that costs 7 or less. If it\'s a Goku Unit, add 3000 ATK',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Summon 1 SP Unit that costs 7 or less. If it\'s a Goku Unit, add 3000 ATK'
+      ),
+    ],
   },
   {
     'id': 1291,
@@ -3840,13 +4110,12 @@ export const cardList: Array<{
     'energy_cost': 7,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Summon 1 or 2 SP Units that cost 7 or less in total. Draw a card',
-    'effectTypes': [
-      EffectType.DrawCard,
-      EffectType.SummonSpecial,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard, EffectType.SummonSpecial],
+        'Summon 1 or 2 SP Units that cost 7 or less in total. Draw a card'
+      ),
     ],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1012,
@@ -3863,13 +4132,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 10000,
     'hit_points': 14000,
-    'effect': '5000 ATK & HP to itself',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        '5000 ATK & HP to itself',
+        TriggerType.UponAppearance,
+        'Yellow owned'
+      ),
     ],
-    'requirements': 'Yellow owned',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1030,
@@ -3886,13 +4156,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 7000,
     'hit_points': 12000,
-    'effect': '8000 ATK & HP to itself',
-    'effectTypes': [
-      EffectType.AddHitPoints,
-      EffectType.AddAttack,
+    'effects': [
+      new Effect(
+        [EffectType.AddHitPoints, EffectType.AddAttack],
+        '8000 ATK & HP to itself',
+        TriggerType.UponAppearance,
+        'Green Green owned'
+      ),
     ],
-    'requirements': 'Green Green owned',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1067,
@@ -3910,10 +4181,6 @@ export const cardList: Array<{
     'attack': 15000,
     'hit_points': 12000,
     'abilities': [AbilityType.Swift],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1111,
@@ -3930,10 +4197,13 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 6000,
     'hit_points': 9000,
-    'effect': 'Kill an enemy Unit',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kill an enemy Unit',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1123,
@@ -3947,10 +4217,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 14000,
     'hit_points': 16000,
-    'effect': 'Deal 4000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Blue owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 4000 DMG to an Enemy',
+        TriggerType.UponAppearance,
+        'Blue owned'
+      ),
+    ],
   },
   {
     'id': 1021,
@@ -3967,10 +4241,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 10000,
     'hit_points': 26000,
-    'effect': 'Gains the following: (Always: 3000 ATK to itself for each enemy Unit)',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Purple Yellow owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Gains the following: (Always: 3000 ATK to itself for each enemy Unit)',
+        TriggerType.UponAppearance,
+        'Purple Yellow owned'
+      ),
+    ],
   },
   {
     'id': 1024,
@@ -3987,10 +4265,6 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 20000,
     'hit_points': 17000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1113,
@@ -4007,13 +4281,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 13000,
     'hit_points': 23000,
-    'effect': 'Unlocks your bank. Adds 3000 ATK to itself for each Frieza card in your hand',
-    'effectTypes': [
-      EffectType.UnlockBank,
-      EffectType.AddAttack,
+    'effects': [
+      new Effect(
+        [EffectType.UnlockBank, EffectType.AddAttack],
+        'Unlocks your bank. Adds 3000 ATK to itself for each Frieza card in your hand',
+        TriggerType.UponAppearance,
+        '3 Banked Energy owned'
+      ),
     ],
-    'requirements': '3 Banked Energy owned',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1057,
@@ -4030,10 +4305,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 13000,
     'hit_points': 26000,
-    'effect': 'Kill all Units',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Purple Blue Green Yellow Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kill all Units',
+        TriggerType.UponAppearance,
+        'Purple Blue Green Yellow Consumed'
+      ),
+    ],
   },
   {
     'id': 1104,
@@ -4051,14 +4330,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 10000,
     'hit_points': 20000,
-    'effect': 'Adds 20000 ATK & 10000 HP to itself',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
-      EffectType.ConsumeBank,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.ConsumeBank],
+        'Adds 20000 ATK & 10000 HP to itself',
+        TriggerType.UponAppearance,
+        'Consume 10 Banked Energy'
+      ),
     ],
-    'requirements': 'Consume 10 Banked Energy',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1299,
@@ -4070,10 +4349,12 @@ export const cardList: Array<{
     'energy_cost': 10,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Add 10000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 10000 ATK to all Friendly Units'
+      ),
+    ],
   },
   {
     'id': 1163,
@@ -4090,10 +4371,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 7000,
     'hit_points': 7000,
-    'effect': 'Swift',
-    'effectTypes': [EffectType.SwiftAttack],
-    'requirements': 'Blue owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack],
+        'Gains Swift Attack',
+        TriggerType.UponAppearance,
+        'Blue owned'
+      ),
+    ],
   },
   {
     'id': 1181,
@@ -4110,10 +4395,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 5000,
     'hit_points': 3000,
-    'effect': 'Adds 10000 ATK to itself when it has taken DMG',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Yellow owned',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 10000 ATK to itself when it has taken DMG',
+        TriggerType.Always,
+        'Yellow owned'
+      ),
+    ],
   },
   {
     'id': 1187,
@@ -4130,10 +4419,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 5000,
     'hit_points': 3000,
-    'effect': 'Adds 1000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 1000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1194,
@@ -4147,10 +4439,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 3000,
     'hit_points': 5000,
-    'effect': 'Adds 1000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 1000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1150,
@@ -4168,10 +4463,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 7000,
     'hit_points': 6000,
-    'effect': 'Return all Friendly Goten & Trunks Units to your hand',
-    'effectTypes': [EffectType.ReturnCharacter],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return all Friendly Goten & Trunks Units to your hand',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1153,
@@ -4188,10 +4486,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 7000,
     'hit_points': 6000,
-    'effect': 'Return all Friendly Babidi & Dabura Units to your hand',
-    'effectTypes': [EffectType.ReturnCharacter],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return all Friendly Babidi & Dabura Units to your hand',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1164,
@@ -4208,10 +4509,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 4000,
     'hit_points': 7000,
-    'effect': 'Deal 1000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 1000 DMG to an Enemy',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1167,
@@ -4228,10 +4532,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 3000,
     'hit_points': 8000,
-    'effect': 'Deal 2000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Purple owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 2000 DMG to an Enemy',
+        TriggerType.UponAppearance,
+        'Purple owned'
+      ),
+    ],
   },
   {
     'id': 1179,
@@ -4248,10 +4556,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 4000,
     'hit_points': 7000,
-    'effect': 'Swift',
-    'effectTypes': [EffectType.SwiftAttack],
-    'requirements': 'Blue owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack],
+        'Gains Swift Attack',
+        TriggerType.UponAppearance,
+        'Blue owned'
+      ),
+    ],
   },
   {
     'id': 1186,
@@ -4268,10 +4580,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 6000,
     'hit_points': 5000,
-    'effect': 'Adds 1000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 1000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1193,
@@ -4285,10 +4600,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 5000,
     'hit_points': 6000,
-    'effect': 'Adds 1000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 1000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1138,
@@ -4305,14 +4623,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 7000,
     'hit_points': 5000,
-    'effect': '2000 ATK & HP to a Friendly Unit',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
-      EffectType.ConsumeBank,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.ConsumeBank],
+        '2000 ATK & HP to a Friendly Unit',
+        TriggerType.UponAppearance,
+        'Consume 1 Bank Energy'
+      ),
     ],
-    'requirements': 'Consume 1 Bank Energy',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1145,
@@ -4330,10 +4648,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 7000,
     'hit_points': 7000,
-    'effect': 'Return all Friendly Krillin, Yamcha & Tien Units to your hand',
-    'effectTypes': [EffectType.ReturnCharacter],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return all Friendly Krillin, Yamcha & Tien Units to your hand',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1152,
@@ -4350,10 +4671,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 8000,
     'hit_points': 2000,
-    'effect': 'Adds 1 Energy to your bank for each Enemy Unit',
-    'effectTypes': [EffectType.AddBankEnergy],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddBankEnergy],
+        'Adds 1 Energy to your bank for each Enemy Unit',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1154,
@@ -4371,10 +4695,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 5000,
     'hit_points': 5000,
-    'effect': 'Draw a card',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw a card',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1165,
@@ -4391,10 +4718,12 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 4000,
     'hit_points': 5000,
-    'effect': 'Adds 500 ATK to itself when it has taken DMG',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 500 ATK to itself when it has taken DMG'
+      ),
+    ],
   },
   {
     'id': 1168,
@@ -4411,10 +4740,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 6000,
     'hit_points': 7000,
-    'effect': 'Kill an Enemy Unit with 5000 HP or Less',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Purple owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kill an Enemy Unit with 5000 HP or Less',
+        TriggerType.UponAppearance,
+        'Purple owned'
+      ),
+    ],
   },
   {
     'id': 1171,
@@ -4431,10 +4764,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 5000,
     'hit_points': 7000,
-    'effect': 'Add 4000 ATK to itself on your turn',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 4000 ATK to itself on your turn',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1188,
@@ -4451,10 +4787,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 5000,
     'hit_points': 7000,
-    'effect': 'Adds 1000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 1000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1189,
@@ -4471,10 +4810,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 6000,
     'hit_points': 6000,
-    'effect': 'Adds 1000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 1000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1191,
@@ -4488,10 +4830,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 7000,
     'hit_points': 5000,
-    'effect': 'Adds 1000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 1000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1126,
@@ -4508,10 +4853,6 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 9000,
     'hit_points': 7000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1130,
@@ -4530,10 +4871,13 @@ export const cardList: Array<{
     'attack': 4000,
     'hit_points': 12000,
     'abilities': [AbilityType.Guard],
-    'effect': 'You must have 1 energy in your bank to Attack with this Unit',
-    'effectTypes': [EffectType.Other],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.Other],
+        'You must have 1 energy in your bank to Attack with this Unit',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1136,
@@ -4550,13 +4894,19 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 5000,
     'hit_points': 8000,
-    'effect': 'Deal 5000 DMG to an Enemy.\nAdds 1000 ATK to itself for Each Goten & Trunks card in your hand',
-    'effectTypes': [
-      EffectType.DealDamage,
-      EffectType.AddAttack,
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 5000 DMG to an Enemy.',
+        TriggerType.UponAppearance,
+        'Green Consumed'
+      ),
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 1000 ATK to itself for Each Goten & Trunks card in your hand',
+        TriggerType.UponAppearance
+      ),
     ],
-    'requirements': 'Green Consumed\nNone',
-    'trigger': 'Upon Appearance\nUpon Appearance',
   },
   {
     'id': 1155,
@@ -4574,10 +4924,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 7000,
     'hit_points': 6000,
-    'effect': 'Draw a card',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw a card',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1156,
@@ -4595,10 +4948,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 2000,
     'hit_points': 7000,
-    'effect': 'Deal 3000 DMG to an Enemy for each Goku & Vegeta card in your hand',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Purple Blue Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 3000 DMG to an Enemy for each Goku & Vegeta card in your hand',
+        TriggerType.UponAppearance,
+        'Purple Blue Consumed'
+      ),
+    ],
   },
   {
     'id': 1170,
@@ -4615,10 +4972,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 7000,
     'hit_points': 7000,
-    'effect': 'Addds 3000 ATK to itself',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Purple owned',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Addds 3000 ATK to itself',
+        TriggerType.Always,
+        'Purple owned'
+      ),
+    ],
   },
   {
     'id': 1173,
@@ -4635,10 +4996,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 6000,
     'hit_points': 6000,
-    'effect': 'Deal 4000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Blue Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 4000 DMG to an Enemy',
+        TriggerType.UponAppearance,
+        'Blue Consumed'
+      ),
+    ],
   },
   {
     'id': 1185,
@@ -4655,10 +5020,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 5000,
     'hit_points': 5000,
-    'effect': 'Adds 2000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 2000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1192,
@@ -4672,10 +5040,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 6000,
     'hit_points': 8000,
-    'effect': 'Adds 1000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 1000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1199,
@@ -4692,10 +5063,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 4000,
     'hit_points': 6000,
-    'effect': 'Adds 2000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 2000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1128,
@@ -4712,10 +5086,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 5000,
     'hit_points': 11000,
-    'effect': 'Adds 5000 ATK to itself when it has taken DMG',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 5000 ATK to itself when it has taken DMG',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1134,
@@ -4732,10 +5109,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 6000,
     'hit_points': 9000,
-    'effect': 'Adds 8000 ATK to itself on your turn',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 8000 ATK to itself on your turn',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1139,
@@ -4752,13 +5132,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 7000,
     'hit_points': 7000,
-    'effect': 'Adds 6000 ATK & HP to itself',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        'Adds 6000 ATK & HP to itself',
+        TriggerType.UponAppearance,
+        'Blue Blue owned'
+      ),
     ],
-    'requirements': 'Blue Blue owned',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1141,
@@ -4775,10 +5156,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 13000,
     'hit_points': 1000,
-    'effect': 'Adds 20000 HP to itself',
-    'effectTypes': [EffectType.AddHitPoints],
-    'requirements': 'Yellow Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddHitPoints],
+        'Adds 20000 HP to itself',
+        TriggerType.UponAppearance,
+        'Yellow Consumed'
+      ),
+    ],
   },
   {
     'id': 1146,
@@ -4796,13 +5181,20 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 8000,
     'hit_points': 8000,
-    'effect': 'Return all Friendly Android 19 & Android 20 Units to your hand\nAdd 1000 ATK to itself for each Android 19 and Android 20 card in your hand',
-    'effectTypes': [
-      EffectType.ReturnCharacter,
-      EffectType.AddAttack,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return all Friendly Android 19 & Android 20 Units to your hand',
+        TriggerType.UponAppearance,
+        'None'
+      ),
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 1000 ATK to itself for each Android 19 and Android 20 card in your hand',
+        TriggerType.Always,
+        'Purple Owned'
+      ),
     ],
-    'requirements': 'None\nPurple Owned',
-    'trigger': 'Upon Appearance\nAlways',
   },
   {
     'id': 1157,
@@ -4821,13 +5213,20 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 4000,
     'hit_points': 4000,
-    'effect': 'Return all Friendly Goku, Vegeta & Trunks Units to your hand\nDeal 3000 DMG to the enemy Leader for each Goku, Vegeta and Trunks card in your hand',
-    'effectTypes': [
-      EffectType.ReturnCharacter,
-      EffectType.DealDamage,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return all Friendly Goku, Vegeta & Trunks Units to your hand',
+        TriggerType.UponAppearance,
+        'None'
+      ),
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 3000 DMG to the enemy Leader for each Goku, Vegeta and Trunks card in your hand',
+        TriggerType.UponAppearance,
+        'Yellow Consumed'
+      ),
     ],
-    'requirements': 'None\nYellow Consumed',
-    'trigger': 'Upon Appearance\nUpon Appearance',
   },
   {
     'id': 1159,
@@ -4846,10 +5245,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 7000,
     'hit_points': 5000,
-    'effect': 'Draw 2 Cards',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 2 Cards',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1166,
@@ -4866,10 +5268,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 6000,
     'hit_points': 11000,
-    'effect': 'Removes any effects applied to 1 Unit',
-    'effectTypes': [EffectType.RemoveEffects],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.RemoveEffects],
+        'Removes any effects applied to 1 Unit',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1169,
@@ -4886,10 +5291,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 4000,
     'hit_points': 3000,
-    'effect': 'Deal 5000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 5000 DMG to an Enemy',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1177,
@@ -4907,13 +5315,14 @@ export const cardList: Array<{
     'attack': 8000,
     'hit_points': 8000,
     'abilities': [AbilityType.Guard],
-    'effect': '4000 HP & ATK to itself',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        '4000 HP & ATK to itself',
+        TriggerType.UponAppearance,
+        'Green owned'
+      ),
     ],
-    'requirements': 'Green owned',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1190,
@@ -4930,10 +5339,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 5000,
     'hit_points': 7000,
-    'effect': 'Adds 2000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 2000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1195,
@@ -4950,10 +5362,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 6000,
     'hit_points': 6000,
-    'effect': 'Adds 2000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 2000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1196,
@@ -4967,10 +5382,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 6000,
     'hit_points': 11000,
-    'effect': 'Adds 1000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 1000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1197,
@@ -4987,10 +5405,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 3000,
     'hit_points': 9000,
-    'effect': 'Adds 2000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 2000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1198,
@@ -5007,10 +5428,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 5000,
     'hit_points': 8000,
-    'effect': 'Adds 2000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 2000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1200,
@@ -5024,10 +5448,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 4000,
     'hit_points': 8000,
-    'effect': 'Adds 2000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 2000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1202,
@@ -5044,10 +5471,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 7000,
     'hit_points': 10000,
-    'effect': 'Adds 1000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 1000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1131,
@@ -5064,10 +5494,6 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 14000,
     'hit_points': 11000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1133,
@@ -5085,10 +5511,13 @@ export const cardList: Array<{
     'attack': 12000,
     'hit_points': 12000,
     'abilities': [AbilityType.Guard],
-    'effect': 'Add 2000 ATK to itself on your turn',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 2000 ATK to itself on your turn',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1135,
@@ -5105,10 +5534,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 8000,
     'hit_points': 10000,
-    'effect': 'Add 10000 ATK to itself on your turn',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 10000 ATK to itself on your turn',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1142,
@@ -5122,13 +5554,20 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 9000,
     'hit_points': 16000,
-    'effect': 'Returns all Goten and Trunks Units to their owners\' hands\nAdds 1000 ATK to itself for each Goten and Trunks card in your hand',
-    'effectTypes': [
-      EffectType.ReturnCharacter,
-      EffectType.AddAttack,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Returns all Goten and Trunks Units to their owners\' hands',
+        TriggerType.UponAppearance,
+        'None'
+      ),
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 1000 ATK to itself for each Goten and Trunks card in your hand',
+        TriggerType.Always,
+        'Purple Owned'
+      ),
     ],
-    'requirements': 'None\nPurple Owned',
-    'trigger': 'Upon Appearance\nAlways',
   },
   {
     'id': 1147,
@@ -5146,13 +5585,20 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 11000,
     'hit_points': 11000,
-    'effect': 'Returns all Android 17 and Android 18 Units to their owners\' hands\nAdds 1000 ATK to itself for each Android 17 and Android 18 card in your hand',
-    'effectTypes': [
-      EffectType.ReturnCharacter,
-      EffectType.AddAttack,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Returns all Android 17 and Android 18 Units to their owners\' hands',
+        TriggerType.UponAppearance,
+        'None'
+      ),
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 1000 ATK to itself for each Android 17 and Android 18 card in your hand',
+        TriggerType.Always,
+        'Purple Owned'
+      ),
     ],
-    'requirements': 'None\nPurple Owned',
-    'trigger': 'Upon Appearance\nAlways',
   },
   {
     'id': 1158,
@@ -5172,13 +5618,20 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 7000,
     'hit_points': 7000,
-    'effect': 'Return all Friendly Goku, Gohan, Vegeta & Trunks Units to your hand\nDeal 3000 DMG to the enemy Leader for each Goku, Gohan, Vegeta and Trunks card in your hand',
-    'effectTypes': [
-      EffectType.ReturnCharacter,
-      EffectType.DealDamage,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return all Friendly Goku, Gohan, Vegeta & Trunks Units to your hand',
+        TriggerType.UponAppearance,
+        'None'
+      ),
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 3000 DMG to the enemy Leader for each Goku, Gohan, Vegeta and Trunks card in your hand',
+        TriggerType.UponAppearance,
+        'Yellow Consumed'
+      ),
     ],
-    'requirements': 'None\nYellow Consumed',
-    'trigger': 'Upon Appearance\nUpon Appearance',
   },
   {
     'id': 1172,
@@ -5195,10 +5648,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 11000,
     'hit_points': 11000,
-    'effect': 'Kill all other Units',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Yellow Yellow Yellow Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Kill all other Units',
+        TriggerType.UponAppearance,
+        'Yellow Yellow Yellow Consumed'
+      ),
+    ],
   },
   {
     'id': 1180,
@@ -5215,10 +5672,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 5000,
     'hit_points': 4000,
-    'effect': 'Deal 5000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 5000 DMG to an Enemy',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1127,
@@ -5235,13 +5695,13 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 9000,
     'hit_points': 12000,
-    'effect': '2000 ATK & HP to all Friendly Units',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.AddHitPoints,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        '2000 ATK & HP to all Friendly Units',
+        TriggerType.UponAppearance
+      ),
     ],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1140,
@@ -5258,13 +5718,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 10000,
     'hit_points': 16000,
-    'effect': '10000 ATK to itself',
-    'effectTypes': [
-      EffectType.AddAttack,
-      EffectType.ConsumeBank,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.ConsumeBank],
+        '10000 ATK to itself',
+        TriggerType.UponAppearance,
+        'Consume 5 Banked Energy'
+      ),
     ],
-    'requirements': 'Consume 5 Banked Energy',
-    'trigger': 'Upon Appearance',
   },
   {
     'id': 1149,
@@ -5282,13 +5743,20 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 13000,
     'hit_points': 13000,
-    'effect': 'Return all Friendly Gohan & Goten Units to your hand\n1000 ATK to itself for each Gohan & Goten in your hand',
-    'effectTypes': [
-      EffectType.ReturnCharacter,
-      EffectType.AddAttack,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return all Friendly Gohan & Goten Units to your hand',
+        TriggerType.UponAppearance,
+        'None'
+      ),
+      new Effect(
+        [EffectType.AddAttack],
+        '1000 ATK to itself for each Gohan & Goten in your hand',
+        TriggerType.Always,
+        'Blue owned'
+      ),
     ],
-    'requirements': 'None\nBlue owned',
-    'trigger': 'Upon Appearance\nAlways',
   },
   {
     'id': 1160,
@@ -5307,13 +5775,20 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 9000,
     'hit_points': 9000,
-    'effect': 'Return all Friendly Gohan, Goten & Trunks Units to your hand\n4000 DMG to the Enemy Leader for each Gohan, Goten & Trunks in your hand',
-    'effectTypes': [
-      EffectType.ReturnCharacter,
-      EffectType.DealDamage,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return all Friendly Gohan, Goten & Trunks Units to your hand',
+        TriggerType.UponAppearance,
+        'None'
+      ),
+      new Effect(
+        [EffectType.DealDamage],
+        '4000 DMG to the Enemy Leader for each Gohan, Goten & Trunks in your hand',
+        TriggerType.UponAppearance,
+        'Yellow Consumed'
+      ),
     ],
-    'requirements': 'None\nYellow Consumed',
-    'trigger': 'Upon Appearance\nUpon Appearance',
   },
   {
     'id': 1176,
@@ -5330,10 +5805,6 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 17000,
     'hit_points': 11000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1178,
@@ -5350,10 +5821,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 13000,
     'hit_points': 11000,
-    'effect': 'Deal 4000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Blue Owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 4000 DMG to an Enemy',
+        TriggerType.UponAppearance,
+        'Blue Owned'
+      ),
+    ],
   },
   {
     'id': 1183,
@@ -5367,10 +5842,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 13000,
     'hit_points': 12000,
-    'effect': 'Deal 5000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Yellow Owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 5000 DMG to an Enemy',
+        TriggerType.UponAppearance,
+        'Yellow Owned'
+      ),
+    ],
   },
   {
     'id': 1201,
@@ -5387,10 +5866,13 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 12000,
     'hit_points': 12000,
-    'effect': 'Adds 1000 ATK to all Friendly Units',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 1000 ATK to all Friendly Units',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1129,
@@ -5407,13 +5889,20 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 12000,
     'hit_points': 15000,
-    'effect': 'Draw 1 Card\nAdd 8000 ATK to itself on your turn',
-    'effectTypes': [
-      EffectType.DrawCard,
-      EffectType.AddAttack,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draw 1 Card',
+        TriggerType.UponAppearance,
+        'None'
+      ),
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 8000 ATK to itself on your turn',
+        TriggerType.Always,
+        'Yellow Owned'
+      ),
     ],
-    'requirements': 'None\nYellow Owned',
-    'trigger': 'Upon Appearance\nAlways',
   },
   {
     'id': 1143,
@@ -5427,10 +5916,13 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 16000,
     'hit_points': 16000,
-    'effect': 'Return all Enemy Goten, Trunks, Piccolo & Gohan Units to your opponents hand',
-    'effectTypes': [EffectType.ReturnCharacter],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return all Enemy Goten, Trunks, Piccolo & Gohan Units to your opponents hand',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 1148,
@@ -5448,13 +5940,20 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 17000,
     'hit_points': 17000,
-    'effect': 'Return all Friendly Vegeta and Trunks Units to your hand\nAdd 1000 ATK to itself for each Vegeta and Trunks card in your hand',
-    'effectTypes': [
-      EffectType.ReturnCharacter,
-      EffectType.AddAttack,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return all Friendly Vegeta and Trunks Units to your hand',
+        TriggerType.UponAppearance,
+        'None'
+      ),
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 1000 ATK to itself for each Vegeta and Trunks card in your hand',
+        TriggerType.Always,
+        'Blue Owned'
+      ),
     ],
-    'requirements': 'None\nBlue Owned',
-    'trigger': 'Upon Appearance\nAlways',
   },
   {
     'id': 1161,
@@ -5473,13 +5972,20 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 13000,
     'hit_points': 13000,
-    'effect': 'Return all Friendly Goku, Gohan & Gotenks Units to your hand\nDeal 4000 DMG to the Enemy Leader for each Gohan, Goku and Gotenks card in your hand',
-    'effectTypes': [
-      EffectType.ReturnCharacter,
-      EffectType.DealDamage,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return all Friendly Goku, Gohan & Gotenks Units to your hand',
+        TriggerType.UponAppearance,
+        'None'
+      ),
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 4000 DMG to the Enemy Leader for each Gohan, Goku and Gotenks card in your hand',
+        TriggerType.UponAppearance,
+        'Yellow Owned'
+      ),
     ],
-    'requirements': 'None\nYellow Owned',
-    'trigger': 'Upon Appearance\nUpon Appearance',
   },
   {
     'id': 1174,
@@ -5496,10 +6002,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 15000,
     'hit_points': 15000,
-    'effect': 'Deal 7000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Yellow Owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 7000 DMG to an Enemy',
+        TriggerType.UponAppearance,
+        'Yellow Owned'
+      ),
+    ],
   },
   {
     'id': 1175,
@@ -5516,10 +6026,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 14000,
     'hit_points': 18000,
-    'effect': 'Deal 5000 DMG to an Enemy',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Blue Blue Owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 5000 DMG to an Enemy',
+        TriggerType.UponAppearance,
+        'Blue Blue Owned'
+      ),
+    ],
   },
   {
     'id': 1182,
@@ -5536,10 +6050,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 12000,
     'hit_points': 20000,
-    'effect': 'Add 8000 ATK to itself when it has taken damage',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Yellow Owned',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 8000 ATK to itself when it has taken damage',
+        TriggerType.Always,
+        'Yellow Owned'
+      ),
+    ],
   },
   {
     'id': 1132,
@@ -5556,10 +6074,13 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 17000,
     'hit_points': 17000,
-    'effect': 'Add 10000 ATK to itself on your turn',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Add 10000 ATK to itself on your turn',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1151,
@@ -5576,13 +6097,20 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 18000,
     'hit_points': 18000,
-    'effect': 'Returns all Friendly Supreme Kai Units to your hand\nAdds 1000 ATK to itself for each Supreme Kai in your hand',
-    'effectTypes': [
-      EffectType.ReturnCharacter,
-      EffectType.AddAttack,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Returns all Friendly Supreme Kai Units to your hand',
+        TriggerType.UponAppearance,
+        'None'
+      ),
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 1000 ATK to itself for each Supreme Kai in your hand',
+        TriggerType.Always,
+        'Blue Owned'
+      ),
     ],
-    'requirements': 'None\nBlue Owned',
-    'trigger': 'Upon Appearance\nAlways',
   },
   {
     'id': 1162,
@@ -5601,13 +6129,20 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 15000,
     'hit_points': 15000,
-    'effect': 'Return all Friendly Gotenks & Gohan Units to your hand\nDeal 5000 DMG to the enemy leader for each Gotenks & Gohan card in your hand',
-    'effectTypes': [
-      EffectType.ReturnCharacter,
-      EffectType.DealDamage,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Return all Friendly Gotenks & Gohan Units to your hand',
+        TriggerType.UponAppearance,
+        'None'
+      ),
+      new Effect(
+        [EffectType.DealDamage],
+        'Deal 5000 DMG to the enemy leader for each Gotenks & Gohan card in your hand',
+        TriggerType.UponAppearance,
+        'Yellow Yellow Consumed'
+      ),
     ],
-    'requirements': 'None\nYellow Yellow Consumed',
-    'trigger': 'Upon Appearance\nUpon Appearance',
   },
   {
     'id': 1184,
@@ -5622,10 +6157,6 @@ export const cardList: Array<{
     'attack': 17000,
     'hit_points': 20000,
     'abilities': [AbilityType.Guard],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1137,
@@ -5642,10 +6173,13 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 14000,
     'hit_points': 24000,
-    'effect': 'Adds 3000 ATK to all Friendly Units on your Turn',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 3000 ATK to all Friendly Units on your Turn',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 1144,
@@ -5663,10 +6197,6 @@ export const cardList: Array<{
     'attack': 25000,
     'hit_points': 14000,
     'abilities': [AbilityType.Swift],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1203,
@@ -5684,10 +6214,14 @@ export const cardList: Array<{
     'attack': 14000,
     'hit_points': 26000,
     'abilities': [AbilityType.Guard],
-    'effect': 'Complete restore the HP of all Friendly Units',
-    'effectTypes': [EffectType.RecoverHitPoints],
-    'requirements': 'Purple Purple Purple Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.RecoverHitPoints],
+        'Complete restore the HP of all Friendly Units',
+        TriggerType.UponAppearance,
+        'Purple Purple Purple Consumed'
+      ),
+    ],
   },
   {
     'id': 2009,
@@ -5704,10 +6238,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 1000,
     'hit_points': 1000,
-    'effect': 'Returns this card and 1 regular Trunks card on your side of the field to your deck, then causes one Gotenks card with a cost +1 or lower than the cost of the Trunks card returned to appear from your SP deck',
-    'effectTypes': [EffectType.ReturnCharacter, EffectType.SummonSpecial],
-    'requirements': '1 Trunks on your side of the field',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter, EffectType.SummonSpecial],
+        'Returns this card and 1 regular Trunks card on your side of the field to your deck, then causes one Gotenks card with a cost +1 or lower than the cost of the Trunks card returned to appear from your SP deck',
+        TriggerType.UponAppearance,
+        '1 Trunks on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2098,
@@ -5719,10 +6257,14 @@ export const cardList: Array<{
     'energy_cost': 0,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Restores your leader\'s HP by 2000, then restores it by an additional 5000 if you can reference the Purple symbol',
-    'effectTypes': [EffectType.RecoverLifePoints],
-    'requirements': 'Purple Owned',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.RecoverLifePoints],
+        'Restores your leader\'s HP by 2000, then restores it by an additional 5000 if you can reference the Purple symbol',
+        TriggerType.EventCard,
+        'Purple Owned'
+      ),
+    ],
   },
   {
     'id': 2005,
@@ -5740,10 +6282,13 @@ export const cardList: Array<{
     'attack': 5000,
     'hit_points': 4000,
     'abilities': [AbilityType.Guard],
-    'effect': 'Unable to attack',
-    'effectTypes': [EffectType.UnableToAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.UnableToAttack],
+        'Unable to attack',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 2010,
@@ -5760,10 +6305,6 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 3000,
     'hit_points': 4000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 2016,
@@ -5778,10 +6319,14 @@ export const cardList: Array<{
     'attack': 3000,
     'hit_points': 3000,
     'abilities': [AbilityType.PiercingStrike],
-    'effect': 'Adds +1000 to its own Attack and +1000 to its own Hit Points if there is a character with Guard on the opponent\'s side of the field',
-    'effectTypes': [EffectType.AddAttack, EffectType.AddHitPoints],
-    'requirements': 'Opponent on field with Guard',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        'Adds +1000 to its own Attack and +1000 to its own Hit Points if there is a character with Guard on the opponent\'s side of the field',
+        TriggerType.UponAppearance,
+        'Opponent on field with Guard'
+      ),
+    ],
   },
   {
     'id': 2032,
@@ -5799,10 +6344,14 @@ export const cardList: Array<{
     'attack': 4000,
     'hit_points': 2000,
     'abilities': [AbilityType.NaturalRecovery],
-    'effect': 'Gives itself Piercing Strike and Swift Attack when Android 18 is on your side of the field',
-    'effectTypes': [EffectType.SwiftAttack, EffectType.PiercingStrike],
-    'requirements': 'Android 18 on your side of the field',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack, EffectType.PiercingStrike],
+        'Gives itself Piercing Strike and Swift Attack when Android 18 is on your side of the field',
+        TriggerType.Always,
+        'Android 18 on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2038,
@@ -5816,10 +6365,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 1000,
     'hit_points': 2000,
-    'effect': 'Draws 1 card. If the card drawn is an event card, you will draw 1 more card',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': 'Blue Owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 card. If the card drawn is an event card, you will draw 1 more card',
+        TriggerType.UponAppearance,
+        'Blue Owned'
+      ),
+    ],
   },
   {
     'id': 2039,
@@ -5833,10 +6386,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 3000,
     'hit_points': 3000,
-    'effect': 'Restores 5000 of your leader\'s HP when you unlock your bank with 7 or more energy in it, then restores your bank',
-    'effectTypes': [EffectType.RecoverLifePoints, EffectType.RestoreBank],
-    'requirements': 'Purple Owned, Unlock bank with 7 or more energy',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.RecoverLifePoints, EffectType.RestoreBank],
+        'Restores 5000 of your leader\'s HP when you unlock your bank with 7 or more energy in it, then restores your bank',
+        TriggerType.Always,
+        'Purple Owned, Unlock bank with 7 or more energy'
+      ),
+    ],
   },
   {
     'id': 2054,
@@ -5848,10 +6405,14 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'KOs 1 Chiaotzu card on your side of the field, then deals 5000 damage at random to the opponent\'s leader or 1 character on the opponent\'s side of the field',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Chiaotzu on your side of the field',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'KOs 1 Chiaotzu card on your side of the field, then deals 5000 damage at random to the opponent\'s leader or 1 character on the opponent\'s side of the field',
+        TriggerType.EventCard,
+        'Chiaotzu on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2079,
@@ -5863,10 +6424,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Deals 4000 damage to 1 character on the field',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 4000 damage to 1 character on the field'
+      ),
+    ],
   },
   {
     'id': 2082,
@@ -5878,10 +6441,14 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Increases your energy limit by 1, Draws 1 card',
-    'effectTypes': [EffectType.IncreaseEnergyLimit, EffectType.DrawCard],
-    'requirements': 'Purple Consumed',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.IncreaseEnergyLimit, EffectType.DrawCard],
+        'Increases your energy limit by 1, Draws 1 card',
+        TriggerType.EventCard,
+        'Purple Consumed'
+      ),
+    ],
   },
   {
     'id': 2085,
@@ -5893,10 +6460,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Gives Piercing Strike to 1 character on your side of the field',
-    'effectTypes': [EffectType.PiercingStrike],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.PiercingStrike],
+        'Gives Piercing Strike to 1 character on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2087,
@@ -5908,10 +6477,14 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Adds +2000 to the Attack and +2000 to the Hit Points of 1 of the Saiyan cards on your side of the field',
-    'effectTypes': [EffectType.AddAttack, EffectType.AddHitPoints],
-    'requirements': 'Saiyan on your side of the field',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        'Adds +2000 to the Attack and +2000 to the Hit Points of 1 of the Saiyan cards on your side of the field',
+        TriggerType.EventCard,
+        'Saiyan on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2089,
@@ -5923,10 +6496,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Gives Natural Recovery to 1 character on your side of the field',
-    'effectTypes': [EffectType.NaturalRecovery],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.NaturalRecovery],
+        'Gives Natural Recovery to 1 character on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2093,
@@ -5938,10 +6513,14 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'KOs 1 Android on your side of the field, then draws 2 cards',
-    'effectTypes': [EffectType.SacrificeCharacter, EffectType.DrawCard],
-    'requirements': 'Android on your side of the field',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SacrificeCharacter, EffectType.DrawCard],
+        'KOs 1 Android on your side of the field, then draws 2 cards',
+        TriggerType.EventCard,
+        'Android on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2099,
@@ -5953,10 +6532,12 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Draws 1 card, if the card drawn is a Goku card, you will draw 1 more card',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 card, if the card drawn is a Goku card, you will draw 1 more card'
+      ),
+    ],
   },
   {
     'id': 2100,
@@ -5968,10 +6549,14 @@ export const cardList: Array<{
     'energy_cost': 1,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'You must have Recoome, Jeice, Burter, Guldo and Captain Ginyu on your side of the field to use this card.\nGives Negate Damage to all Ginyu Force cards on your side of the field until your opponents turn ends',
-    'effectTypes': [EffectType.NegateDamage],
-    'requirements': 'Recoome, Jeice, Burter, Guldo and Captain Ginyu on your side of the field',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.NegateDamage],
+        'You must have Recoome, Jeice, Burter, Guldo and Captain Ginyu on your side of the field to use this card.\nGives Negate Damage to all Ginyu Force cards on your side of the field until your opponents turn ends',
+        TriggerType.EventCard,
+        'Recoome, Jeice, Burter, Guldo and Captain Ginyu on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2002,
@@ -5988,10 +6573,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 4000,
     'hit_points': 4000,
-    'effect': 'Adds +2000 to its own Attack when a Saiyan card other than this one is on the field',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Saiyan card other than this one on the field',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds +2000 to its own Attack when a Saiyan card other than this one is on the field',
+        TriggerType.Always,
+        'Saiyan card other than this one on the field'
+      ),
+    ],
   },
   {
     'id': 2003,
@@ -6008,10 +6597,13 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 4000,
     'hit_points': 3000,
-    'effect': 'Unable to Attack Opponent\'s Leader',
-    'effectTypes': [EffectType.UnableToAttackLeader],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.UnableToAttackLeader],
+        'Unable to Attack Opponent\'s Leader',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 2012,
@@ -6028,10 +6620,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 4000,
     'hit_points': 3000,
-    'effect': 'KOs 1 character on the opponent\'s side of the field with a cost equal or less than the energy in your bank',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Green Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'KOs 1 character on the opponent\'s side of the field with a cost equal or less than the energy in your bank',
+        TriggerType.UponAppearance,
+        'Green Consumed'
+      ),
+    ],
   },
   {
     'id': 2019,
@@ -6046,10 +6642,6 @@ export const cardList: Array<{
     'attack': 5000,
     'hit_points': 3000,
     'abilities': [AbilityType.PiercingStrike],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 2021,
@@ -6064,10 +6656,6 @@ export const cardList: Array<{
     'attack': 3000,
     'hit_points': 5000,
     'abilities': [AbilityType.NaturalRecovery],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 2026,
@@ -6086,10 +6674,13 @@ export const cardList: Array<{
     'attack': 2000,
     'hit_points': 5000,
     'abilities': [AbilityType.Guard],
-    'effect': 'Draws 1 Captain Ginyu, Draws nothing if you don\'t have any',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 Captain Ginyu, Draws nothing if you don\'t have any',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2033,
@@ -6107,10 +6698,14 @@ export const cardList: Array<{
     'attack': 4000,
     'hit_points': 4000,
     'abilities': [AbilityType.NaturalRecovery],
-    'effect': 'Gives itself Negate Damage and Guard when Android 17 is on your side of the field',
-    'effectTypes': [EffectType.NegateDamage, EffectType.Guard],
-    'requirements': 'Android 17 on your side of the field',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.NegateDamage, EffectType.Guard],
+        'Gives itself Negate Damage and Guard when Android 17 is on your side of the field',
+        TriggerType.Always,
+        'Android 17 on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2042,
@@ -6124,10 +6719,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 2000,
     'hit_points': 4000,
-    'effect': 'Draws 1 card, afterward, select 1 card from your hand and return it to the deck',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 card, afterward, select 1 card from your hand and return it to the deck',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2063,
@@ -6139,10 +6737,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Deals 3000 damage to all characters on the field',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 3000 damage to all characters on the field'
+      ),
+    ],
   },
   {
     'id': 2074,
@@ -6154,10 +6754,14 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Deals 5000 damage to 1 character on the field, then restores your leaders HP by 5000 if you can reference the Purple symbol',
-    'effectTypes': [EffectType.DealDamage, EffectType.RecoverLifePoints],
-    'requirements': 'Purple Owned',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage, EffectType.RecoverLifePoints],
+        'Deals 5000 damage to 1 character on the field, then restores your leaders HP by 5000 if you can reference the Purple symbol',
+        TriggerType.EventCard,
+        'Purple Owned'
+      ),
+    ],
   },
   {
     'id': 2075,
@@ -6169,10 +6773,14 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Deals 4000 damage at random to the opponent\'s leader or 1 character on your opponent\'s side of the field, then draws 1 card if you can reference the Blue symbol',
-    'effectTypes': [EffectType.DealDamage, EffectType.DrawCard],
-    'requirements': 'Blue Owned',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage, EffectType.DrawCard],
+        'Deals 4000 damage at random to the opponent\'s leader or 1 character on your opponent\'s side of the field, then draws 1 card if you can reference the Blue symbol',
+        TriggerType.EventCard,
+        'Blue Owned'
+      ),
+    ],
   },
   {
     'id': 2076,
@@ -6184,10 +6792,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Select 1 Android card from your hand and return it to the deck, afterwards draws 3 cards',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Select 1 Android card from your hand and return it to the deck, afterwards draws 3 cards'
+      ),
+    ],
   },
   {
     'id': 2077,
@@ -6199,10 +6809,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Randomly returns 1 card to your opponents deck from their hand',
-    'effectTypes': [EffectType.ReturnOpponentCardToDeck],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnOpponentCardToDeck],
+        'Randomly returns 1 card to your opponents deck from their hand'
+      ),
+    ],
   },
   {
     'id': 2095,
@@ -6214,10 +6826,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Restores your bank, then draws 1 card',
-    'effectTypes': [EffectType.RestoreBank, EffectType.DrawCard],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.RestoreBank, EffectType.DrawCard],
+        'Restores your bank, then draws 1 card'
+      ),
+    ],
   },
   {
     'id': 2097,
@@ -6229,10 +6843,12 @@ export const cardList: Array<{
     'energy_cost': 2,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Destroys 1 character with a cost of 2 or less on your opponent\'s side of the field',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Destroys 1 character with a cost of 2 or less on your opponent\'s side of the field'
+      ),
+    ],
   },
   {
     'id': 2001,
@@ -6249,10 +6865,13 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 3000,
     'hit_points': 4000,
-    'effect': 'Draws 1 card every time a Saiyan card other than this one appears on your side of the field',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 card every time a Saiyan card other than this one appears on your side of the field',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 2011,
@@ -6269,10 +6888,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 5000,
     'hit_points': 5000,
-    'effect': 'Adds +2000 to its own Attack, +2000 to its own Hit Points, and gives itself Guard if there is one Babidi, Dabura or Majin Buu on your opponents side of the field',
-    'effectTypes': [EffectType.Guard, EffectType.AddAttack, EffectType.AddHitPoints],
-    'requirements': 'Babidi, Dabura or Majin Buu on your opponents side of the field',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.Guard, EffectType.AddAttack, EffectType.AddHitPoints],
+        'Adds +2000 to its own Attack, +2000 to its own Hit Points, and gives itself Guard if there is one Babidi, Dabura or Majin Buu on your opponents side of the field',
+        TriggerType.UponAppearance,
+        'Babidi, Dabura or Majin Buu on your opponents side of the field'
+      ),
+    ],
   },
   {
     'id': 2014,
@@ -6293,10 +6916,13 @@ export const cardList: Array<{
       AbilityType.PiercingStrike,
       AbilityType.Swift,
     ],
-    'effect': 'Gains Green symbol',
-    'effectTypes': [EffectType.GainSymbol],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.GainSymbol],
+        'Gains Green symbol',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2015,
@@ -6314,10 +6940,13 @@ export const cardList: Array<{
     'attack': 5000,
     'hit_points': 5000,
     'abilities': [AbilityType.NaturalRecovery],
-    'effect': 'Gives itself Negate Damage until end of the turn when it has taken damage',
-    'effectTypes': [EffectType.NegateDamage],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.NegateDamage],
+        'Gives itself Negate Damage until end of the turn when it has taken damage',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 2017,
@@ -6331,10 +6960,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 6000,
     'hit_points': 5000,
-    'effect': 'Randomly KOs 1 character on the opponents side of the field, then KOs itself',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Blue Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Randomly KOs 1 character on the opponents side of the field, then KOs itself',
+        TriggerType.UponAppearance,
+        'Blue Consumed'
+      ),
+    ],
   },
   {
     'id': 2018,
@@ -6353,10 +6986,14 @@ export const cardList: Array<{
     'attack': 5000,
     'hit_points': 6000,
     'abilities': [AbilityType.Guard],
-    'effect': 'KOs 1 character on the opponent\'s side of the field with a cost of 2 or less',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Purple Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'KOs 1 character on the opponent\'s side of the field with a cost of 2 or less',
+        TriggerType.UponAppearance,
+        'Purple Consumed'
+      ),
+    ],
   },
   {
     'id': 2020,
@@ -6373,10 +7010,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 4000,
     'hit_points': 4000,
-    'effect': 'Draws 1 card, if the cards drawn is a Saiyan card, you will draw 1 more card',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': 'Blue Owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 card, if the cards drawn is a Saiyan card, you will draw 1 more card',
+        TriggerType.UponAppearance,
+        'Blue Owned'
+      ),
+    ],
   },
   {
     'id': 2023,
@@ -6394,10 +7035,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 1000,
     'hit_points': 1000,
-    'effect': 'Gives Swift Attack to Ginyu Force cards other than this one on your side of the field',
-    'effectTypes': [EffectType.SwiftAttack],
-    'requirements': '',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack],
+        'Gives Swift Attack to Ginyu Force cards other than this one on your side of the field',
+        TriggerType.Always
+      ),
+    ],
   },
   {
     'id': 2025,
@@ -6415,10 +7059,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 4000,
     'hit_points': 7000,
-    'effect': 'Gives itself Negate Damage and Piercing Strike when Jeice is on your side of the field',
-    'effectTypes': [EffectType.NegateDamage, EffectType.PiercingStrike],
-    'requirements': 'Jeice on your side of the field',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.NegateDamage, EffectType.PiercingStrike],
+        'Gives itself Negate Damage and Piercing Strike when Jeice is on your side of the field',
+        TriggerType.Always,
+        'Jeice on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2028,
@@ -6435,10 +7083,13 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 5000,
     'hit_points': 5000,
-    'effect': 'Sends all cards in your hand to the graveyard, then draws 1 Frieza card of each energy cost: 4, 5, 6, 7 or 8. (Activates even when you have no cards in your hand)',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Sends all cards in your hand to the graveyard, then draws 1 Frieza card of each energy cost: 4, 5, 6, 7 or 8. (Activates even when you have no cards in your hand)',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2031,
@@ -6456,10 +7107,14 @@ export const cardList: Array<{
     'attack': 4000,
     'hit_points': 3000,
     'abilities': [AbilityType.NaturalRecovery],
-    'effect': 'Draws 1 Android 17 and Android 18 at a time, Draws nothing if you don\'t have any',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': 'Android 17 or Android 18 in deck',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 Android 17 and Android 18 at a time, Draws nothing if you don\'t have any',
+        TriggerType.UponAppearance,
+        'Android 17 or Android 18 in deck'
+      ),
+    ],
   },
   {
     'id': 2036,
@@ -6473,10 +7128,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 5000,
     'hit_points': 3000,
-    'effect': 'Recovers 3000 HP for your leader, Adds +1000 to its own Hit Points for each energy unit in your bank',
-    'effectTypes': [EffectType.RecoverLifePoints, EffectType.AddHitPoints],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.RecoverLifePoints, EffectType.AddHitPoints],
+        'Recovers 3000 HP for your leader, Adds +1000 to its own Hit Points for each energy unit in your bank',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2078,
@@ -6488,10 +7146,14 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'KOs 1 Saiyan card on the field, then increases your bank by 1',
-    'effectTypes': [EffectType.KillCharacter, EffectType.IncreaseEnergyLimit],
-    'requirements': 'Saiyan on the field',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter, EffectType.IncreaseEnergyLimit],
+        'KOs 1 Saiyan card on the field, then increases your bank by 1',
+        TriggerType.EventCard,
+        'Saiyan on the field'
+      ),
+    ],
   },
   {
     'id': 2080,
@@ -6503,10 +7165,14 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'KOs 1 Android card on the field, then restores your leader\'s HP by 5000',
-    'effectTypes': [EffectType.KillCharacter, EffectType.RecoverLifePoints],
-    'requirements': 'Android on the field',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter, EffectType.RecoverLifePoints],
+        'KOs 1 Android card on the field, then restores your leader\'s HP by 5000',
+        TriggerType.EventCard,
+        'Android on the field'
+      ),
+    ],
   },
   {
     'id': 2081,
@@ -6518,10 +7184,14 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'You must have Gotenks card on your side of the field to use this card, Causes as many Super Ghost Kamikaze Attack cards (cost: 0; Attack: 2000; Hit Points: 1; [Always] Swift Attack) as possible to appear on your side of the field',
-    'effectTypes': [EffectType.SummonSupport],
-    'requirements': 'Gotenks card on your side of the field',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSupport],
+        'You must have Gotenks card on your side of the field to use this card, Causes as many Super Ghost Kamikaze Attack cards (cost: 0; Attack: 2000; Hit Points: 1; [Always] Swift Attack) as possible to appear on your side of the field',
+        TriggerType.EventCard,
+        'Gotenks card on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2083,
@@ -6533,10 +7203,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Causes 1 Gotenks with a cost of your energy limit or less to appear from your SP deck',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Causes 1 Gotenks with a cost of your energy limit or less to appear from your SP deck'
+      ),
+    ],
   },
   {
     'id': 2092,
@@ -6548,10 +7220,14 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'You must have Android 18 on your side of the field to use this card, Takes control of 1 character on your opponents side of the field and gives them Swift Attack until the end of your opponents turn',
-    'effectTypes': [EffectType.SwiftAttack, EffectType.Other],
-    'requirements': 'Android 18 on your side of the field',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack, EffectType.Other],
+        'You must have Android 18 on your side of the field to use this card, Takes control of 1 character on your opponents side of the field and gives them Swift Attack until the end of your opponents turn',
+        TriggerType.EventCard,
+        'Android 18 on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2094,
@@ -6563,10 +7239,12 @@ export const cardList: Array<{
     'energy_cost': 3,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Adds +1000 to the Attack and +3000 to the Hit Points of all Android cards on your side of the field',
-    'effectTypes': [EffectType.AddAttack, EffectType.AddHitPoints],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        'Adds +1000 to the Attack and +3000 to the Hit Points of all Android cards on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2022,
@@ -6584,10 +7262,14 @@ export const cardList: Array<{
     'attack': 4000,
     'hit_points': 6000,
     'abilities': [AbilityType.NaturalRecovery],
-    'effect': 'Adds +3000 to its own Attack until end of turn when it has taken damage',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': 'Taken damage',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds +3000 to its own Attack until end of turn when it has taken damage',
+        TriggerType.Always,
+        'Taken damage'
+      ),
+    ],
   },
   {
     'id': 2035,
@@ -6602,10 +7284,6 @@ export const cardList: Array<{
     'attack': 7000,
     'hit_points': 4000,
     'abilities': [AbilityType.PiercingStrike],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 2037,
@@ -6619,10 +7297,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 7000,
     'hit_points': 6000,
-    'effect': 'Deals 10000 damage to 1 random character other than this one with a cost of 4 or higher when your energy limit is 7 or higher',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Energy limit of 7 or higher',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 10000 damage to 1 random character other than this one with a cost of 4 or higher when your energy limit is 7 or higher',
+        TriggerType.UponAppearance,
+        'Energy limit of 7 or higher'
+      ),
+    ],
   },
   {
     'id': 2040,
@@ -6637,10 +7319,6 @@ export const cardList: Array<{
     'attack': 3000,
     'hit_points': 7000,
     'abilities': [AbilityType.Guard],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 2091,
@@ -6652,10 +7330,14 @@ export const cardList: Array<{
     'energy_cost': 4,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Adds +4000 to the Attack and +4000 to the Hit Points of all Goku and Frieza cards on your side of the field',
-    'effectTypes': [EffectType.AddAttack, EffectType.AddHitPoints],
-    'requirements': 'Goku or Frieza cards on your side of the field',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        'Adds +4000 to the Attack and +4000 to the Hit Points of all Goku and Frieza cards on your side of the field',
+        TriggerType.EventCard,
+        'Goku or Frieza cards on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2004,
@@ -6672,10 +7354,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 8000,
     'hit_points': 7000,
-    'effect': 'Deals 7000 damage to all characters on your opponent\'s side of the field if there are no characters on your side other than this one',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Purple and Green Owned, No other characters on your side of the field',
-    'trigger': 'Upon appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 7000 damage to all characters on your opponent\'s side of the field if there are no characters on your side other than this one',
+        TriggerType.UponAppearance,
+        'Purple and Green Owned, No other characters on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2006,
@@ -6693,10 +7379,14 @@ export const cardList: Array<{
     'attack': 4000,
     'hit_points': 4000,
     'abilities': [AbilityType.ReducedCost],
-    'effect': 'Adds +2000 to its own Attack, +2000 to its own Hit Points and gives itself Swift Attack.\n-1 to the cost of this card in your hand for each event card in your graveyard',
-    'effectTypes': [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.SwiftAttack],
-    'requirements': 'Blue Owned',
-    'trigger': 'Upon appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.SwiftAttack],
+        'Adds +2000 to its own Attack, +2000 to its own Hit Points and gives itself Swift Attack.\n-1 to the cost of this card in your hand for each event card in your graveyard',
+        TriggerType.UponAppearance,
+        'Blue Owned'
+      ),
+    ],
   },
   {
     'id': 2007,
@@ -6714,10 +7404,14 @@ export const cardList: Array<{
     'attack': 7000,
     'hit_points': 5000,
     'abilities': [AbilityType.PiercingStrike],
-    'effect': 'Deals 3000 damage at random to the opponent\'s leader or 1 character on your opponent\'s side of the field every time a Saiyan other than this one appears on your side',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Purple Owned',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 3000 damage at random to the opponent\'s leader or 1 character on your opponent\'s side of the field every time a Saiyan other than this one appears on your side',
+        TriggerType.Always,
+        'Purple Owned'
+      ),
+    ],
   },
   {
     'id': 2024,
@@ -6736,10 +7430,13 @@ export const cardList: Array<{
     'attack': 4000,
     'hit_points': 4000,
     'abilities': [AbilityType.PiercingStrike],
-    'effect': 'Adds +1000 to its own Attack and +1000 to its own Hit Points for each Ginyu Force card you have in your hand',
-    'effectTypes': [EffectType.AddAttack, EffectType.AddHitPoints],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        'Adds +1000 to its own Attack and +1000 to its own Hit Points for each Ginyu Force card you have in your hand',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2086,
@@ -6751,10 +7448,14 @@ export const cardList: Array<{
     'energy_cost': 5,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Deals 2000 damage to your opponent\'s leader for each Saiyan card on your side of the field',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Saiyan card on your side of the field',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 2000 damage to your opponent\'s leader for each Saiyan card on your side of the field',
+        TriggerType.EventCard,
+        'Saiyan card on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2090,
@@ -6766,10 +7467,14 @@ export const cardList: Array<{
     'energy_cost': 5,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'This card cannot be used if no characters on your side of the field have been KO\'d this turn, Causes 1 SP character with a cost of 6 or less to appear from your SP deck',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': 'Character KO\'d on your side of the field this turn',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'This card cannot be used if no characters on your side of the field have been KO\'d this turn, Causes 1 SP character with a cost of 6 or less to appear from your SP deck',
+        TriggerType.EventCard,
+        'Character KO\'d on your side of the field this turn'
+      ),
+    ],
   },
   {
     'id': 2013,
@@ -6786,10 +7491,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 10000,
     'hit_points': 10000,
-    'effect': '(Blue Consumed) Gives itself Swift Attack and Piercing Strike.\n(Purple Consumed) Gives itself Guard and Natural Recovery',
-    'effectTypes': [EffectType.SwiftAttack, EffectType.PiercingStrike, EffectType.Guard, EffectType.NaturalRecovery],
-    'requirements': 'Blue and Purple Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack, EffectType.PiercingStrike, EffectType.Guard, EffectType.NaturalRecovery],
+        '(Blue Consumed) Gives itself Swift Attack and Piercing Strike.\n(Purple Consumed) Gives itself Guard and Natural Recovery',
+        TriggerType.UponAppearance,
+        'Blue and Purple Consumed'
+      ),
+    ],
   },
   {
     'id': 2027,
@@ -6807,10 +7516,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 5000,
     'hit_points': 5000,
-    'effect': '(No Req) Draws 1 Recoome, Burter, Jeice and Guldo cards each with a cost of 3 or lower.\n(Yellow Consumed) Causes 1 Recoome, Burter, Jeice and Guldo cards each with a cost of 3 or less to appear from your hand ("Upon Appearance" effects are not triggered)',
-    'effectTypes': [EffectType.DrawCard, EffectType.Other],
-    'requirements': 'Yellow Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard, EffectType.Other],
+        '(No Req) Draws 1 Recoome, Burter, Jeice and Guldo cards each with a cost of 3 or lower.\n(Yellow Consumed) Causes 1 Recoome, Burter, Jeice and Guldo cards each with a cost of 3 or less to appear from your hand ("TriggerType.UponAppearance" effects are not triggered)',
+        TriggerType.UponAppearance,
+        'Yellow Consumed'
+      ),
+    ],
   },
   {
     'id': 2041,
@@ -6824,10 +7537,13 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 8000,
     'hit_points': 8000,
-    'effect': 'Recovers 4000 Hit Points for your leader and all character on your side of the field',
-    'effectTypes': [EffectType.RecoverHitPoints, EffectType.RecoverLifePoints],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.RecoverHitPoints, EffectType.RecoverLifePoints],
+        'Recovers 4000 Hit Points for your leader and all character on your side of the field',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2084,
@@ -6839,10 +7555,14 @@ export const cardList: Array<{
     'energy_cost': 6,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Causes 3 Goku cards from your hand to randomly appear, then gives Swift Attack to all Goku cards on your side of the field ("Upon Appearance" effects are not triggered)',
-    'effectTypes': [EffectType.SwiftAttack, EffectType.Other],
-    'requirements': 'Goku cards in hand',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack, EffectType.Other],
+        'Causes 3 Goku cards from your hand to randomly appear, then gives Swift Attack to all Goku cards on your side of the field ("TriggerType.UponAppearance" effects are not triggered)',
+        TriggerType.EventCard,
+        'Goku cards in hand'
+      ),
+    ],
   },
   {
     'id': 2096,
@@ -6854,10 +7574,12 @@ export const cardList: Array<{
     'energy_cost': 6,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Causes 1 SP character with a cost of 7 or less to appear from your SP deck',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Causes 1 SP character with a cost of 7 or less to appear from your SP deck'
+      ),
+    ],
   },
   {
     'id': 2029,
@@ -6875,10 +7597,14 @@ export const cardList: Array<{
     'attack': 6000,
     'hit_points': 6000,
     'abilities': [AbilityType.ReducedCost],
-    'effect': 'Adds +4000 to its own Attack and +4000 to its own Hit Points, -1 to the cost of this card in your hand for each Frieza card in your graveyard',
-    'effectTypes': [EffectType.RecoverHitPoints, EffectType.RecoverLifePoints],
-    'requirements': 'Yellow Owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.RecoverHitPoints, EffectType.RecoverLifePoints],
+        'Adds +4000 to its own Attack and +4000 to its own Hit Points, -1 to the cost of this card in your hand for each Frieza card in your graveyard',
+        TriggerType.UponAppearance,
+        'Yellow Owned'
+      ),
+    ],
   },
   {
     'id': 2034,
@@ -6896,10 +7622,14 @@ export const cardList: Array<{
     'attack': 5000,
     'hit_points': 5000,
     'abilities': [AbilityType.InstantAppearance],
-    'effect': '(no reqs) KOs all Android 17 and Android 18 cards on your side of the field, Adds +5000 to its own Attack and +5000 to its own Hit Points and KOs a random character on the opponent\'s side of the field for each android killed by this effect.\n(Purple and Green Consumed) Appears from your deck at no energy cost at all if you consume a symbol and have Android 17 and Android 18 on your side of the field',
-    'effectTypes': [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.KillCharacter],
-    'requirements': 'Purple and Green Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.KillCharacter],
+        '(no reqs) KOs all Android 17 and Android 18 cards on your side of the field, Adds +5000 to its own Attack and +5000 to its own Hit Points and KOs a random character on the opponent\'s side of the field for each android killed by this effect.\n(Purple and Green Consumed) Appears from your deck at no energy cost at all if you consume a symbol and have Android 17 and Android 18 on your side of the field',
+        TriggerType.UponAppearance,
+        'Purple and Green Consumed'
+      ),
+    ],
   },
   {
     'id': 2048,
@@ -6911,10 +7641,12 @@ export const cardList: Array<{
     'energy_cost': 7,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Causes 1 SP character with a cost of 8 or less to appear from your SP deck',
-    'effectTypes': [EffectType.SummonSpecial],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Causes 1 SP character with a cost of 8 or less to appear from your SP deck'
+      ),
+    ],
   },
   {
     'id': 2088,
@@ -6926,10 +7658,12 @@ export const cardList: Array<{
     'energy_cost': 7,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Causes 1 regular Planetary Warriors A-D each to appear on your side of the field, then adds +2000 Attack and +2000 Hit Points to all Frieza Force cards on your side of the field when Frieza is on your side of the field',
-    'effectTypes': [EffectType.SummonSupport, EffectType.AddAttack, EffectType.AddHitPoints],
-    'requirements': '',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.SummonSupport, EffectType.AddAttack, EffectType.AddHitPoints],
+        'Causes 1 regular Planetary Warriors A-D each to appear on your side of the field, then adds +2000 Attack and +2000 Hit Points to all Frieza Force cards on your side of the field when Frieza is on your side of the field'
+      ),
+    ],
   },
   {
     'id': 2030,
@@ -6947,10 +7681,14 @@ export const cardList: Array<{
     'attack': 11000,
     'hit_points': 12000,
     'abilities': [AbilityType.NaturalRecovery],
-    'effect': 'KOs one random character on the opponent\'s side of the field for each Frieza card in your graveyard',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Yellow Yellow Consumed, Frieza card in graveyard',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'KOs one random character on the opponent\'s side of the field for each Frieza card in your graveyard',
+        TriggerType.UponAppearance,
+        'Yellow Yellow Consumed, Frieza card in graveyard'
+      ),
+    ],
   },
   {
     'id': 2049,
@@ -6962,10 +7700,14 @@ export const cardList: Array<{
     'energy_cost': 8,
     'type': CardType.Event,
     'icon': IconType.None,
-    'effect': 'Causes 1 Goku, Gohan, Goten and Chi-Chi cards each to randomly appear from your hand ("Upon Appearance" effects are not triggered)',
-    'effectTypes': [EffectType.Other],
-    'requirements': 'Goku, Gohan, Goten or Chi-Chi cards in your hand',
-    'trigger': '',
+    'effects': [
+      new Effect(
+        [EffectType.Other],
+        'Causes 1 Goku, Gohan, Goten and Chi-Chi cards each to randomly appear from your hand ("TriggerType.UponAppearance" effects are not triggered)',
+        TriggerType.EventCard,
+        'Goku, Gohan, Goten or Chi-Chi cards in your hand'
+      ),
+    ],
   },
   {
     'id': 2008,
@@ -6983,10 +7725,14 @@ export const cardList: Array<{
     'attack': 5000,
     'hit_points': 6000,
     'abilities': [AbilityType.ReducedCost],
-    'effect': 'Adds +4000 to its own Attack, +4000 to its own Hit Points and gives itself Guard.\n-1 to the cost of this card in your hand for each character card in your graveyard',
-    'effectTypes': [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.Guard],
-    'requirements': 'Purple Purple Owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.Guard],
+        'Adds +4000 to its own Attack, +4000 to its own Hit Points and gives itself Guard.\n-1 to the cost of this card in your hand for each character card in your graveyard',
+        TriggerType.UponAppearance,
+        'Purple Purple Owned'
+      ),
+    ],
   },
   {
     'id': 2060,
@@ -7003,10 +7749,14 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 3000,
     'hit_points': 4000,
-    'effect': '(no reqs) Adds 1 energy to your bank,\n(Purple Blue Green Consumed)Gives itself Swift Attack',
-    'effectTypes': [EffectType.SwiftAttack, EffectType.AddBankEnergy],
-    'requirements': 'Purple Blue Green Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack, EffectType.AddBankEnergy],
+        '(no reqs) Adds 1 energy to your bank,\n(Purple Blue Green Consumed)Gives itself Swift Attack',
+        TriggerType.UponAppearance,
+        'Purple Blue Green Consumed'
+      ),
+    ],
   },
   {
     'id': 2070,
@@ -7023,10 +7773,18 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 5000,
     'hit_points': 6000,
-    'effect': 'Causes 1 Super Ghost Kamikaze Attack card (cost: 0; Attack: 2000; Hit Points: 1; [Always] Swift Attack) to appear on your side of the field.\nUnable to attack Opponent\'s leader',
-    'effectTypes': [EffectType.UnableToAttackLeader, EffectType.SummonSupport],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.UnableToAttackLeader],
+        'Unable to attack Opponent\'s leader',
+        TriggerType.Always
+      ),
+      new Effect(
+        [EffectType.SummonSupport],
+        'Causes 1 Super Ghost Kamikaze Attack card (cost: 0; Attack: 2000; Hit Points: 1; [Always] Swift Attack) to appear on your side of the field',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2059,
@@ -7044,10 +7802,20 @@ export const cardList: Array<{
     'attack': 5000,
     'hit_points': 6000,
     'abilities': [AbilityType.InstantAppearance],
-    'effect': '(Purple Owned) Destroys 1 character with 3000 Hit Points or less on your opponent\'s side of the field.\n(Green Green Green Consumed) Appears from your SP deck at no energy cost if you consume a symbol',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Purple Owned,\nGreen Green Green Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [],
+        'Appears from your SP deck at no energy cost if you consume a symbol',
+        TriggerType.Other,
+        'Green Green Green Consumed'
+      ),
+      new Effect(
+        [EffectType.KillCharacter],
+        'Destroys 1 character with 3000 Hit Points or less on your opponent\'s side of the field',
+        TriggerType.UponAppearance,
+        'Purple Owned'
+      ),
+    ],
   },
   {
     'id': 2061,
@@ -7065,10 +7833,13 @@ export const cardList: Array<{
     'attack': 3000,
     'hit_points': 6000,
     'abilities': [AbilityType.Guard],
-    'effect': 'Draws 1 Android card, Draws nothing if you don\'t have any',
-    'effectTypes': [EffectType.DrawCard],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 Android card, Draws nothing if you don\'t have any',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2067,
@@ -7082,10 +7853,6 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 7000,
     'hit_points': 6000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 2043,
@@ -7103,10 +7870,14 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 4000,
     'hit_points': 5000,
-    'effect': '(2 Bank Energy Consumed) Causes 1 regular "Android 17: Biting the Hand that Feeds" card (cost: 4; Attack: 5000; Hit Points: 8000) to appear on your side of the field. ("Upon Appearance" effects are not triggered).\n(Purple Owned) Gives Swift Attack to all Android 17 cards other than this one on your side of the field',
-    'effectTypes': [EffectType.ConsumeBank, EffectType.SummonSupport, EffectType.SwiftAttack],
-    'requirements': '2 Bank Energy Consumed, Purple Owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.ConsumeBank, EffectType.SummonSupport, EffectType.SwiftAttack],
+        '(2 Bank Energy Consumed) Causes 1 regular "Android 17: Biting the Hand that Feeds" card (cost: 4; Attack: 5000; Hit Points: 8000) to appear on your side of the field. ("TriggerType.UponAppearance" effects are not triggered).\n(Purple Owned) Gives Swift Attack to all Android 17 cards other than this one on your side of the field',
+        TriggerType.UponAppearance,
+        '2 Bank Energy Consumed, Purple Owned'
+      ),
+    ],
   },
   {
     'id': 2045,
@@ -7123,10 +7894,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 4000,
     'hit_points': 10000,
-    'effect': '2x to its own Attack until the end of your opponents turn',
-    'effectTypes': [EffectType.AddAttack],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        '2x to its own Attack until the end of your opponents turn',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2046,
@@ -7144,10 +7918,13 @@ export const cardList: Array<{
     'attack': 7000,
     'hit_points': 9000,
     'abilities': [AbilityType.InstantAppearance],
-    'effect': 'Returns all regular Majin Buu and Babidi cards on your side of the field to your hand.\nAppears from your SP deck at no energy cost if you spend energy in your bank and have regular Majin Buu and Babidi characters on your side of the field',
-    'effectTypes': [EffectType.ReturnCharacter],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Returns all regular Majin Buu and Babidi cards on your side of the field to your hand.\nAppears from your SP deck at no energy cost if you spend energy in your bank and have regular Majin Buu and Babidi characters on your side of the field',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2053,
@@ -7166,10 +7943,14 @@ export const cardList: Array<{
     'attack': 6000,
     'hit_points': 8000,
     'abilities': [AbilityType.PiercingStrike],
-    'effect': 'Adds +2000 to its own Attack and gives itself Guard when a Saiyan card other than this one is on the field',
-    'effectTypes': [EffectType.AddAttack, EffectType.Guard],
-    'requirements': 'Another Saiyan on the field',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.Guard],
+        'Adds +2000 to its own Attack and gives itself Guard when a Saiyan card other than this one is on the field',
+        TriggerType.Always,
+        'Another Saiyan on the field'
+      ),
+    ],
   },
   {
     'id': 2055,
@@ -7183,10 +7964,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 6000,
     'hit_points': 5000,
-    'effect': 'KOs 1 character on the opponent\'s side of the field with a cost of 8 or more',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'KOs 1 character on the opponent\'s side of the field with a cost of 8 or more',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2044,
@@ -7203,10 +7987,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 7000,
     'hit_points': 7000,
-    'effect': '(Purple Owned) Restores your bank,\n(Blue Owned) Draws 1 card',
-    'effectTypes': [EffectType.RestoreBank, EffectType.DrawCard],
-    'requirements': 'Purple Blue Owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.RestoreBank, EffectType.DrawCard],
+        '(Purple Owned) Restores your bank,\n(Blue Owned) Draws 1 card',
+        TriggerType.UponAppearance,
+        'Purple Blue Owned'
+      ),
+    ],
   },
   {
     'id': 2050,
@@ -7223,10 +8011,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 7000,
     'hit_points': 7000,
-    'effect': 'Deals 7000 damage to your opponent\'s leader or 1 character on the field',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Blue Blue Blue Blue Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 7000 damage to your opponent\'s leader or 1 character on the field',
+        TriggerType.UponAppearance,
+        'Blue Blue Blue Blue Consumed'
+      ),
+    ],
   },
   {
     'id': 2057,
@@ -7244,10 +8036,14 @@ export const cardList: Array<{
     'attack': 7000,
     'hit_points': 8000,
     'abilities': [AbilityType.InstantAppearance],
-    'effect': '(Green Green Consumed) Deals 7000 damage to all other characters on the field,\n(Purple Purple Purple Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Vegeta in your graveyard',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Green Green Consumed, Purple Purple Purple Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        '(Green Green Consumed) Deals 7000 damage to all other characters on the field,\n(Purple Purple Purple Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Vegeta in your graveyard',
+        TriggerType.UponAppearance,
+        'Green Green Consumed, Purple Purple Purple Consumed'
+      ),
+    ],
   },
   {
     'id': 2064,
@@ -7265,10 +8061,14 @@ export const cardList: Array<{
     'attack': 9000,
     'hit_points': 7000,
     'abilities': [AbilityType.PiercingStrike],
-    'effect': 'KOs all other characters on the field other than this one when Majin Buu is on the field, then KOs itself',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Purple Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'KOs all other characters on the field other than this one when Majin Buu is on the field, then KOs itself',
+        TriggerType.UponAppearance,
+        'Purple Consumed'
+      ),
+    ],
   },
   {
     'id': 2065,
@@ -7285,10 +8085,14 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 5000,
     'hit_points': 7000,
-    'effect': 'Destroys 1 character on the oppponent\'s side of the field, then deals 2000 damage to the opponent\'s leader',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Blue Purple Owned',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Destroys 1 character on the oppponent\'s side of the field, then deals 2000 damage to the opponent\'s leader',
+        TriggerType.UponAppearance,
+        'Blue Purple Owned'
+      ),
+    ],
   },
   {
     'id': 2066,
@@ -7306,10 +8110,14 @@ export const cardList: Array<{
     'attack': 8000,
     'hit_points': 7000,
     'abilities': [AbilityType.InstantAppearance],
-    'effect': '(Green Green Consumed) KOs all characters with Guard on the opponent\'s side of the field.\n(Blue Blue Blue Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Android 16 in your graveyard',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': 'Green Green Consumed, Blue Blue Blue Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        '(Green Green Consumed) KOs all characters with Guard on the opponent\'s side of the field.\n(Blue Blue Blue Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Android 16 in your graveyard',
+        TriggerType.UponAppearance,
+        'Green Green Consumed, Blue Blue Blue Consumed'
+      ),
+    ],
   },
   {
     'id': 2052,
@@ -7327,10 +8135,13 @@ export const cardList: Array<{
     'attack': 7000,
     'hit_points': 8000,
     'abilities': [AbilityType.Guard],
-    'effect': 'KOs all charcters on the field with a cost of 3 or less',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'KOs all charcters on the field with a cost of 3 or less',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2056,
@@ -7348,10 +8159,14 @@ export const cardList: Array<{
     'attack': 7000,
     'hit_points': 7000,
     'abilities': [AbilityType.InstantAppearance],
-    'effect': '(no reqs) Gives itself Swift Attack and "Unable to attack opponent\'s leader".\n(Purple Blue Green Consumed) Appears from your SP deck at no energy cost if you consume a symbol',
-    'effectTypes': [EffectType.SwiftAttack, EffectType.UnableToAttackLeader],
-    'requirements': 'Purple Blue Green Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack, EffectType.UnableToAttackLeader],
+        '(no reqs) Gives itself Swift Attack and "Unable to attack opponent\'s leader".\n(Purple Blue Green Consumed) Appears from your SP deck at no energy cost if you consume a symbol',
+        TriggerType.UponAppearance,
+        'Purple Blue Green Consumed'
+      ),
+    ],
   },
   {
     'id': 2062,
@@ -7368,10 +8183,13 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 7000,
     'hit_points': 10000,
-    'effect': 'Deals 7000 damage to 1 character on the opponent\'s side of the field',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 7000 damage to 1 character on the opponent\'s side of the field',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2072,
@@ -7386,10 +8204,13 @@ export const cardList: Array<{
     'attack': 9000,
     'hit_points': 9000,
     'abilities': [AbilityType.PiercingStrike],
-    'effect': 'Restores your bank',
-    'effectTypes': [EffectType.RestoreBank],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.RestoreBank],
+        'Restores your bank',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2051,
@@ -7407,10 +8228,13 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 9000,
     'hit_points': 8000,
-    'effect': 'Destroys 1 regular character on your opponent\'s side of the field',
-    'effectTypes': [EffectType.KillCharacter],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Destroys 1 regular character on your opponent\'s side of the field',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2068,
@@ -7424,10 +8248,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 12000,
     'hit_points': 12000,
-    'effect': 'Deals 4000 damage to all other characters on the field if your energy limit is 7 or higher',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Energy limit is 7 or higher',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 4000 damage to all other characters on the field if your energy limit is 7 or higher',
+        TriggerType.UponAppearance,
+        'Energy limit is 7 or higher'
+      ),
+    ],
   },
   {
     'id': 2047,
@@ -7445,10 +8273,14 @@ export const cardList: Array<{
     'attack': 15000,
     'hit_points': 15000,
     'abilities': [AbilityType.InstantAppearance],
-    'effect': '(no req) Deals 5000 damage to 1 character on your opponent\'s side of the field for each Saiyan card in your graveyard,\n(Blue Green Yellow Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Goku in your graveyard',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Blue Green Yellow Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        '(no req) Deals 5000 damage to 1 character on your opponent\'s side of the field for each Saiyan card in your graveyard,\n(Blue Green Yellow Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Goku in your graveyard',
+        TriggerType.UponAppearance,
+        'Blue Green Yellow Consumed'
+      ),
+    ],
   },
   {
     'id': 2069,
@@ -7462,10 +8294,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 15000,
     'hit_points': 14000,
-    'effect': 'Deals 4000 damage to 1 character other than this one on the field if your energy limit is 7 or higher (Can be repeated 5 times)',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Energy limit is 7 or higher',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 4000 damage to 1 character other than this one on the field if your energy limit is 7 or higher (Can be repeated 5 times)',
+        TriggerType.UponAppearance,
+        'Energy limit is 7 or higher'
+      ),
+    ],
   },
   {
     'id': 2071,
@@ -7482,10 +8318,13 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 12000,
     'hit_points': 10000,
-    'effect': 'Randomly returns 2 cards to your opponent\'s deck from their hand',
-    'effectTypes': [EffectType.ReturnOpponentCardToDeck],
-    'requirements': '',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.ReturnOpponentCardToDeck],
+        'Randomly returns 2 cards to your opponent\'s deck from their hand',
+        TriggerType.UponAppearance
+      ),
+    ],
   },
   {
     'id': 2058,
@@ -7503,10 +8342,14 @@ export const cardList: Array<{
     'attack': 12000,
     'hit_points': 11000,
     'abilities': [AbilityType.InstantAppearance],
-    'effect': '(Yellow Yellow Owned) Gives itself Swift Attack and Negate Damage when you have 2 or more Frieza cards in your graveyard,\n(Purple Blue Green Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Frieza in your graveyard',
-    'effectTypes': [EffectType.SwiftAttack, EffectType.NegateDamage],
-    'requirements': 'Yellow Yellow Owned, Purple Blue Green Consumed',
-    'trigger': 'Always',
+    'effects': [
+      new Effect(
+        [EffectType.SwiftAttack, EffectType.NegateDamage],
+        '(Yellow Yellow Owned) Gives itself Swift Attack and Negate Damage when you have 2 or more Frieza cards in your graveyard,\n(Purple Blue Green Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Frieza in your graveyard',
+        TriggerType.Always,
+        'Yellow Yellow Owned, Purple Blue Green Consumed'
+      ),
+    ],
   },
   {
     'id': 2073,
@@ -7520,10 +8363,14 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 20000,
     'hit_points': 10000,
-    'effect': 'Deals 1000 damage to your opponent\'s leader and all characters on their side of the field for each unit of energy in your bank',
-    'effectTypes': [EffectType.DealDamage],
-    'requirements': 'Yellow Yellow Consumed',
-    'trigger': 'Upon Appearance',
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 1000 damage to your opponent\'s leader and all characters on their side of the field for each unit of energy in your bank',
+        TriggerType.UponAppearance,
+        'Yellow Yellow Consumed'
+      ),
+    ],
   },
   {
     'id': 1301,
@@ -7537,10 +8384,6 @@ export const cardList: Array<{
     'icon': IconType.None,
     'attack': 3000,
     'hit_points': 3000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1302,
@@ -7554,10 +8397,6 @@ export const cardList: Array<{
     'icon': IconType.None,
     'attack': 1000,
     'hit_points': 2000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1303,
@@ -7574,10 +8413,6 @@ export const cardList: Array<{
     'icon': IconType.None,
     'attack': 1000,
     'hit_points': 1000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1304,
@@ -7594,10 +8429,6 @@ export const cardList: Array<{
     'icon': IconType.None,
     'attack': 2000,
     'hit_points': 1000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 1305,
@@ -7614,10 +8445,6 @@ export const cardList: Array<{
     'icon': IconType.None,
     'attack': 4000,
     'hit_points': 1000,
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
   {
     'id': 2101,
@@ -7632,9 +8459,5 @@ export const cardList: Array<{
     'attack': 2000,
     'hit_points': 1,
     'abilities': [AbilityType.Swift],
-    'effect': '',
-    'effectTypes': [],
-    'requirements': '',
-    'trigger': '',
   },
 ];
