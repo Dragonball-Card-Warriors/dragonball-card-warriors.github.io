@@ -16,6 +16,7 @@ export default class DeckManager {
       console.log(deck);
       this.newDeck(deck);
     }
+    this.reloadDecks();
   }
 
   private save(): void {
@@ -25,24 +26,22 @@ export default class DeckManager {
   // non 0 indexed
   addDeckHtml(deck: Deck, index: number): void {
     const decksEl = document.getElementById('decks');
-    // Update the HTML
-    const deckEl = document.createElement('a');
+    const template: HTMLTemplateElement = document.getElementById('deck-item') as HTMLTemplateElement;
+
+    const deckEl: HTMLAnchorElement = template.content.firstElementChild.cloneNode(true) as HTMLAnchorElement;
     deckEl.href = `#deck-${index}`;
-    deckEl.className = 'm-3 deck-select text-decoration-none';
     deckEl.onclick = () => this.viewDeck(index);
 
     // Temp until can edit image/name
     const firstCardID = [...deck.cards][0];
     const card = cardList.find(c => c.id == firstCardID) || {id: 'none', name: 'New Deck'};
 
-    const image = document.createElement('img');
-    image.src = `images/cards/${card.id}_thumb.png`;
-    const br = document.createElement('br');
-    const text = document.createElement('span');
-    text.innerText = card.name;
-    deckEl.appendChild(image);
-    deckEl.appendChild(br);
-    deckEl.appendChild(text);
+    const img = deckEl.querySelector('img');
+    img.src = `images/cards/${card.id}_thumb.png`;
+
+    const span = deckEl.querySelector('span');
+    span.textContent = card.name;
+
     decksEl.appendChild(deckEl);
   }
 
@@ -95,30 +94,23 @@ export default class DeckManager {
 
   addCardHtml(card: typeof cardList[0]): void {
     const deckCardsEl = document.getElementById('deck-cards');
-    const cardEl = document.createElement('div');
-    cardEl.className = 'm-2 card-select clickable';
+    const template: HTMLTemplateElement = document.getElementById('card-item') as HTMLTemplateElement;
+
+    const cardEl: HTMLElement = template.content.firstElementChild.cloneNode(true) as HTMLElement;
     cardEl.dataset.card = card.id.toString();
-    cardEl.setAttribute('data-bs-toggle', 'modal');
-    cardEl.setAttribute('data-bs-target', '#cardInfoModal');
     cardEl.onclick = () => updateCardInfoModal(card.id);
     cardEl.oncontextmenu = (e) => {
       this.removeCard(card.id);
       e.preventDefault();
     };
-    const image = document.createElement('img');
-    image.src = `images/cards/${card.id}_thumb.png`;
-    const br = document.createElement('br');
-    const text = document.createElement('span');
-    text.innerText = card.name;
-    const br2 = document.createElement('br');
-    const subtext = document.createElement('span');
-    subtext.className = 'text-muted';
-    subtext.innerText = card.sub_name;
-    cardEl.appendChild(image);
-    cardEl.appendChild(br);
-    cardEl.appendChild(text);
-    cardEl.appendChild(br2);
-    cardEl.appendChild(subtext);
+
+    const img = cardEl.querySelector('img');
+    img.src = `images/cards/${card.id}_thumb.png`;
+
+    const spans = cardEl.querySelectorAll('span');
+    spans[0].textContent = card.name;
+    spans[1].textContent = card.sub_name;
+
     deckCardsEl.appendChild(cardEl);
   }
 

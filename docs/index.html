@@ -248,15 +248,27 @@
           <img src="images/deck_icon.png"/>&nbsp;<span class="">DECKS</span>
         </a>
         <div id="decks" class="shown d-flex align-items-center justify-content-left text-center">
-          <a id="deck-new" href="#deck-new" class="m-3 deck-select text-decoration-none" onclick="App.deckManager.newDeck();">
-            <img src="images/deck_new.png"/><br/>
-            <span>Create New</span>
-          </a>
         </div>
         <div id="deck-cards" class="bg-secondary d-flex justify-content-left text-center">
         </div>
+
+        <template id="deck-item">
+          <a href="#" class="m-3 deck-select text-decoration-none">
+            <img src="images/cards/none_thumb.png"/><br/>
+            <span>New Deck</span>
+          </a>
+        </template>
+
+        <template id="card-item">
+          <div class="m-2 card-select clickable" data-bs-toggle="modal" data-bs-target="#cardInfoModal">
+            <img src="images/cards/none_thumb.png"><br>
+            <span></span><br>
+            <span class="text-muted"></span>
+          </div>
+        </template>
       </deck>
     </main>
+    
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
