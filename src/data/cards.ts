@@ -6004,7 +6004,7 @@ export const cardList: Array<{
     'hit_points': 4000,
     'abilities': [AbilityType.Guard],
     'effect': 'Unable to attack',
-    'effectTypes': [EffectType.UnableToAttack, EffectType.SummonSpecial],
+    'effectTypes': [EffectType.UnableToAttack],
     'requirements': '',
     'trigger': 'Always',
   },
