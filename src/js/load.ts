@@ -1,4 +1,4 @@
-import { cardList, CardType, rarityColor, EffectType, Effect } from '../data/cards';
+import { cardList, CardType, rarityColor, EffectType, AbilityType, Effect } from '../data/cards';
 import { sortCards } from './sort';
 
 export const supportsWebp = (): Promise<boolean> => new Promise((resolve) => {
@@ -23,7 +23,7 @@ export const getCardEffectHTML = (effects: Effect[]): string => {
     if (effect.requirements) {
       html += `<tr><td colspan="4" class="no-border text-warning">${effect.requirements?.replace(/\n/g, '<br/>').replace(/\b(Green|Blue|Yellow|Purple)\b/g, symbol => `<img class="symbol-icon" src="generator/images/symbol/${symbol.toLowerCase()}.png"/>`)}</td></tr>`;
     }
-    html += `<tr><td colspan="4">${effect.description.replace(/\n/g, '<br/>').replace(/\b(Green|Blue|Yellow|Purple)\b/g, symbol => `<img class="symbol-icon" src="generator/images/symbol/${symbol.toLowerCase()}.png"/>`)}</td></tr>`;
+    html += `<tr><td colspan="4">${effect.description.replace(/\n/g, '<br/>').replace(/\b(Green|Blue|Yellow|Purple)\b/g, symbol => `<img class="symbol-icon" src="generator/images/symbol/${symbol.toLowerCase()}.png"/>`).replace(new RegExp(`\\b(${Object.values(AbilityType).join('|')})\\b`, 'g'), ability => `<img class="effect-icon" src="generator/images/effects/${ability}.png"/> ${ability}`)}</td></tr>`;
   });
   return html;
 };
@@ -87,7 +87,7 @@ export const loadCards = async (container: HTMLElement): Promise<void> => {
               ${card.abilities && card.abilities.length ? `
               <tr>
                 <th width="25%" class="text-end">Ability:</th>
-                <td width="75%" class="text-start" colspan="3">${card.abilities.join(', ')}</td>
+                <td width="75%" class="text-start" colspan="3">${card.abilities.map(a => `<img class="effect-icon" src="generator/images/effects/${a}.png"/> ${a}`).join(' ')}</td>
               </tr>` : ''}
               ${getCardEffectHTML(card.effects)}
             </tbody>

@@ -25,10 +25,8 @@ export enum AbilityType {
   Swift = 'Swift',
   PiercingStrike = 'Piercing Strike',
   NaturalRecovery = 'Natural Recovery',
-  ReducedCost = 'Reduced Cost',
-  InstantAppearance = 'Instant Appearance',
+  NegateDamage = 'Negate Damage',
 }
-
 
 export enum EffectType {
   Other = 'Other',
@@ -58,6 +56,9 @@ export enum EffectType {
   GainSymbol = 'Gain Symbol',
   ConsumeBank = 'Consume Bank',
   SummonSupport = 'Summon Support',
+  SummonFromHand = 'Summon From Hand',
+  ReducedCost = 'Reduced Cost',
+  InstantAppearance = 'Instant Appearance',
 }
 
 // Not used yet
@@ -565,9 +566,9 @@ export const cardList: Array<{
     'effects': [
       new Effect(
         [EffectType.NegateDamage],
-        'Gives Negate Damage to all Friendly Units for this turn.',
+        'Gives Negate Damage to all Units on your side of the field for this turn.',
         TriggerType.EventCard,
-        '5 Friendly Units'
+        '5 Units on your side of the field'
       ),
     ],
   },
@@ -3440,10 +3441,15 @@ export const cardList: Array<{
     'hit_points': 12000,
     'effects': [
       new Effect(
-        [EffectType.AddAttack, EffectType.Other],
-        'You must have 1 energy in your bank to Attack with this Unit.\nAdds 8000 ATK to self on Opponent\'s Turn',
+        [EffectType.Other],
+        'You must have 1 energy in your bank to Attack with this Unit.',
+        TriggerType.Always
+      ),
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds 8000 ATK to self on Opponent\'s Turn',
         TriggerType.Always,
-        'None\nPurple Owned'
+        'Purple Owned'
       ),
     ],
   },
@@ -6552,7 +6558,7 @@ export const cardList: Array<{
     'effects': [
       new Effect(
         [EffectType.NegateDamage],
-        'You must have Recoome, Jeice, Burter, Guldo and Captain Ginyu on your side of the field to use this card.\nGives Negate Damage to all Ginyu Force cards on your side of the field until your opponents turn ends',
+        'Gives Negate Damage to all Ginyu Force cards on your side of the field until your opponents turn ends',
         TriggerType.EventCard,
         'Recoome, Jeice, Burter, Guldo and Captain Ginyu on your side of the field'
       ),
@@ -7378,11 +7384,15 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 4000,
     'hit_points': 4000,
-    'abilities': [AbilityType.ReducedCost],
     'effects': [
       new Effect(
+        [EffectType.ReducedCost],
+        '-1 to the cost of this card in your hand for each event card in your graveyard',
+        TriggerType.Other
+      ),
+      new Effect(
         [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.SwiftAttack],
-        'Adds +2000 to its own Attack, +2000 to its own Hit Points and gives itself Swift Attack.\n-1 to the cost of this card in your hand for each event card in your graveyard',
+        'Adds +2000 to its own Attack, +2000 to its own Hit Points and gives itself Swift Attack',
         TriggerType.UponAppearance,
         'Blue Owned'
       ),
@@ -7493,10 +7503,16 @@ export const cardList: Array<{
     'hit_points': 10000,
     'effects': [
       new Effect(
-        [EffectType.SwiftAttack, EffectType.PiercingStrike, EffectType.Guard, EffectType.NaturalRecovery],
-        '(Blue Consumed) Gives itself Swift Attack and Piercing Strike.\n(Purple Consumed) Gives itself Guard and Natural Recovery',
+        [EffectType.SwiftAttack, EffectType.PiercingStrike],
+        'Gives itself Swift Attack and Piercing Strike',
         TriggerType.UponAppearance,
-        'Blue and Purple Consumed'
+        'Blue Consumed'
+      ),
+      new Effect(
+        [EffectType.Guard, EffectType.NaturalRecovery],
+        'Gives itself Guard and Natural Recovery',
+        TriggerType.UponAppearance,
+        'Purple Consumed'
       ),
     ],
   },
@@ -7518,8 +7534,13 @@ export const cardList: Array<{
     'hit_points': 5000,
     'effects': [
       new Effect(
-        [EffectType.DrawCard, EffectType.Other],
-        '(No Req) Draws 1 Recoome, Burter, Jeice and Guldo cards each with a cost of 3 or lower.\n(Yellow Consumed) Causes 1 Recoome, Burter, Jeice and Guldo cards each with a cost of 3 or less to appear from your hand ("TriggerType.UponAppearance" effects are not triggered)',
+        [EffectType.DrawCard],
+        'Draws 1 Recoome, Burter, Jeice and Guldo cards each with a cost of 3 or lower',
+        TriggerType.UponAppearance
+      ),
+      new Effect(
+        [EffectType.SummonFromHand],
+        'Causes 1 Recoome, Burter, Jeice and Guldo cards each with a cost of 3 or less to appear from your hand ("TriggerType.UponAppearance" effects are not triggered)',
         TriggerType.UponAppearance,
         'Yellow Consumed'
       ),
@@ -7596,11 +7617,15 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 6000,
     'hit_points': 6000,
-    'abilities': [AbilityType.ReducedCost],
     'effects': [
       new Effect(
+        [EffectType.ReducedCost],
+        '-1 to the cost of this card in your hand for each Frieza card in your graveyard',
+        TriggerType.Other
+      ),
+      new Effect(
         [EffectType.RecoverHitPoints, EffectType.RecoverLifePoints],
-        'Adds +4000 to its own Attack and +4000 to its own Hit Points, -1 to the cost of this card in your hand for each Frieza card in your graveyard',
+        'Adds +4000 to its own Attack and +4000 to its own Hit Points',
         TriggerType.UponAppearance,
         'Yellow Owned'
       ),
@@ -7621,13 +7646,17 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 5000,
     'hit_points': 5000,
-    'abilities': [AbilityType.InstantAppearance],
     'effects': [
       new Effect(
-        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.KillCharacter],
-        '(no reqs) KOs all Android 17 and Android 18 cards on your side of the field, Adds +5000 to its own Attack and +5000 to its own Hit Points and KOs a random character on the opponent\'s side of the field for each android killed by this effect.\n(Purple and Green Consumed) Appears from your deck at no energy cost at all if you consume a symbol and have Android 17 and Android 18 on your side of the field',
-        TriggerType.UponAppearance,
+        [EffectType.InstantAppearance],
+        'Appears from your deck at no energy cost at all if you consume a symbol and have Android 17 and Android 18 on your side of the field',
+        TriggerType.Other,
         'Purple and Green Consumed'
+      ),
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.KillCharacter],
+        'KOs all Android 17 and Android 18 cards on your side of the field, Adds +5000 to its own Attack and +5000 to its own Hit Points and KOs a random character on the opponent\'s side of the field for each android killed by this effect',
+        TriggerType.UponAppearance
       ),
     ],
   },
@@ -7724,11 +7753,15 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 5000,
     'hit_points': 6000,
-    'abilities': [AbilityType.ReducedCost],
     'effects': [
       new Effect(
+        [EffectType.ReducedCost],
+        '-1 to the cost of this card in your hand for each character card in your graveyard',
+        TriggerType.Other
+      ),
+      new Effect(
         [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.Guard],
-        'Adds +4000 to its own Attack, +4000 to its own Hit Points and gives itself Guard.\n-1 to the cost of this card in your hand for each character card in your graveyard',
+        'Adds +4000 to its own Attack, +4000 to its own Hit Points and gives itself Guard',
         TriggerType.UponAppearance,
         'Purple Purple Owned'
       ),
@@ -7751,8 +7784,13 @@ export const cardList: Array<{
     'hit_points': 4000,
     'effects': [
       new Effect(
-        [EffectType.SwiftAttack, EffectType.AddBankEnergy],
-        '(no reqs) Adds 1 energy to your bank,\n(Purple Blue Green Consumed)Gives itself Swift Attack',
+        [EffectType.AddBankEnergy],
+        'Adds 1 energy to your bank',
+        TriggerType.UponAppearance
+      ),
+      new Effect(
+        [EffectType.SwiftAttack],
+        'Gives itself Swift Attack',
         TriggerType.UponAppearance,
         'Purple Blue Green Consumed'
       ),
@@ -7801,10 +7839,9 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 5000,
     'hit_points': 6000,
-    'abilities': [AbilityType.InstantAppearance],
     'effects': [
       new Effect(
-        [],
+        [EffectType.InstantAppearance],
         'Appears from your SP deck at no energy cost if you consume a symbol',
         TriggerType.Other,
         'Green Green Green Consumed'
@@ -7872,10 +7909,16 @@ export const cardList: Array<{
     'hit_points': 5000,
     'effects': [
       new Effect(
-        [EffectType.ConsumeBank, EffectType.SummonSupport, EffectType.SwiftAttack],
-        '(2 Bank Energy Consumed) Causes 1 regular "Android 17: Biting the Hand that Feeds" card (cost: 4; Attack: 5000; Hit Points: 8000) to appear on your side of the field. ("TriggerType.UponAppearance" effects are not triggered).\n(Purple Owned) Gives Swift Attack to all Android 17 cards other than this one on your side of the field',
+        [EffectType.ConsumeBank, EffectType.SummonSupport],
+        'Causes 1 regular "Android 17: Biting the Hand that Feeds" card (cost: 4; Attack: 5000; Hit Points: 8000) to appear on your side of the field. ("TriggerType.UponAppearance" effects are not triggered)',
         TriggerType.UponAppearance,
-        '2 Bank Energy Consumed, Purple Owned'
+        '2 Bank Energy Consumed'
+      ),
+      new Effect(
+        [EffectType.SwiftAttack],
+        'Gives Swift Attack to all Android 17 cards other than this one on your side of the field',
+        TriggerType.UponAppearance,
+        'Purple Owned'
       ),
     ],
   },
@@ -7917,11 +7960,16 @@ export const cardList: Array<{
     'icon': IconType.Purple,
     'attack': 7000,
     'hit_points': 9000,
-    'abilities': [AbilityType.InstantAppearance],
     'effects': [
       new Effect(
+        [EffectType.InstantAppearance],
+        'Appears from your SP deck at no energy cost',
+        TriggerType.Other,
+        'Spend energy from bank, Have regular Majin Buu and Babidi characters on your side of the field'
+      ),
+      new Effect(
         [EffectType.ReturnCharacter],
-        'Returns all regular Majin Buu and Babidi cards on your side of the field to your hand.\nAppears from your SP deck at no energy cost if you spend energy in your bank and have regular Majin Buu and Babidi characters on your side of the field',
+        'Returns all regular Majin Buu and Babidi cards on your side of the field to your hand',
         TriggerType.UponAppearance
       ),
     ],
@@ -7989,10 +8037,16 @@ export const cardList: Array<{
     'hit_points': 7000,
     'effects': [
       new Effect(
-        [EffectType.RestoreBank, EffectType.DrawCard],
-        '(Purple Owned) Restores your bank,\n(Blue Owned) Draws 1 card',
+        [EffectType.RestoreBank],
+        'Restores your bank',
         TriggerType.UponAppearance,
-        'Purple Blue Owned'
+        'Purple Owned'
+      ),
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 card',
+        TriggerType.UponAppearance,
+        'Blue Owned'
       ),
     ],
   },
@@ -8035,13 +8089,18 @@ export const cardList: Array<{
     'icon': IconType.Green,
     'attack': 7000,
     'hit_points': 8000,
-    'abilities': [AbilityType.InstantAppearance],
     'effects': [
       new Effect(
+        [EffectType.InstantAppearance],
+        'Appears from your SP deck at no energy cost if you consume a symbol and have Vegeta in your graveyard',
+        TriggerType.Other,
+        'Purple Purple Purple Consumed'
+      ),
+      new Effect(
         [EffectType.DealDamage],
-        '(Green Green Consumed) Deals 7000 damage to all other characters on the field,\n(Purple Purple Purple Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Vegeta in your graveyard',
+        'Deals 7000 damage to all other characters on the field',
         TriggerType.UponAppearance,
-        'Green Green Consumed, Purple Purple Purple Consumed'
+        'Green Green Consumed'
       ),
     ],
   },
@@ -8109,13 +8168,18 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 8000,
     'hit_points': 7000,
-    'abilities': [AbilityType.InstantAppearance],
     'effects': [
       new Effect(
+        [EffectType.InstantAppearance],
+        'Appears from your SP deck at no energy cost if you consume a symbol and have Android 16 in your graveyard',
+        TriggerType.Other,
+        'Blue Blue Blue Consumed'
+      ),
+      new Effect(
         [EffectType.KillCharacter],
-        '(Green Green Consumed) KOs all characters with Guard on the opponent\'s side of the field.\n(Blue Blue Blue Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Android 16 in your graveyard',
+        'KOs all characters with Guard on the opponent\'s side of the field',
         TriggerType.UponAppearance,
-        'Green Green Consumed, Blue Blue Blue Consumed'
+        'Green Green Consumed'
       ),
     ],
   },
@@ -8158,13 +8222,18 @@ export const cardList: Array<{
     'icon': IconType.Blue,
     'attack': 7000,
     'hit_points': 7000,
-    'abilities': [AbilityType.InstantAppearance],
     'effects': [
       new Effect(
-        [EffectType.SwiftAttack, EffectType.UnableToAttackLeader],
-        '(no reqs) Gives itself Swift Attack and "Unable to attack opponent\'s leader".\n(Purple Blue Green Consumed) Appears from your SP deck at no energy cost if you consume a symbol',
-        TriggerType.UponAppearance,
+        [EffectType.InstantAppearance],
+        'Appears from your SP deck at no energy cost if you consume a symbol',
+        TriggerType.Other,
         'Purple Blue Green Consumed'
+      ),
+      new Effect(
+        [EffectType.SwiftAttack, EffectType.UnableToAttackLeader],
+        'Gives itself Swift Attack and "Unable to attack opponent\'s leader"',
+        TriggerType.Other,
+        ''
       ),
     ],
   },
@@ -8272,13 +8341,17 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 15000,
     'hit_points': 15000,
-    'abilities': [AbilityType.InstantAppearance],
     'effects': [
       new Effect(
-        [EffectType.DealDamage],
-        '(no req) Deals 5000 damage to 1 character on your opponent\'s side of the field for each Saiyan card in your graveyard,\n(Blue Green Yellow Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Goku in your graveyard',
-        TriggerType.UponAppearance,
+        [EffectType.InstantAppearance],
+        'Appears from your SP deck at no energy cost if you consume a symbol and have Goku in your graveyard',
+        TriggerType.Other,
         'Blue Green Yellow Consumed'
+      ),
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 5000 damage to 1 character on your opponent\'s side of the field for each Saiyan card in your graveyard',
+        TriggerType.UponAppearance
       ),
     ],
   },
@@ -8341,13 +8414,18 @@ export const cardList: Array<{
     'icon': IconType.Yellow,
     'attack': 12000,
     'hit_points': 11000,
-    'abilities': [AbilityType.InstantAppearance],
     'effects': [
       new Effect(
+        [EffectType.InstantAppearance],
+        'Appears from your SP deck at no energy cost if you consume a symbol and have Frieza in your graveyard',
+        TriggerType.Other,
+        'Purple Blue Green Consumed'
+      ),
+      new Effect(
         [EffectType.SwiftAttack, EffectType.NegateDamage],
-        '(Yellow Yellow Owned) Gives itself Swift Attack and Negate Damage when you have 2 or more Frieza cards in your graveyard,\n(Purple Blue Green Consumed) Appears from your SP deck at no energy cost if you consume a symbol and have Frieza in your graveyard',
+        'Gives itself Swift Attack and Negate Damage when you have 2 or more Frieza cards in your graveyard',
         TriggerType.Always,
-        'Yellow Yellow Owned, Purple Blue Green Consumed'
+        'Yellow Yellow Owned'
       ),
     ],
   },

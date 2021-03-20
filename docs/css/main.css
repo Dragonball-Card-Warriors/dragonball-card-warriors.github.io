@@ -39,6 +39,10 @@ img.symbol-icon {
   height: 24px;
 }
 
+img.effect-icon {
+  height: 20px;
+}
+
 /* Fix for superhero theme selected buttons */
 .btn-check:active+.btn-outline-primary,
 .btn-check:checked+.btn-outline-primary,

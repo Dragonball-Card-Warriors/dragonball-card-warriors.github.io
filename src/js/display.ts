@@ -1,4 +1,4 @@
-import { rarityColor, cardList } from '../data/cards';
+import { rarityColor, CardType, cardList } from '../data/cards';
 import { getCardEffectHTML } from './load';
 
 let displayInfo = true;
@@ -49,17 +49,17 @@ export const updateCardInfoModal = (id: number): void => {
         <th width="25%" class="text-end">Cost:</th>
         <td width="25%" class="text-start">${card.energy_cost}</td>
       </tr>
-      ${card.type == 'Character' ? `
+      ${card.type !== CardType.Event ? `
       <tr>
         <th width="25%" class="text-end">Attack:</th>
         <td width="25%" class="text-start">${card.attack || '-'}</td>
         <th width="25%" class="text-end">HP:</th>
         <td width="25%" class="text-start">${card.hit_points || '-'}</td>
       </tr>` : ''}
-      ${card.abilities ? `
+      ${card.abilities && card.abilities.length ? `
       <tr>
         <th width="25%" class="text-end">Ability:</th>
-        <td width="75%" class="text-start" colspan="3">${card.abilities}</td>
+        <td width="75%" class="text-start" colspan="3">${card.abilities.map(a => `<img class="effect-icon" src="generator/images/effects/${a}.png"/> ${a}`).join(' ')}</td>
       </tr>` : ''}
       ${getCardEffectHTML(card.effects)}
     </tbody>`;
