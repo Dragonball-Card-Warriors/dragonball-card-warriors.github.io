@@ -43,6 +43,19 @@ img.effect-icon {
   height: 20px;
 }
 
+.rarity-1 {
+  color: #a6a3cf;
+}
+.rarity-2 {
+  color: #d9a083;
+}
+.rarity-3 {
+  color: #c5d7da;
+}
+.rarity-4 {
+  color: #f2d63a;
+}
+
 /* Fix for superhero theme selected buttons */
 .btn-check:active+.btn-outline-primary,
 .btn-check:checked+.btn-outline-primary,

@@ -71,10 +71,10 @@ export enum TriggerType {
 }
 
 export const rarityColor = {
-  [Rarity.Normal]: '#808080',
-  [Rarity.Rare]: '#cd7f32',
-  [Rarity.SuperRare]: '#aaa9ad',
-  [Rarity.Legendary]: '#d4af37',
+  [Rarity.Normal]: '#a6a3cf',
+  [Rarity.Rare]: '#d9a083',
+  [Rarity.SuperRare]: '#c5d7da',
+  [Rarity.Legendary]: '#f2d63a',
 };
 
 // Not used yet

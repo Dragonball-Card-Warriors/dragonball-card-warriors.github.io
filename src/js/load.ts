@@ -73,7 +73,7 @@ export const loadCards = async (container: HTMLElement): Promise<void> => {
               </tr>` : ''}
               <tr>
                 <th width="25%" class="text-end">Rarity:</th>
-                <td width="25%" class="text-start" style="color: ${rarityColor[card.rarity]}">${''.padStart(card.rarity, '✯')}</td>
+                <td width="25%" class="text-start rarity-${card.rarity}">${''.padStart(card.rarity, '✯')}</td>
                 <th width="25%" class="text-end">Cost:</th>
                 <td width="25%" class="text-start">${card.energy_cost}</td>
               </tr>
