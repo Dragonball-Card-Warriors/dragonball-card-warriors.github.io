@@ -7154,8 +7154,8 @@ export const cardList: Array<{
     'icon': IconType.None,
     'effects': [
       new Effect(
-        [EffectType.KillCharacter, EffectType.IncreaseEnergyLimit],
-        'KOs 1 Saiyan card on the field, then increases your bank by 1',
+        [EffectType.KillCharacter, EffectType.AddBankEnergy],
+        'KOs 1 Saiyan card on the field, then add 1 energy to your bank',
         TriggerType.EventCard,
         'Saiyan on the field'
       ),
