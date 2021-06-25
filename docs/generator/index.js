@@ -80,7 +80,7 @@ const updateCanvas = async () => {
 
   // Background
   const bg = await loadImage('images/Black.png', (ctx, image) => {
-    ctx.fillStyle = Settings.type == 'event' ? '#2C2B62' : '#000';
+    ctx.fillStyle = Settings.type == 'event' ? '#2C2B62' : Settings.type == 'special' ? '#FFF100' : '#000';
     ctx.fillRect(0, 0, image.width, image.height);
     ctx.globalCompositeOperation = 'destination-in';
   });

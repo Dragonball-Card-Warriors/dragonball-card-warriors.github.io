@@ -105,7 +105,7 @@ const generateImages = async () => {
         width: 620,
         height: 996,
         custom: (ctx: CanvasRenderingContext2D, image: any) => {
-          ctx.fillStyle = card.type == CardData.CardType.Event ? '#2C2B62' : '#000';
+          ctx.fillStyle = card.type == CardData.CardType.Event ? '#2C2B62' : card.type == CardData.CardType.Special ? '#FFF100' : '#000';
           ctx.fillRect(0, 0, image.width || image.img.width, image.height || image.img.height);
           ctx.globalCompositeOperation = 'destination-in';
         },
