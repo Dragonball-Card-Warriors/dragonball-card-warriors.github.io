@@ -91,6 +91,7 @@ const generateImages = async () => {
   let y = 0;
 
   for (const card of cardList) {
+    const cardID = deckID * 100 + (y * 10 + x);
 
     // Cost
     imageData.push(
@@ -106,9 +107,8 @@ const generateImages = async () => {
     x = x >= 9 ? 0 : x + 1;
     y = x > 0 ? y : y + 1;
 
-    fullDeckData.ObjectStates[0].DeckIDs.push(card.id);
+    fullDeckData.ObjectStates[0].DeckIDs.push(cardID);
     fullDeckData.ObjectStates[0].ContainedObjects.push({
-      'GUID': genRandHex(6),
       'Name': 'Card',
       'Transform': {
         'posX': 0,
@@ -122,7 +122,17 @@ const generateImages = async () => {
         'scaleZ': 1,
       },
       'Nickname': card.name,
-      'Description': `${card.abilities ? `Abilities:\n${card.abilities.join(' - ')}\n\n` : ''}${card.effects ? `Effects:\n${card.effects.join('\n')}` : ''}`,
+      'Description': `${card.abilities ? `ABILITIES:\n${card.abilities.join(' | ')}\n\n` : ''}${card.effects ? `EFFECTS:\n${card.effects.map(effect => {
+        let text = '';
+        if (effect.trigger) {
+          text += `Trigger:\n[${effect.trigger.toUpperCase()}]\n`;
+        }
+        if (effect.requirements) {
+          text += `Requirements:\n${effect.requirements}\n`;
+        }
+        text += `Effect:\n${effect.description}\n`;
+        return text;
+      }).join('\n')}` : ''}`,
       'Locked': false,
       'Grid': true,
       'Snap': true,
@@ -134,14 +144,14 @@ const generateImages = async () => {
       'Tooltip': true,
       'GridProjection': false,
       'Hands': true,
-      'CardID': card.id,
+      'CardID': cardID,
       'SidewaysCard': false,
     });
 
     if (imageData.length >= 70 || (imagesGenerated + 1) >= totalImages) {
       fullDeckData.ObjectStates[0].CustomDeck[deckID] = {
-        'FaceURL': `https://dragonball-card-warriors.github.io/tts/Deck_${deckID}.png`,
-        'BackURL': 'https://dragonball-card-warriors.github.io/images/sleeves/0025.png',
+        'FaceURL': `https://dragonball-card-warriors.github.io/tts/Deck_${deckID}.png?t=${Date.now()}`,
+        'BackURL': `https://dragonball-card-warriors.github.io/images/sleeves/0025.png?t=${Date.now()}`,
         'NumWidth': 10,
         'NumHeight': 7,
         'BackIsHidden': false,
