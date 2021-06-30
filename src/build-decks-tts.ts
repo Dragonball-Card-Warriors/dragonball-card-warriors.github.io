@@ -19,7 +19,7 @@ const progress = (msg, progress, total = 100) => {
   }
 };
 
-const cardList = CardData.cardList.sort((a, b) => a.energy_cost - b.energy_cost).sort((a, b) => parseInt(a.type, 36) - parseInt(b.type, 36));
+const cardList = CardData.cardList.sort((a, b) => a.id - b.id);
 
 const generateImages = async () => {
   const totalImages = cardList.length;
@@ -46,7 +46,7 @@ const generateImages = async () => {
     },
   ];
 
-  let deckID = 0;
+  let deckID = 1;
   let x = 0;
   let y = 0;
 
