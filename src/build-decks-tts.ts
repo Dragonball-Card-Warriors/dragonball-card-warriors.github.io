@@ -104,24 +104,23 @@ const generateImages = async () => {
 
   success('Deck images generated successfully!');
 
-  // info('Preparing to compress decks...');
+  let imagesCompressed = 0;
 
-  // imagesGenerated = 0;
-  // const comp = await compress_images({
-  //   source: `docs/images/cards/*(${cardList.map(c => c.id).join('|')})_thumb.png`,
-  //   destination: 'docs/images/cards/',
-  //   params: {
-  //     compress_force: true,
-  //     statistic: false,
-  //     autoupdate: true,
-  //   },
-  //   enginesSetup: {
-  //     png: {engine: 'pngquant', command: ['--quality=20-70', '--ext=.png', '--force']},
-  //   },
-  //   onProgress: (err) => err ? error(err) : progress(`Compressed ${++imagesGenerated}/${totalImages} images...`, imagesGenerated, totalImages),
-  // });
+  const comp = await compress_images({
+    source: `docs/tts/*(${Object.keys(fullDeckData.ObjectStates[0].CustomDeck).map(c => `Deck_${c}`).join('|')}).png`,
+    destination: 'docs/tts/',
+    params: {
+      compress_force: true,
+      statistic: false,
+      autoupdate: true,
+    },
+    enginesSetup: {
+      png: {engine: 'pngquant', command: ['--quality=20-70', '--ext=.png', '--force']},
+    },
+    onProgress: (err) => err ? error(err) : progress(`Compressed ${++imagesCompressed}/${deckID} decks...`, imagesGenerated, totalImages),
+  });
 
-  // success('Compressed decks successfully!');
+  success('Compressed decks successfully!');
 };
 
 generateImages();
