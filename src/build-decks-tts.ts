@@ -18,6 +18,46 @@ const progress = (msg, progress, total = 100) => {
     console.log();
   }
 };
+const genRandHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+
+const fullDeckData = {
+  'ObjectStates': [
+    {
+      'Name': 'DeckCustom',
+      'Transform': {
+        'posX': 0,
+        'posY': 0,
+        'posZ': 0,
+        'rotX': 0,
+        'rotY': 180,
+        'rotZ': 180,
+        'scaleX': 1,
+        'scaleY': 1,
+        'scaleZ': 1,
+      },
+      'Nickname': 'DBCW Full Deck',
+      'Description': 'Dragonball Card Warriors full deck',
+      'LayoutGroupSortIndex': 0,
+      'Value': 0,
+      'Locked': false,
+      'Grid': true,
+      'Snap': true,
+      'IgnoreFoW': false,
+      'MeasureMovement': false,
+      'DragSelectable': true,
+      'Autoraise': true,
+      'Sticky': true,
+      'Tooltip': true,
+      'GridProjection': false,
+      'HideWhenFaceDown': true,
+      'Hands': false,
+      'SidewaysCard': false,
+      'DeckIDs': [],
+      'CustomDeck': {},
+      'ContainedObjects': [],
+    },
+  ],
+};
 
 const cardList = CardData.cardList.sort((a, b) => a.id - b.id);
 
@@ -66,7 +106,48 @@ const generateImages = async () => {
     x = x >= 9 ? 0 : x + 1;
     y = x > 0 ? y : y + 1;
 
+    fullDeckData.ObjectStates[0].DeckIDs.push(card.id);
+    fullDeckData.ObjectStates[0].ContainedObjects.push({
+      'GUID': genRandHex(6),
+      'Name': 'Card',
+      'Transform': {
+        'posX': 0,
+        'posY': 0,
+        'posZ': 0,
+        'rotX': 0,
+        'rotY': 180,
+        'rotZ': 180,
+        'scaleX': 1,
+        'scaleY': 1,
+        'scaleZ': 1,
+      },
+      'Nickname': card.name,
+      'Description': `${card.abilities ? `Abilities:\n${card.abilities.join(' - ')}\n\n` : ''}${card.effects ? `Effects:\n${card.effects.join('\n')}` : ''}`,
+      'Locked': false,
+      'Grid': true,
+      'Snap': true,
+      'IgnoreFoW': false,
+      'MeasureMovement': false,
+      'DragSelectable': true,
+      'Autoraise': true,
+      'Sticky': true,
+      'Tooltip': true,
+      'GridProjection': false,
+      'Hands': true,
+      'CardID': card.id,
+      'SidewaysCard': false,
+    });
+
     if (imageData.length >= 70 || (imagesGenerated + 1) >= totalImages) {
+      fullDeckData.ObjectStates[0].CustomDeck[deckID] = {
+        'FaceURL': `https://dragonball-card-warriors.github.io/tts/Deck_${deckID}.png`,
+        'BackURL': 'https://dragonball-card-warriors.github.io/images/sleeves/0025.png',
+        'NumWidth': 10,
+        'NumHeight': 7,
+        'BackIsHidden': false,
+        'UniqueBack': false,
+        'Type': 0,
+      };
       imageData.push(
         {
           src: 'docs/images/sleeves/0000.png',
@@ -103,6 +184,14 @@ const generateImages = async () => {
   }
 
   success('Deck images generated successfully!');
+
+  info('Saving deck list...');
+
+  await fs.writeFile('docs/tts/DBCW_FullDeck.json', JSON.stringify(fullDeckData, null, 2));
+
+  success('Deck list saved!');
+
+  info('Preparing to compress decks...');
 
   let imagesCompressed = 0;
 
