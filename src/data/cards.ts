@@ -41,6 +41,7 @@ export enum EffectType {
   Rush = 'Rush',
   Overpower = 'Overpower',
   KillCharacter = 'Kill Character',
+  DestroyCharacter = 'Destroy Character',
   RemoveEffects = 'Remove Effects',
   ReturnCharacter = 'Return Character',
   AddBankEnergy = 'Add Bank Energy',
@@ -67,7 +68,8 @@ export enum EffectType {
   ReturnFromGraveyard = 'Return From Graveyard',
   ReturnCardToDeck = 'Return Card To Deck',
   DiscardCard = 'Discard Card',
-  SurgeDecrease = 'Surge Decrease'
+  SurgeDecrease = 'Surge Decrease',
+  SummonOpponentCard = 'Summon Opponent Card',
 }
 
 // Not used yet
@@ -6860,7 +6862,7 @@ export const cardList: Array<{
     'icon': IconType.None,
     'effects': [
       new Effect(
-        [EffectType.KillCharacter],
+        [EffectType.DestroyCharacter],
         'Destroys 1 character with a cost of 2 or less on your opponent\'s side of the field'
       ),
     ],
@@ -7856,7 +7858,7 @@ export const cardList: Array<{
         'Green Green Green Consumed'
       ),
       new Effect(
-        [EffectType.KillCharacter],
+        [EffectType.DestroyCharacter],
         'Destroys 1 character with 3000 Hit Points or less on your opponent\'s side of the field',
         TriggerType.UponAppearance,
         'Purple Owned'
@@ -8155,7 +8157,7 @@ export const cardList: Array<{
     'hit_points': 7000,
     'effects': [
       new Effect(
-        [EffectType.KillCharacter],
+        [EffectType.DestroyCharacter],
         'Destroys 1 character on the oppponent\'s side of the field, then deals 2000 damage to the opponent\'s leader',
         TriggerType.UponAppearance,
         'Blue Purple Owned'
@@ -8308,7 +8310,7 @@ export const cardList: Array<{
     'hit_points': 8000,
     'effects': [
       new Effect(
-        [EffectType.KillCharacter],
+        [EffectType.DestroyCharacter],
         'Destroys 1 regular character on your opponent\'s side of the field',
         TriggerType.UponAppearance
       ),
@@ -9226,7 +9228,7 @@ export const cardList: Array<{
     'icon': IconType.None,
     'effects': [
       new Effect(
-        [EffectType.KillCharacter],
+        [EffectType.DestroyCharacter],
         'Destroys 1 character on the field with a cost equal to or less than the energy in your bank',
         TriggerType.EventCard,
         'Energy in bank'
@@ -9465,6 +9467,1117 @@ export const cardList: Array<{
         [EffectType.UnableToAttackLeader],
         'Gives "Unable to Attack Leader" to all characters on your opponent\'s side of the field until the end of your opponent\'s turn',
         TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3006,
+    'set': 'C3',
+    'name': 'Gohan (Potential Unleashed)',
+    'sub_name': 'Supreme Kai Training',
+    'groups': ['Gohan', 'Saiyan'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 4,
+    'type': CardType.Character,
+    'icon': IconType.Green,
+    'attack': 5000,
+    'hit_points': 8000,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.SurgeDecrease],
+        'Adds +5000 to its own Attack and +5000 to its own HitPoints. Surge decreases by 1 for every Saiyan card in your graveyard',
+        TriggerType.UponAppearance,
+        'Surge 10'
+      ),
+    ],
+  },
+  {
+    'id': 3014,
+    'set': 'C3',
+    'name': 'Android 16',
+    'sub_name': 'Protective Power',
+    'groups': ['Android 16', 'Android'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 4,
+    'type': CardType.Character,
+    'icon': IconType.Purple,
+    'attack': 3000,
+    'hit_points': 9000,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.Guard],
+        'Adds +2000 to its own Attack and +3000 to its own HitPoints and gives itself Guard',
+        TriggerType.UponAppearance,
+        'Surge 7'
+      ),
+      new Effect(
+        [EffectType.Overpower],
+        'Gives Overpower to Android cards other than this one on your side of the field',
+        TriggerType.Always
+      ),
+    ],
+  },
+  {
+    'id': 3019,
+    'set': 'C3',
+    'name': 'Majin Buu (Innocent)',
+    'sub_name': 'Support',
+    'groups': ['Majin Buu'],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 4,
+    'type': CardType.Character,
+    'icon': IconType.Purple,
+    'attack': 6000,
+    'hit_points': 4000,
+    'effects': [
+      new Effect(
+        [EffectType.IncreaseEnergyLimit],
+        'Increases your energy limit by 2',
+        TriggerType.UponAppearance,
+        'Purple Consumed'
+      ),
+      new Effect(
+        [EffectType.AddBankEnergy],
+        'Adds 4 energy to your bank when your energy limit is at 7 or higher',
+        TriggerType.UponAppearance,
+        'Purple Owned'
+      ),
+    ],
+  },
+  {
+    'id': 3027,
+    'set': 'C3',
+    'name': 'Ginyu Force',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Legendary,
+    'energy_cost': 4,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Causes 1 of the Ginyu Force cards in your SP deck to appear',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3072,
+    'set': 'C3',
+    'name': 'Ladies\' Man',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Normal,
+    'energy_cost': 4,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.DrawCard],
+        'Adds +3000 to the Attack and +3000 to the HitPoints of 1 of the Videl cards on your side of the field, then draws 1 of the Gohan cards in your deck. Draws nothing if you have none',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3075,
+    'set': 'C3',
+    'name': 'Final Words',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 4,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'KOs all characters on the field',
+        TriggerType.EventCard,
+        'Purple Green Consumed'
+      ),
+    ],
+  },
+  {
+    'id': 3085,
+    'set': 'C3',
+    'name': 'Namek on the Verge',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Legendary,
+    'energy_cost': 4,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial, EffectType.SummonOpponentCard],
+        'Causes 1 Frieza card in your SP deck to appear, then causes 1 character to randomly appear from your opponent\'s hand. (The opponent\'s "Upon Appearance" effects are not triggered.)',
+        TriggerType.EventCard,
+        'Frieza in SP deck'
+      ),
+    ],
+  },
+  {
+    'id': 3089,
+    'set': 'C3',
+    'name': 'Meal Prep',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Rare,
+    'energy_cost': 4,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.RecoverLifePoints],
+        'Recovers 12000 HitPoints for your leader',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3091,
+    'set': 'C3',
+    'name': 'Watch and Learn',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Rare,
+    'energy_cost': 4,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 2 event cards. Draws nothing if you have none',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3092,
+    'set': 'C3',
+    'name': 'Killing Time',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Normal,
+    'energy_cost': 4,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.IncreaseEnergyLimit, EffectType.DrawCard],
+        'Increases your energy limit by 2. Draws 1 card',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3007,
+    'set': 'C3',
+    'name': 'Vegeta (Super Saiyan)',
+    'sub_name': 'The Strongest Team-Up',
+    'groups': ['Vegeta', 'Saiyan'],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 5,
+    'type': CardType.Character,
+    'icon': IconType.Yellow,
+    'attack': 6000,
+    'hit_points': 7000,
+    'effects': [
+      new Effect(
+        [EffectType.DiscardCard, EffectType.Other, EffectType.SummonSpecial],
+        'Discards 1 of the Goku cards in your hand, then KOs itself. Afterward, causes 1 of the Vegito in your SP deck with a cost of 9 or higher to appear',
+        TriggerType.UponAppearance,
+        'Goku in hand, Vegito in SP deck'
+      ),
+    ],
+    'abilities': [AbilityType.Guard],
+  },
+  {
+    'id': 3017,
+    'set': 'C3',
+    'name': 'Cell (2nd Form)',
+    'sub_name': 'Taste for Power',
+    'groups': ['Cell', 'Android'],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 5,
+    'type': CardType.Character,
+    'icon': IconType.Yellow,
+    'attack': 7000,
+    'hit_points': 7000,
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter, EffectType.Other, EffectType.AddAttack, EffectType.AddHitPoints, EffectType.RecoverLifePoints],
+        'KOs all Android 17 cards on your side of the field. Adds +4000 to its own Attack and +4000 to its own HitPoints for each android KO\'d by this effect, and restores your leader\'s HitPoints by 4000',
+        TriggerType.UponAppearance
+      ),
+      new Effect(
+        [EffectType.KillCharacter],
+        'KOs all other characters on the field with HitPoint values lower than this card\'s Attack',
+        TriggerType.UponAppearance,
+        'Purple Consumed, Surge 7'
+      ),
+    ],
+  },
+  {
+    'id': 3084,
+    'set': 'C3',
+    'name': 'Frenemies',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 5,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Causes up to 2 Goku and Piccolo cards with a cost of 3 or less to appear from your SP deck',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3097,
+    'set': 'C3',
+    'name': 'The Final Wish',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Normal,
+    'energy_cost': 5,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 4 cards',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3099,
+    'set': 'C3',
+    'name': 'Deadly Mistake',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Rare,
+    'energy_cost': 5,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter, EffectType.SummonSupport],
+        'KOs 1 regular character on your opponent\'s side of the field, then causes 1 copies of Exhausted Yamcha (Cost: 1, Attack: 1000, HitPoints: 1000, [Always] Unable to Attack) to appear on tour opponent\'s side of the field',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3001,
+    'set': 'C3',
+    'name': 'Goku',
+    'sub_name': 'Power Pole',
+    'groups': ['Goku', 'Saiyan'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 6,
+    'type': CardType.Character,
+    'icon': IconType.Blue,
+    'attack': 5000,
+    'hit_points': 12000,
+    'abilities': [AbilityType.Guard, AbilityType.Rush],
+  },
+  {
+    'id': 3008,
+    'set': 'C3',
+    'name': 'Trunks (Super Saiyan)',
+    'sub_name': 'Overconfidence',
+    'groups': ['Trunks', 'Saiyan'],
+    'rarity': Rarity.Rare,
+    'energy_cost': 6,
+    'type': CardType.Character,
+    'icon': IconType.Blue,
+    'attack': 8000,
+    'hit_points': 10000,
+    'effects': [
+      new Effect(
+        [EffectType.DiscardCard, EffectType.Overpower, EffectType.AddHitPoints, EffectType.AddAttack],
+        'Discards 1 card from your hand, then adds +1000 to its Attack and +1000 to its HitPoints, and gives itself Overpower',
+        TriggerType.UponAppearance
+      ),
+      new Effect(
+        [EffectType.Guard, EffectType.SurgeDecrease, EffectType.AddHitPoints, EffectType.AddAttack],
+        'Adds +4000 to its own Attack and +4000 to its own HitPoints, and gives itself Guard. Surge decreases by 1 for every Saiyan card in your graveyard',
+        TriggerType.UponAppearance,
+        'Surge 10'
+      ),
+    ],
+  },
+  {
+    'id': 3080,
+    'set': 'C3',
+    'name': 'Saiyan Family',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 6,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.DiscardCard, EffectType.SummonSpecial],
+        'Discards 1 of the Saiyan cards in your hand, then causes 1 of the Saiyan cards in your SP deck to appear',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3082,
+    'set': 'C3',
+    'name': 'Super Saiyan Creed',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Legendary,
+    'energy_cost': 6,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.SummonFromDeck],
+        'Causes 2 of the Saiyan cards in your deck with a cost of 4 or lower to randomly appear. ("Upon Appearance" effects are not triggered.)',
+        TriggerType.EventCard,
+        'Blue Consumed'
+      ),
+    ],
+  },
+  {
+    'id': 3018,
+    'set': 'C3',
+    'name': 'Cell (Perfect)',
+    'sub_name': 'Ultimate Strength',
+    'groups': ['Cell', 'Android'],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 7,
+    'type': CardType.Character,
+    'icon': IconType.Yellow,
+    'attack': 5000,
+    'hit_points': 5000,
+    'effects': [
+      new Effect(
+        [EffectType.InstantAppearance],
+        'Appears at no energy cost if you consume a symbol and have Android 17 and Android 18 on your side of the field',
+        TriggerType.Other,
+        'Purple Green Consumed'
+      ),
+      new Effect(
+        [EffectType.KillCharacter, EffectType.AddAttack, EffectType.AddHitPoints, EffectType.DealDamage],
+        'KOs all Android 17 and Android 18 cards on your side of the field. Adds +5000 to its own Attack and +5000 to its own HitPoints for each Android KO\'d by this effect, and deals 2000 damage to your opponent\'s leader',
+        TriggerType.UponAppearance
+      ),
+    ],
+  },
+  {
+    'id': 3020,
+    'set': 'C3',
+    'name': 'Kid Buu',
+    'sub_name': 'Dark Wave',
+    'groups': ['Majin buu'],
+    'rarity': Rarity.Rare,
+    'energy_cost': 8,
+    'type': CardType.Character,
+    'icon': IconType.Yellow,
+    'attack': 15000,
+    'hit_points': 14000,
+    'effects': [
+      new Effect(
+        [EffectType.AddBankEnergy],
+        'Adds 4 energy to your bank when your energy limit is at 7 or higher',
+        TriggerType.UponAppearance,
+        'Energy Limit 7 or higher'
+      ),
+      new Effect(
+        [EffectType.AddAttack, EffectType.SwiftAttack],
+        'Adds +10000 to its own Attack and gives itself Swift Attack when your energy limit is at 10',
+        TriggerType.UponAppearance,
+        'Energy Limit at 10'
+      ),
+    ],
+  },
+  {
+    'id': 3054,
+    'set': 'C3',
+    'name': 'Final Flash',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Legendary,
+    'energy_cost': 8,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.DestroyCharacter],
+        'Destroys all characters on your opponent\'s side of the field',
+        TriggerType.EventCard,
+        'Yellow Consumed'
+      ),
+    ],
+  },
+  {
+    'id': 3088,
+    'set': 'C3',
+    'name': 'New Hero',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Rare,
+    'energy_cost': 8,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial, EffectType.Overpower],
+        'Causes 1 SP character with a cost of 9 or less to appear from your SP deck and gives them Overpower',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3096,
+    'set': 'C3',
+    'name': 'Super EX Spirit Bomb',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Legendary,
+    'energy_cost': 8,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Consumes all Yellow symbols and deals 5000 damage to the opponent\'s leader for each Yellow symbol consumed',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3083,
+    'set': 'C3',
+    'name': 'Super Warriors',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Legendary,
+    'energy_cost': 10,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Randomly causes all SP characters to appear from your SP deck. ("Upon Appearance" effects are not triggered.)',
+        TriggerType.EventCard,
+        'Purple Blue Green Yellow Consumed'
+      ),
+    ],
+  },
+  {
+    'id': 3042,
+    'set': 'C3',
+    'name': 'Goahn (Great Saiyaman)',
+    'sub_name': 'Defender of Justice',
+    'groups': [
+      'Gohan',
+      'Saiyan',
+    ],
+    'rarity': Rarity.Normal,
+    'energy_cost': 1,
+    'type': CardType.Special,
+    'icon': IconType.Blue,
+    'attack': 3000,
+    'hit_points': 4000,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 card',
+        TriggerType.UponAppearance
+      ),
+    ],
+  },
+  {
+    'id': 3050,
+    'set': 'C3',
+    'name': 'Kid Buu',
+    'sub_name': 'Raw Battle Instinct',
+    'groups': ['Majin buu'],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 2,
+    'type': CardType.Special,
+    'icon': IconType.Purple,
+    'attack': 7000,
+    'hit_points': 5000,
+    'effects': [
+      new Effect(
+        [EffectType.AddBankEnergy],
+        'Adds 4 energy to your bank when your energy limit is at 7 or higher',
+        TriggerType.UponAppearance,
+        'Purple Owned, Energy Limit 7 or higher'
+      ),
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds +5000 to its own Attack when you unlock your bank with 7 or more energy in it, then restores your bank. (Unlocking your bank with a card effect does not count.)',
+        TriggerType.Always,
+        'Unlock bank with 7 or more energy'
+      ),
+    ],
+  },
+  {
+    'id': 3009,
+    'set': 'C3',
+    'name': 'Gotenks (Super Saiyan)',
+    'sub_name': 'Clash in the Heavens',
+    'groups': ['Gotenks', 'Saiyan'],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 3,
+    'type': CardType.Special,
+    'icon': IconType.Green,
+    'attack': 7000,
+    'hit_points': 3000,
+    'effects': [
+      new Effect(
+        [EffectType.NegateDamage],
+        'Gives itself Negate Damage until the end of the turn',
+        TriggerType.UponAppearance,
+        'Green Owned'
+      ),
+      new Effect(
+        [EffectType.DealDamage],
+        'Select 1 character on your opponent\'s side of the field. That character and this character deal damage to the other equal to their respective Attack values',
+        TriggerType.UponAppearance
+      ),
+    ],
+  },
+  {
+    'id': 3029,
+    'set': 'C3',
+    'name': 'Goku & Vegeta',
+    'sub_name': 'Eternal Rivals',
+    'groups': ['Goku', 'Vegeta', 'Saiyan'],
+    'rarity': Rarity.Legendary,
+    'energy_cost': 3,
+    'type': CardType.Special,
+    'icon': IconType.Blue,
+    'attack': 7000,
+    'hit_points': 7000,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.Rush, EffectType.SurgeDecrease],
+        'Adds +4000 to its own Attack and +4000 to its own HitPoints, and gives itself Rush. Surge decreases by 1 for every saiyan card in your graveyard',
+        TriggerType.UponAppearance,
+        'Surge 10'
+      ),
+    ],
+  },
+  {
+    'id': 3040,
+    'set': 'C3',
+    'name': 'Cell (2nd Form)',
+    'sub_name': 'Solar Flare',
+    'groups': ['Cell', 'Android'],
+    'rarity': Rarity.Rare,
+    'energy_cost': 3,
+    'type': CardType.Special,
+    'icon': IconType.Purple,
+    'attack': 5000,
+    'hit_points': 7000,
+    'effects': [
+      new Effect(
+        [EffectType.RemoveEffects],
+        'Removes all other effects from characters on your side of the field. ([Always] effects are not removed.)',
+        TriggerType.UponAppearance
+      ),
+    ],
+  },
+  {
+    'id': 3044,
+    'set': 'C3',
+    'name': 'Dabura',
+    'sub_name': 'Petrifying Saliva',
+    'groups': ['Dabura'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 3,
+    'type': CardType.Special,
+    'icon': IconType.Green,
+    'attack': 3000,
+    'hit_points': 5000,
+    'effects': [
+      new Effect(
+        [EffectType.DestroyCharacter],
+        'Destroys 1 character with a cost of 2 or less on your opponent\'s side of the field',
+        TriggerType.UponAppearance
+      ),
+    ],
+  },
+  {
+    'id': 3047,
+    'set': 'C3',
+    'name': 'Super Buu',
+    'sub_name': 'Evolving Power',
+    'groups': ['Majin Buu'],
+    'rarity': Rarity.Rare,
+    'energy_cost': 3,
+    'type': CardType.Special,
+    'icon': IconType.Yellow,
+    'attack': 3000,
+    'hit_points': 5000,
+    'effects': [
+      new Effect(
+        [EffectType.RestoreBank],
+        'Restores your bank',
+        TriggerType.UponAppearance
+      ),
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds +1000 to its own Attack for each energy unit in your bank',
+        TriggerType.UponAppearance
+      ),
+    ],
+  },
+  {
+    'id': 3030,
+    'set': 'C3',
+    'name': 'Goku',
+    'sub_name': 'x4 Kaioken Kamehameha',
+    'groups': ['Goku', 'Saiyan'],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 4,
+    'type': CardType.Special,
+    'icon': IconType.Blue,
+    'attack': 8000,
+    'hit_points': 7000,
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 9000 damage to your opponent\'s leader or 1 random character on your opponent\'s side of the field',
+        TriggerType.UponAppearance,
+        'Blue Blue Blue Consumed'
+      ),
+    ],
+  },
+  {
+    'id': 3031,
+    'set': 'C3',
+    'name': 'Yamcha',
+    'sub_name': 'Taunt',
+    'groups': ['Yamcha'],
+    'rarity': Rarity.Rare,
+    'energy_cost': 4,
+    'type': CardType.Special,
+    'icon': IconType.Green,
+    'attack': 5000,
+    'hit_points': 15000,
+    'effects': [
+      new Effect(
+        [EffectType.SummonOpponentCard],
+        'Causes 1 character to randomly appear from your opponent\'s hand. ("Upon Appearance" effects are not triggered.)',
+        TriggerType.UponAppearance
+      ),
+    ],
+    'abilities': [AbilityType.Guard],
+  },
+  {
+    'id': 3032,
+    'set': 'C3',
+    'name': 'Gohan (Kid)',
+    'sub_name': 'Spirit Bomb Rebound',
+    'groups': ['Gohan', 'Saiyan'],
+    'rarity': Rarity.Rare,
+    'energy_cost': 4,
+    'type': CardType.Special,
+    'icon': IconType.Green,
+    'attack': 6000,
+    'hit_points': 8000,
+    'effects': [
+      new Effect(
+        [EffectType.NegateDamage],
+        'Gives Negate Damage to 1 other character on your side of the field until the end of the turn',
+        TriggerType.UponAppearance
+      ),
+    ],
+  },
+  {
+    'id': 3039,
+    'set': 'C3',
+    'name': 'Android 20',
+    'sub_name': 'Energy Absorption',
+    'groups': ['Android 20', 'Android'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 4,
+    'type': CardType.Special,
+    'icon': IconType.Purple,
+    'attack': 4000,
+    'hit_points': 5000,
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage, EffectType.RecoverLifePoints],
+        'Deals 3000 damage to your opponent\'s leader, and restores your leader\'s HitPoints by 3000',
+        TriggerType.UponAppearance
+      ),
+    ],
+  },
+  {
+    'id': 3043,
+    'set': 'C3',
+    'name': 'Yamu & Spopovich',
+    'sub_name': 'Coordinated Attack',
+    'groups': ['Yamu', 'Spopovich'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 4,
+    'type': CardType.Special,
+    'icon': IconType.Blue,
+    'attack': 6000,
+    'hit_points': 5000,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 Yamu and Spopovich cards each. Draws nothing if you have none',
+        TriggerType.UponAppearance
+      ),
+    ],
+  },
+  {
+    'id': 3049,
+    'set': 'C3',
+    'name': 'Kid Buu',
+    'sub_name': 'The Final Battle',
+    'groups': ['Majin Buu'],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 4,
+    'type': CardType.Special,
+    'icon': IconType.Purple,
+    'attack': 7000,
+    'hit_points': 8000,
+    'effects': [
+      new Effect(
+        [EffectType.IncreaseEnergyLimit],
+        'Increases your energy limit by 1',
+        TriggerType.UponAppearance,
+        'Purple Owned'
+      ),
+      new Effect(
+        [EffectType.AddBankEnergy],
+        'Adds 4 energy to your bank when your energy limit is at 7 or higher',
+        TriggerType.UponAppearance,
+        'Purple Owned, Energy Limit 7 or higher'
+      ),
+    ],
+  },
+  {
+    'id': 3035,
+    'set': 'C3',
+    'name': 'Jeice',
+    'sub_name': 'Special Fighting Pose',
+    'groups': ['Jeice', 'Ginyu Force', 'Frieza Force'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 5,
+    'type': CardType.Special,
+    'icon': IconType.Blue,
+    'attack': 3000,
+    'hit_points': 1000,
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Causes 1 of the Guldo cards in your SP deck to randomly appear',
+        TriggerType.UponAppearance
+      ),
+    ],
+    'abilities': [AbilityType.PiercingStrike],
+  },
+  {
+    'id': 3036,
+    'set': 'C3',
+    'name': 'Guldo',
+    'sub_name': 'Special Fighting Pose',
+    'groups': ['Guldo', 'Ginyu Force', 'Frieza Force'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 5,
+    'type': CardType.Special,
+    'icon': IconType.Green,
+    'attack': 1000,
+    'hit_points': 3000,
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Causes 1 of the Captain Ginyu cards in your SP deck to randomly appear',
+        TriggerType.UponAppearance
+      ),
+    ],
+    'abilities': [AbilityType.NaturalRecovery],
+  },
+  {
+    'id': 3033,
+    'set': 'C3',
+    'name': 'Recoome',
+    'sub_name': 'Special Fighting Pose',
+    'groups': ['Recoome', 'Ginyu Force', 'Frieza Force'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 6,
+    'type': CardType.Special,
+    'icon': IconType.Yellow,
+    'attack': 3000,
+    'hit_points': 4000,
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Causes 1 of the Burter cards in your SP deck to randomly appear',
+        TriggerType.UponAppearance
+      ),
+    ],
+    'abilities': [AbilityType.Guard],
+  },
+  {
+    'id': 3034,
+    'set': 'C3',
+    'name': 'Burter',
+    'sub_name': 'Special Fighting Pose',
+    'groups': ['Burter', 'Ginyu Force', 'Frieza Force'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 6,
+    'type': CardType.Special,
+    'icon': IconType.Purple,
+    'attack': 4000,
+    'hit_points': 3000,
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Causes 1 of the Jeice cards in your SP deck to randomly appear',
+        TriggerType.UponAppearance
+      ),
+    ],
+    'abilities': [AbilityType.Rush],
+  },
+  {
+    'id': 3037,
+    'set': 'C3',
+    'name': 'Captain Ginyu',
+    'sub_name': 'Special Fighting Pose',
+    'groups': ['Captain Ginyu', 'Ginyu Force', 'Frieza Force'],
+    'rarity': Rarity.Legendary,
+    'energy_cost': 7,
+    'type': CardType.Special,
+    'icon': IconType.Yellow,
+    'attack': 2000,
+    'hit_points': 8000,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds +2000 to its own Attack for each other Ginyu Force card on your side of the field',
+        TriggerType.Always
+      ),
+    ],
+    'abilities': [AbilityType.Overpower],
+  },
+  {
+    'id': 3041,
+    'set': 'C3',
+    'name': 'Cell (Perfect)',
+    'sub_name': 'Problem Children',
+    'groups': ['Cell', 'Android'],
+    'rarity': Rarity.Legendary,
+    'energy_cost': 5,
+    'type': CardType.Special,
+    'icon': IconType.Yellow,
+    'attack': 9000,
+    'hit_points': 9000,
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter, EffectType.SummonSupport],
+        'KOs all Android 17 and Android 18 cards on your side of the field. Causes 2 Cell Juniors (Cost: 2, Attack: 4000, HitPoints: 1000) to appear on your side of the field for each android KO\'d by this effect',
+        TriggerType.UponAppearance
+      ),
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.SwiftAttack],
+        'Adds +1000 to the Attack and +4000 to the HitPoints of all Cell Jr. cards on your side of the field, and gives them Swift Attack',
+        TriggerType.UponAppearance,
+        'Purple Consumed, Surge 7'
+      ),
+    ],
+  },
+  {
+    'id': 3051,
+    'set': 'C3',
+    'name': 'Goku (Super Saiyan 3)',
+    'sub_name': 'Pushing Past Limits',
+    'groups': ['Goku', 'Saiyan'],
+    'rarity': Rarity.Rare,
+    'energy_cost': 5,
+    'type': CardType.Special,
+    'icon': IconType.Purple,
+    'attack': 7000,
+    'hit_points': 8000,
+    'effects': [
+      new Effect(
+        [EffectType.AddBankEnergy, EffectType.SurgeDecrease],
+        'Increases bank energy by 5. Surge decreases by 1 for every Saiyan card in your graveyard',
+        TriggerType.UponAppearance,
+        'Surge 10'
+      ),
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        'Adds +3000 to its own Attack and +3000 to its own HitPoints when your energy limit is at 7 or higher',
+        TriggerType.UponAppearance,
+        'Energy Limit 7 or higher'
+      ),
+    ],
+  },
+  {
+    'id': 3026,
+    'set': 'C3',
+    'name': 'Piccolo',
+    'sub_name': 'The Power of Namekian Fusion',
+    'groups': ['Piccolo', 'Namekian'],
+    'rarity': Rarity.Rare,
+    'energy_cost': 6,
+    'type': CardType.Special,
+    'icon': IconType.Purple,
+    'attack': 6000,
+    'hit_points': 4000,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.PiercingStrike],
+        'Adds +4000 to the Attack and +4000 to the HitPoints of 1 other character on your side of the field and gives it Piercing Strike',
+        TriggerType.UponAppearance
+      ),
+    ],
+  },
+  {
+    'id': 3038,
+    'set': 'C3',
+    'name': 'Goku (Super Saiyan)',
+    'sub_name': 'Empathy for the Wicked',
+    'groups': ['Goku', 'Saiyan'],
+    'rarity': Rarity.Rare,
+    'energy_cost': 6,
+    'type': CardType.Special,
+    'icon': IconType.Blue,
+    'attack': 11000,
+    'hit_points': 10000,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.SurgeDecrease],
+        'Adds +5000 to its own Attack and +5000 to its own HitPoitns if this is the only character on your side of the field',
+        TriggerType.UponAppearance,
+        'Only character on your side of field'
+      ),
+    ],
+    'abilities': [AbilityType.Overpower],
+  },
+  {
+    'id': 3045,
+    'set': 'C3',
+    'name': 'Supreme Kai',
+    'sub_name': 'Godly Responsibility',
+    'groups': ['Supreme Kai'],
+    'rarity': Rarity.Rare,
+    'energy_cost': 7,
+    'type': CardType.Special,
+    'icon': IconType.Green,
+    'attack': 4000,
+    'hit_points': 5000,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 3 cards',
+        TriggerType.UponAppearance
+      ),
+    ],
+  },
+  {
+    'id': 3052,
+    'set': 'C3',
+    'name': 'Goku (Super Saiyan 3)',
+    'sub_name': 'Astounding Power',
+    'groups': ['Goku', 'Saiyan'],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 7,
+    'type': CardType.Special,
+    'icon': IconType.Yellow,
+    'attack': 14000,
+    'hit_points': 7000,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard, EffectType.DealDamage, EffectType.RecoverLifePoints, EffectType.ReturnOpponentCardToDeck],
+        'Deals 5000 damage to your opponent\'s leader, and restores your leader\'s HitPoints by 5000. Randomly returns 1 card from your opponent\'s hadn to their deck, and draws 1 card from your deck',
+        TriggerType.UponAppearance,
+        'Purple Blue Green Consumed'
+      ),
+    ],
+  },
+  {
+    'id': 3048,
+    'set': 'C3',
+    'name': 'Kid buu',
+    'sub_name': 'Majin Roar',
+    'groups': ['Majin Buu'],
+    'rarity': Rarity.Legendary,
+    'energy_cost': 8,
+    'type': CardType.Special,
+    'icon': IconType.Yellow,
+    'attack': 14000,
+    'hit_points': 16000,
+    'effects': [
+      new Effect(
+        [EffectType.InstantAppearance],
+        'Appears from your SP deck at no energy cost if you consume a symbol and your energy limit is at 7 or higher',
+        TriggerType.Other,
+        'Purple Purple Purple Consumed'
+      ),
+      new Effect(
+        [EffectType.KillCharacter],
+        'KOs all characters on your opponent\'s side of the field with a cost equal to or less than the energy in your bank',
+        TriggerType.UponAppearance,
+        'Yellow Consumed'
+      ),
+    ],
+  },
+  {
+    'id': 3025,
+    'set': 'C3',
+    'name': 'Goku (Super Saiyan 3)',
+    'sub_name': 'The Ultimate Power',
+    'groups': ['Goku', 'Saiyan'],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 9,
+    'type': CardType.Special,
+    'icon': IconType.Blue,
+    'attack': 18000,
+    'hit_points': 19000,
+  },
+  {
+    'id': 3046,
+    'set': 'C3',
+    'name': 'Vegito (Super Saiyan)',
+    'sub_name': 'Potara Fusion',
+    'groups': ['Vegito', 'Saiyan'],
+    'rarity': Rarity.Legendary,
+    'energy_cost': 10,
+    'type': CardType.Special,
+    'icon': IconType.Yellow,
+    'attack': 30000,
+    'hit_points': 30000,
+    'effects': [
+      new Effect(
+        [EffectType.Guard, EffectType.SwiftAttack, EffectType.NaturalRecovery, EffectType.Rush, EffectType.Overpower],
+        'Gives itself Guard, Swift Attack, Natural Recovery, Rush, and Overpower if Goku and Vegeta are in your graveyard',
+        TriggerType.UponAppearance,
+        'Yellow Consumed, Goku and Vegeta in graveyard'
+      ),
+      new Effect(
+        [EffectType.NegateDamage],
+        'Gives your leader Negate Damage when this card is on your side of the field',
+        TriggerType.Always
+      ),
+      new Effect(
+        [EffectType.Other, EffectType.ReturnFromGraveyard],
+        'Destroys itself at the beginning of your turn. Afterwards causes 1 of the Goku and Vegeta cards in your graveyard each to randomly appear. ("Upon Appearance" effects are not triggered.)',
+        TriggerType.Always
       ),
     ],
   },
