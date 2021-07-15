@@ -6398,7 +6398,7 @@ export const cardList: Array<{
     'rarity': Rarity.SuperRare,
     'energy_cost': 1,
     'type': CardType.Character,
-    'icon': IconType.Blue,
+    'icon': IconType.Purple,
     'attack': 3000,
     'hit_points': 3000,
     'effects': [
@@ -7549,7 +7549,7 @@ export const cardList: Array<{
       ),
       new Effect(
         [EffectType.SummonFromHand],
-        'Causes 1 Recoome, Burter, Jeice and Guldo cards each with a cost of 3 or less to appear from your hand ("TriggerType.UponAppearance" effects are not triggered)',
+        'Causes 1 Recoome, Burter, Jeice and Guldo cards each with a cost of 3 or less to appear from your hand ("Upon Appearance" effects are not triggered)',
         TriggerType.UponAppearance,
         'Yellow Consumed'
       ),
@@ -7588,7 +7588,7 @@ export const cardList: Array<{
     'effects': [
       new Effect(
         [EffectType.SwiftAttack, EffectType.Other],
-        'Causes 3 Goku cards from your hand to randomly appear, then gives Swift Attack to all Goku cards on your side of the field ("TriggerType.UponAppearance" effects are not triggered)',
+        'Causes 3 Goku cards from your hand to randomly appear, then gives Swift Attack to all Goku cards on your side of the field ("Upon Appearance" effects are not triggered)',
         TriggerType.EventCard,
         'Goku cards in hand'
       ),
@@ -7741,7 +7741,7 @@ export const cardList: Array<{
     'effects': [
       new Effect(
         [EffectType.Other],
-        'Causes 1 Goku, Gohan, Goten and Chi-Chi cards each to randomly appear from your hand ("TriggerType.UponAppearance" effects are not triggered)',
+        'Causes 1 Goku, Gohan, Goten and Chi-Chi cards each to randomly appear from your hand ("Upon Appearance" effects are not triggered)',
         TriggerType.EventCard,
         'Goku, Gohan, Goten or Chi-Chi cards in your hand'
       ),
@@ -7919,7 +7919,7 @@ export const cardList: Array<{
     'effects': [
       new Effect(
         [EffectType.ConsumeBank, EffectType.SummonSupport],
-        'Causes 1 regular "Android 17: Biting the Hand that Feeds" card (cost: 4; Attack: 5000; Hit Points: 8000) to appear on your side of the field. ("TriggerType.UponAppearance" effects are not triggered)',
+        'Causes 1 regular "Android 17: Biting the Hand that Feeds" card (cost: 4; Attack: 5000; Hit Points: 8000) to appear on your side of the field. ("Upon Appearance" effects are not triggered)',
         TriggerType.UponAppearance,
         '2 Bank Energy Consumed'
       ),
