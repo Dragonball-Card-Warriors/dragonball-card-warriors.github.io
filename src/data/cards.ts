@@ -26,6 +26,8 @@ export enum AbilityType {
   PiercingStrike = 'Piercing Strike',
   NaturalRecovery = 'Natural Recovery',
   NegateDamage = 'Negate Damage',
+  Rush = 'Rush',
+  Overpower = 'Overpower',
 }
 
 export enum EffectType {
@@ -36,6 +38,8 @@ export enum EffectType {
   SwiftAttack = 'Swift Attack',
   DealDamage = 'Deal Damage',
   Guard = 'Guard',
+  Rush = 'Rush',
+  Overpower = 'Overpower',
   KillCharacter = 'Kill Character',
   RemoveEffects = 'Remove Effects',
   ReturnCharacter = 'Return Character',
@@ -57,8 +61,13 @@ export enum EffectType {
   ConsumeBank = 'Consume Bank',
   SummonSupport = 'Summon Support',
   SummonFromHand = 'Summon From Hand',
+  SummonFromDeck = 'Summon From Deck',
   ReducedCost = 'Reduced Cost',
   InstantAppearance = 'Instant Appearance',
+  ReturnFromGraveyard = 'Return From Graveyard',
+  ReturnCardToDeck = 'Return Card To Deck',
+  DiscardCard = 'Discard Card',
+  SurgeDecrease = 'Surge Decrease'
 }
 
 // Not used yet
@@ -3251,7 +3260,7 @@ export const cardList: Array<{
     'icon': IconType.None,
     'effects': [
       new Effect(
-        [EffectType.SummonSpecial],
+        [EffectType.DiscardCard, EffectType.SummonSpecial],
         'Discard 1 card from your hand. Summon 1 SP Goku Unit',
         TriggerType.EventCard,
         'No Goku on your side of the field'
@@ -4066,7 +4075,7 @@ export const cardList: Array<{
     'icon': IconType.None,
     'effects': [
       new Effect(
-        [EffectType.SummonSpecial],
+        [EffectType.DiscardCard, EffectType.SummonSpecial],
         'Discard 1 card from your hand. Summon 1 SP Unit equal to or less than the cost'
       ),
     ],
@@ -7648,7 +7657,7 @@ export const cardList: Array<{
     'hit_points': 5000,
     'effects': [
       new Effect(
-        [EffectType.InstantAppearance],
+        [EffectType.SummonFromDeck, EffectType.InstantAppearance],
         'Appears from your deck at no energy cost at all if you consume a symbol and have Android 17 and Android 18 on your side of the field',
         TriggerType.Other,
         'Purple and Green Consumed'
@@ -8537,5 +8546,966 @@ export const cardList: Array<{
     'attack': 2000,
     'hit_points': 1,
     'abilities': [AbilityType.Swift],
+  },
+  {
+    'id': 3013,
+    'set': 'C3',
+    'name': 'Captain Ginyu',
+    'sub_name': 'Goku\'s Body',
+    'groups': [
+      'Captain Ginyu',
+      'Ginyu Force',
+      'Frieza Force',
+    ],
+    'rarity': Rarity.Rare,
+    'energy_cost': 0,
+    'type': CardType.Character,
+    'icon': IconType.Green,
+    'attack': 1000,
+    'hit_points': 1000,
+  },
+  {
+    'id': 3021,
+    'set': 'C3',
+    'name': 'Bulma',
+    'sub_name': 'Namek-Bound',
+    'groups': ['Bulma'],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 0,
+    'type': CardType.Character,
+    'icon': IconType.Purple,
+    'attack': 1000,
+    'hit_points': 1000,
+    'effects': [
+      new Effect(
+        [EffectType.AddBankEnergy],
+        'Adds 1 energy to your bank',
+        TriggerType.UponAppearance,
+        'Purple Owned'
+      ),
+    ],
+  },
+  {
+    'id': 3065,
+    'set': 'C3',
+    'name': 'Feigned Illness',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Normal,
+    'energy_cost': 0,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'KOs 1 character on your side of the field'
+      ),
+    ],
+  },
+  {
+    'id': 3073,
+    'set': 'C3',
+    'name': 'No Problem',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Rare,
+    'energy_cost': 0,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnFromGraveyard],
+        'Randomly returns 1 SP character in your graveyard to your SP deck (not including any originally owned by the opponent)'
+      ),
+    ],
+  },
+  {
+    'id': 3087,
+    'set': 'C3',
+    'name': 'Angry Awakening',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 0,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.ConsumeBank, EffectType.SummonSpecial, EffectType.AddHitPoints, EffectType.AddAttack],
+        'Spends all energy in your bank to cause 1 SP character with a cost equal to or less than the energy spent to appear from your SP deck. If an SP character with a cost of 7 or higher appears, that character receives +3000 to their Attack and +3000 to their HitPoints'
+      ),
+    ],
+  },
+  {
+    'id': 3003,
+    'set': 'C3',
+    'name': 'Gohan (Kid)',
+    'sub_name': 'Travel Attire',
+    'groups': ['Gohan', 'Saiyan'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 1,
+    'type': CardType.Character,
+    'icon': IconType.Purple,
+    'attack': 2000,
+    'hit_points': 4000,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack],
+        'Adds +1000 to its own Attack whenever a Saiyan other than this one appears on your side of the field',
+        TriggerType.Always
+      ),
+    ],
+  },
+  {
+    'id': 3015,
+    'set': 'C3',
+    'name': 'Android 17',
+    'sub_name': '18\'s Partner in Crime',
+    'groups': ['Android 17', 'Android'],
+    'rarity': Rarity.Rare,
+    'energy_cost': 1,
+    'type': CardType.Character,
+    'icon': IconType.Purple,
+    'attack': 3000,
+    'hit_points': 2000,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard, EffectType.ConsumeBank],
+        'Draws 1 Android 18 card. Draws nothing if you have none',
+        TriggerType.UponAppearance,
+        'Consume 1 Bank energy'
+      ),
+    ],
+  },
+  {
+    'id': 3016,
+    'set': 'C3',
+    'name': 'Android 18',
+    'sub_name': '17\'s Partner in Crime',
+    'groups': ['Android 18', 'Android'],
+    'rarity': Rarity.Rare,
+    'energy_cost': 1,
+    'type': CardType.Character,
+    'icon': IconType.Purple,
+    'attack': 2000,
+    'hit_points': 3000,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard, EffectType.ConsumeBank],
+        'Draws 1 Android 17 card. Draws nothing if you have none',
+        TriggerType.UponAppearance,
+        'Consume 1 Bank energy'
+      ),
+    ],
+  },
+  {
+    'id': 3022,
+    'set': 'C3',
+    'name': 'Chi-Chi',
+    'sub_name': 'Mad Mother',
+    'groups': ['Chi-Chi'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 1,
+    'type': CardType.Character,
+    'icon': IconType.Blue,
+    'attack': 2000,
+    'hit_points': 4000,
+    'abilities': [AbilityType.Rush],
+  },
+  {
+    'id': 3023,
+    'set': 'C3',
+    'name': 'Videl',
+    'sub_name': 'Training for the Tournament',
+    'groups': ['Videl'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 1,
+    'type': CardType.Character,
+    'icon': IconType.Blue,
+    'attack': 2000,
+    'hit_points': 2000,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        'Adds +1000 to its own Attack and +1000 to its own HitPoints',
+        TriggerType.UponAppearance,
+        'Surge 3'
+      ),
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        'Adds +1000 to its own Attack and +1000 to its own HitPoints in addition to the first "Upon Appearance" effect',
+        TriggerType.UponAppearance,
+        'Surge 4'
+      ),
+    ],
+  },
+  {
+    'id': 3053,
+    'set': 'C3',
+    'name': 'Instant Transmission',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 1,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.SummonFromDeck, EffectType.ReturnCharacter],
+        'Activates from your deck at no energy cost if you consume a symbol. Returns 1 regular character on your side of the field to your hand. (Symbols not required when played from your hand.)',
+        TriggerType.EventCard,
+        'Green Consumed'
+      ),
+    ],
+  },
+  {
+    'id': 3055,
+    'set': 'C3',
+    'name': 'Kamekameha',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Normal,
+    'energy_cost': 1,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 7000 damage to 1 character on the field',
+        TriggerType.EventCard,
+        'Goten in your hand'
+      ),
+    ],
+  },
+  {
+    'id': 3060,
+    'set': 'C3',
+    'name': 'Optimism',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Rare,
+    'energy_cost': 1,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 card',
+        TriggerType.EventCard,
+        'Blue Consumed'
+      ),
+      new Effect(
+        [EffectType.AddBankEnergy],
+        'Adds 2 energy to your bank',
+        TriggerType.EventCard,
+        'Purple Consumed'
+      ),
+    ],
+  },
+  {
+    'id': 3063,
+    'set': 'C3',
+    'name': 'Legendary Instructor',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Normal,
+    'energy_cost': 1,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Causes 1 SP character with a cost of 1 to appear from your SP deck',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3064,
+    'set': 'C3',
+    'name': 'Match of the Century',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Normal,
+    'energy_cost': 1,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.DrawCard],
+        'Adds +1000 to the Attack and +1000 to the HitPoints of 1 charcter on your side of the field, then draws 1 card',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3066,
+    'set': 'C3',
+    'name': 'Gripped by Fear',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Rare,
+    'energy_cost': 1,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.DiscardCard],
+        'Discards all cards in your hand',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3067,
+    'set': 'C3',
+    'name': 'Warriors of Other World',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Rare,
+    'energy_cost': 1,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnFromGraveyard],
+        'Returns all SP characters in your graveyard to your SP deck (not including any originally owned by the opponent)',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3070,
+    'set': 'C3',
+    'name': 'Royal Defense Force',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Normal,
+    'energy_cost': 1,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.SummonSupport],
+        'Causes 3 Royal Defense Soldiers (Cost: 1, Attack: 2000, HitPoints: 1000), [Always] Unable to Attack Leader) to appear',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3074,
+    'set': 'C3',
+    'name': 'Uncontrollable Anger',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Normal,
+    'energy_cost': 1,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.Rush],
+        'Gives Rush to 1 character on your side of the field',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3077,
+    'set': 'C3',
+    'name': 'Amazement',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Normal,
+    'energy_cost': 1,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.RemoveEffects, EffectType.SummonFromDeck],
+        'Activates from your deck at no energy cost if you consume a symbol. Removes effects from 1 character on the field. ("Always" effects are not removed, and symbols not required when played from your hand.)',
+        TriggerType.EventCard,
+        'Blue Consumed'
+      ),
+    ],
+  },
+  {
+    'id': 3078,
+    'set': 'C3',
+    'name': 'A Glimmer of Hope',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Rare,
+    'energy_cost': 1,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.UnableToAttackLeader],
+        'Gives 1 character on your opponent\'s side of the field "Unable to Attack Leader" until the end of your opponent\'s turn',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3079,
+    'set': 'C3',
+    'name': 'Departure',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 1,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard, EffectType.SummonFromDeck],
+        'Activates from your deck at no energy cost if you consume a symbol. Draws 1 card. (Symbols not required when played from your hand.)',
+        TriggerType.EventCard,
+        'Yellow Consumed'
+      ),
+    ],
+  },
+  {
+    'id': 3090,
+    'set': 'C3',
+    'name': 'Intimidation',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Normal,
+    'energy_cost': 1,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.Overpower],
+        'Gives Overpower to 1 character on the field',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3094,
+    'set': 'C3',
+    'name': 'You Are Number One',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Rare,
+    'energy_cost': 1,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.DiscardCard],
+        'Randomly sends 2 of the Saiyan cards in your deck to the graveyard',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3098,
+    'set': 'C3',
+    'name': 'Inert Dragon Balls',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Normal,
+    'energy_cost': 1,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCardToDeck, EffectType.DrawCard],
+        'Returns your hand to your deck. Afterward, draw 2 cards',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3005,
+    'set': 'C3',
+    'name': 'Gohan (Great Saiyaman)',
+    'sub_name': 'Tournament Ready',
+    'groups': ['Gohan', 'Saiyan'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 2,
+    'type': CardType.Character,
+    'icon': IconType.Blue,
+    'attack': 5000,
+    'hit_points': 4000,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard, EffectType.DiscardCard],
+        'Draws 1 card, Discards 1 card from your hand',
+        TriggerType.UponAppearance
+      ),
+    ],
+  },
+  {
+    'id': 3011,
+    'set': 'C3',
+    'name': 'Krillin',
+    'sub_name': 'Namek-Bound',
+    'groups': ['Krillin'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 2,
+    'type': CardType.Character,
+    'icon': IconType.Purple,
+    'attack': 3000,
+    'hit_points': 4000,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard, EffectType.DiscardCard],
+        'Draws 2 cards, Discards 2 cards from your hand',
+        TriggerType.UponAppearance
+      ),
+    ],
+  },
+  {
+    'id': 3012,
+    'set': 'C3',
+    'name': 'Tien',
+    'sub_name': 'Neo Tri-Beam',
+    'groups': ['Tien'],
+    'rarity': Rarity.Rare,
+    'energy_cost': 2,
+    'type': CardType.Character,
+    'icon': IconType.Blue,
+    'attack': 7000,
+    'hit_points': 2000,
+    'effects': [
+      new Effect(
+        [EffectType.ReturnCharacter],
+        'Returns 1 regular character on the opponent\'s side of the field o their hand. Afterwards, this card returns to your hand',
+        TriggerType.UponAppearance,
+        'Blue Green Consumed'
+      ),
+    ],
+  },
+  {
+    'id': 3056,
+    'set': 'C3',
+    'name': 'Ki Wave',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Rare,
+    'energy_cost': 2,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 4000 damage to all characters on the opponent\'s side of the field',
+        TriggerType.EventCard,
+        'Trunks in your hand'
+      ),
+    ],
+  },
+  {
+    'id': 3059,
+    'set': 'C3',
+    'name': 'Death Slicer',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 2,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter, EffectType.DiscardCard],
+        'Discards 1 of the Frieza cards in your hand, then randomly KOs 2 characters on the opponent\'s side of the field',
+        TriggerType.EventCard,
+        'Frieza in hand'
+      ),
+    ],
+  },
+  {
+    'id': 3062,
+    'set': 'C3',
+    'name': 'Return from Training',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Rare,
+    'energy_cost': 2,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial, EffectType.Rush],
+        'Causes 1 SP character with a cost of 2 or less to appear from your SP deck and gives them Rush',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3071,
+    'set': 'C3',
+    'name': 'Majin regeneration',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Rare,
+    'energy_cost': 2,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 2 Majin Buu cards. Draws nothing if you have none',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3076,
+    'set': 'C3',
+    'name': 'Fusion!',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Legendary,
+    'energy_cost': 2,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.SummonFromDeck],
+        'Causes 1 of the Trunks cards in your deck with a cost of 2 or less to randomly appear ("Upon Appearance" effects are not triggered). Draws nothing if you have none',
+        TriggerType.EventCard
+      ),
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 of the Goten cards in your deck with a cost of 2 or less. Draws nothing if you have none',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3086,
+    'set': 'C3',
+    'name': 'Killer Kids',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Rare,
+    'energy_cost': 2,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.SummonSupport],
+        'Causes 2 Cell Juniors (Cost: 2, Attack: 4000, HitPoints: 1000) to appear',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3093,
+    'set': 'C3',
+    'name': 'Potara Power',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Legendary,
+    'energy_cost': 2,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.GainSymbol],
+        'Gains 1 Yellow Symbol',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3100,
+    'set': 'C3',
+    'name': 'Cookie Time',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Normal,
+    'energy_cost': 2,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'Destroys 1 character on the field with a cost equal to or less than the energy in your bank',
+        TriggerType.EventCard,
+        'Energy in bank'
+      ),
+    ],
+  },
+  {
+    'id': 3002,
+    'set': 'C3',
+    'name': 'Goku',
+    'sub_name': 'Gravity-Trained',
+    'groups': ['Goku', 'Saiyan'],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 3,
+    'type': CardType.Character,
+    'icon': IconType.Blue,
+    'attack': 6000,
+    'hit_points': 3000,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.NaturalRecovery, EffectType.Rush, EffectType.SurgeDecrease],
+        'Adds +3000 to its own Attack and +3000 to its own HitPoints, and gives itself Natural Recovery and Rush. Surge decreases by 1 for every Saiyan card in your graveyard',
+        TriggerType.UponAppearance,
+        'Surge 10'
+      ),
+    ],
+    'abilities': [AbilityType.Swift],
+  },
+  {
+    'id': 3004,
+    'set': 'C3',
+    'name': 'Gohan (Teen, Super Saiyan)',
+    'sub_name': 'Rage against the Bio-Android',
+    'groups': ['Gohan', 'Saiyan'],
+    'rarity': Rarity.Legendary,
+    'energy_cost': 3,
+    'type': CardType.Character,
+    'icon': IconType.Blue,
+    'attack': 5000,
+    'hit_points': 5000,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints, EffectType.DealDamage, EffectType.SurgeDecrease],
+        'Adds +3000 to its own Attack and +3000 to its own HitPoints, then deals 30000 damage to a random character on your opponent\'s side of the field. Surge decreases by 1 for every Saiyan card in your graveyard',
+        TriggerType.UponAppearance,
+        'Surge 15'
+      ),
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 of the Saiyan card with Surge in your deck. Draws nothing if you have none',
+        TriggerType.UponAppearance
+      ),
+    ],
+  },
+  {
+    'id': 3010,
+    'set': 'C3',
+    'name': 'Vegito (Super Saiyan)',
+    'sub_name': 'Brimming with Arrogance',
+    'groups': ['Vegito', 'Saiyan'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 3,
+    'type': CardType.Character,
+    'icon': IconType.Green,
+    'attack': 4000,
+    'hit_points': 9000,
+    'effects': [
+      new Effect(
+        [EffectType.UnableToAttack],
+        'Gives itself "Unable to Attack"',
+        TriggerType.UponAppearance
+      ),
+    ],
+    'abilities': [AbilityType.Guard, AbilityType.NaturalRecovery, AbilityType.Overpower],
+  },
+  {
+    'id': 3024,
+    'set': 'C3',
+    'name': 'Upa',
+    'sub_name': 'Familiar Face',
+    'groups': ['Upa'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 3,
+    'type': CardType.Character,
+    'icon': IconType.Green,
+    'attack': 3000,
+    'hit_points': 5000,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.Overpower],
+        'Adds +2000 to the Attack of 1 cahracter on your side of the field and gives it Overpower until the end of your opponent\'s turn',
+        TriggerType.UponAppearance
+      ),
+    ],
+  },
+  {
+    'id': 3028,
+    'set': 'C3',
+    'name': 'Goku and His Kids',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Legendary,
+    'energy_cost': 3,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.DrawCard],
+        'Draws 1 of the Goku, Gohan and Goten cards in your deck. Draws nothing if you have none',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3057,
+    'set': 'C3',
+    'name': 'Rapid-Fire Super Donuts',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 3,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.DealDamage],
+        'Deals 1000 damage to all character on your opponent\'s side of the field for each event card in your graveyard, then deals 4000 damage to your opponents leader',
+        TriggerType.EventCard,
+        'Gotenks on your side of the field'
+      ),
+    ],
+  },
+  {
+    'id': 3058,
+    'set': 'C3',
+    'name': 'Destructo-Disc',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 3,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.KillCharacter],
+        'KOs 1 SP character on the field',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3061,
+    'set': 'C3',
+    'name': 'Naughty Book',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Normal,
+    'energy_cost': 3,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.AddAttack, EffectType.AddHitPoints],
+        'Adds +5000 to the Attack and +5000 to the HitPoints of 1 of the Krillin and Master Roshi cards on your side of the field',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3068,
+    'set': 'C3',
+    'name': 'Namekian Power',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Normal,
+    'energy_cost': 3,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.SummonFromDeck, EffectType.RecoverLifePoints, EffectType.RecoverHitPoints],
+        'Activates from your deck at no energy cost if you consume a symbol. Restores 7000 HitPoints for your leader or 1 character on your side of the field. (Symbols not required when played from your hand.)',
+        TriggerType.EventCard,
+        'Purple Consumed'
+      ),
+    ],
+  },
+  {
+    'id': 3069,
+    'set': 'C3',
+    'name': 'Hovercar Hijinks',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.Rare,
+    'energy_cost': 3,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.SummonSpecial],
+        'Causes up to 2 SP characters to appear from your SP deck with a total cost of 2 or less',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3081,
+    'set': 'C3',
+    'name': 'Path to Greatness',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 3,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.SummonFromHand],
+        'Causes 1 of the Gohan cards in your hand with a cost equal or less than your energy limit to randomly appear. ("Upon Appearance" effects are not triggered.)',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3095,
+    'set': 'C3',
+    'name': 'Earth\'s Champion',
+    'sub_name': '',
+    'groups': [],
+    'rarity': Rarity.SuperRare,
+    'energy_cost': 3,
+    'type': CardType.Event,
+    'icon': IconType.None,
+    'effects': [
+      new Effect(
+        [EffectType.UnableToAttackLeader],
+        'Gives "Unable to Attack Leader" to all characters on your opponent\'s side of the field until the end of your opponent\'s turn',
+        TriggerType.EventCard
+      ),
+    ],
+  },
+  {
+    'id': 3101,
+    'set': 'CB3',
+    'name': 'Royal Defense Soldier',
+    'sub_name': '',
+    'groups': ['Royal Defense Soldier'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 1,
+    'type': CardType.Support,
+    'icon': IconType.None,
+    'attack': 2000,
+    'hit_points': 1000,
+    'effects': [
+      new Effect(
+        [EffectType.UnableToAttackLeader],
+        'Unable to Attack Opponent\'s Leader',
+        TriggerType.Always
+      ),
+    ],
+  },
+  {
+    'id': 3102,
+    'set': 'CB3',
+    'name': 'Exhausted Yamcha',
+    'sub_name': '',
+    'groups': ['Yamcha'],
+    'rarity': Rarity.Normal,
+    'energy_cost': 1,
+    'type': CardType.Support,
+    'icon': IconType.None,
+    'attack': 1000,
+    'hit_points': 1000,
+    'effects': [
+      new Effect(
+        [EffectType.UnableToAttack],
+        'Unable to Attack',
+        TriggerType.Always
+      ),
+    ],
   },
 ];
