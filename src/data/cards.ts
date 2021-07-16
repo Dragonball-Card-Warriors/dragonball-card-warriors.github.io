@@ -9981,7 +9981,7 @@ export const cardList: Array<{
   {
     'id': 3042,
     'set': 'C3',
-    'name': 'Goahn (Great Saiyaman)',
+    'name': 'Gohan (Great Saiyaman)',
     'sub_name': 'Defender of Justice',
     'groups': [
       'Gohan',
