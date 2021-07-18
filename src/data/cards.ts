@@ -28,6 +28,7 @@ export enum AbilityType {
   NegateDamage = 'Negate Damage',
   Rush = 'Rush',
   Overpower = 'Overpower',
+  Surge = 'Surge',
 }
 
 export enum EffectType {

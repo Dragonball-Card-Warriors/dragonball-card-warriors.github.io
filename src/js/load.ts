@@ -21,7 +21,7 @@ export const getCardEffectHTML = (effects: Effect[]): string => {
       html += `<tr><th colspan="4" class="no-border">[${effect.trigger.toUpperCase()}]</th></tr>`;
     }
     if (effect.requirements) {
-      html += `<tr><td colspan="4" class="no-border text-warning">${effect.requirements?.replace(/\n/g, '<br/>').replace(/\b(Green|Blue|Yellow|Purple)\b/g, symbol => `<img class="symbol-icon" src="generator/images/symbol/${symbol.toLowerCase()}.png"/>`)}</td></tr>`;
+      html += `<tr><td colspan="4" class="no-border text-warning">${effect.requirements?.replace(/\n/g, '<br/>').replace(/\b(Green|Blue|Yellow|Purple)\b/g, symbol => `<img class="symbol-icon" src="generator/images/symbol/${symbol.toLowerCase()}.png"/>`).replace(new RegExp(`\\b(${Object.values(AbilityType).join('|')})\\b`, 'g'), ability => `<img class="effect-icon" src="generator/images/effects/${ability}.png"/> ${ability}`)}</td></tr>`;
     }
     html += `<tr><td colspan="4">${effect.description.replace(/\n/g, '<br/>').replace(/\b(Green|Blue|Yellow|Purple)\b/g, symbol => `<img class="symbol-icon" src="generator/images/symbol/${symbol.toLowerCase()}.png"/>`).replace(new RegExp(`\\b(${Object.values(AbilityType).join('|')})\\b`, 'g'), ability => `<img class="effect-icon" src="generator/images/effects/${ability}.png"/> ${ability}`)}</td></tr>`;
   });
