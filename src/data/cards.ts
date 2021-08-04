@@ -6204,10 +6204,7 @@ export const cardList: Array<{
     'set': 'C1',
     'name': 'Kid Buu',
     'sub_name': 'The Original Majin',
-    'groups': [
-      'Majin Buu',
-      'Saiyan',
-    ],
+    'groups': ['Majin Buu'],
     'rarity': Rarity.SuperRare,
     'energy_cost': 10,
     'type': CardType.Special,
